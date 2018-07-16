@@ -124,10 +124,20 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'app.User'
+
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, "static"),
+]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
      )
 }
+
 import django_heroku
 django_heroku.settings(locals())
