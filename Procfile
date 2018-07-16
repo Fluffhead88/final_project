@@ -1,1 +1,1 @@
-web:gunicorn final.wsgi
+web:gunicorn final_project.wsgi
