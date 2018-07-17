@@ -138,6 +138,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
      )
 }
-
+LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
+LASTFM_API_SECRET = os.environ.get("LASTFM_API_SECRET")
 import django_heroku
 django_heroku.settings(locals())

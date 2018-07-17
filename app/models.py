@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# Create your models here.
+
+# json_data = stuff
+# ArtistInfo.objects.create(user=request.user, artist_name=json_data.get("artist").get("name"))
 
 class User(AbstractUser):
     pass

@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-from app.views import IndexView, TimestampListCreateAPIView, ArtistInfoListCreateAPIView, ArtistInfoRetrieveDestroyAPIView, AlbumInfoListCreateAPIView, AlbumInfoRetrieveDestroyAPIView, TrackInfoListCreateAPIView, TrackInfoRetrieveDestroyAPIView
+# TimestampListCreateAPIView,
+# ArtistInfoListCreateAPIView, ArtistInfoRetrieveDestroyAPIView, AlbumInfoListCreateAPIView, AlbumInfoRetrieveDestroyAPIView, TrackInfoListCreateAPIView, TrackInfoRetrieveDestroyAPIView,
+from app.views import IndexView, ProxyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view()),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('timestamps/', TimestampListCreateAPIView.as_view()),
+    path('proxy/', ProxyView.as_view()),
+
+    # path('timestamps/', TimestampListCreateAPIView.as_view()),
 ]
