@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import $ from 'jquery';
 
 // var data =
 //   {
@@ -323,45 +324,87 @@ import './App.css';
 // }
 //
 // ;
+const URL = 'http://localhost:8000/proxy/'
+// var data =   {
+//     "album": {
+//         "name": "Rift",
+//         "artist": "Phish"}
+// };
+//
+// console.log(data);
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       album: data.album
+//     }
+//   }
+//
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.state.album.name}</p>
+//       </div>
+//     );
+//   }
+// }
+//
+// export default App;
 
-var data = [
-  {
-    'id': 1,
-    'artist': 'Phish',
-    'album': 'Hoist'
-  },
-  {
-    'id': 2,
-    'artist': 'Widespread Panic',
-    'album': 'Space Wrangler'
-  },
-  {
-    'id': 3,
-    'artist': 'The Grateful Dead',
-    'album': 'American Beauty'
-  }
-];
-class App extends Component {
-  constructor(props) {
+
+
+class App extends Component{
+  constructor(props){
     super(props);
-    this.state = { data };
+
+    this.state = {
+      album: {}
+    }
   }
 
-  render() {
-    return (
-      <div>
-        {this.state.data.map(item => (
-          <div>
-            <h1>{item.artist}</h1>
-            <span>{item.album}</span>
-          </div>
-        ))}
-      </div>
-    );
-  }
+  componentDidMount(){
+  let self=this;
+
+  fetch(URL)
+  .then(function(response){
+    if(!response.ok){
+      throw Error(response.statusText);
+    }
+
+    return response.json()
+  })
+  .then(responseAsJSON=> {
+    let album = responseAsJSON.album;
+    self.setState({album});
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem: \n', error);
+  });
+}
+//   $.ajax({
+//     url: URL,
+//     type: 'GET',
+//     dataType: 'jsonp',
+//     success: start
+//   })
+//
+//   function start(res) {
+//     console.log(res)
+//   }
+// }
+render(){
+  return(
+    <div>
+    <div>{this.state.album.name}</div>
+    <div>{this.state.album.artist}</div>
+    <div>{this.state.album.url}</div>
+    <div>{this.state.album.track}</div>
+    </div>
+  )
+}
 }
 
-export default App;
+
 // class App extends Component {
     // constructor(props){
     //   super(props);
@@ -374,7 +417,7 @@ export default App;
 //
 //   async componentDidMount() {
 //     try {
-//       var res = await fetch('http://127.0.0.1:8000/proxy/');
+//       var res = await fetch(URL);
 //       var album = await res.json();
 //       this.setState({
 //         album
@@ -398,4 +441,4 @@ export default App;
 //   }
 // }
 //
-// export default App;
+export default App;

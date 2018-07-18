@@ -20,7 +20,7 @@ class ProxyView(APIView):
         artist = "Phish"
         album = "Rift"
         album_data = requests.get(f'{api_url}?method=album.getinfo&api_key={settings.LASTFM_API_KEY}&artist={artist}&album={album}&format=json').json()
-
+        albums_data = requests.get(f'{api_url}?method=artist.gettopalbums&artist={artist}&api_key={settings.LASTFM_API_KEY}&format=json').json()
         return Response(album_data)
 
 
