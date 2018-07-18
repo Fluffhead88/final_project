@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Timestamp, ArtistInfo, AlbumInfo, TrackInfo
+from app.models import Timestamp, Artist, Album
 
 class TimestampSerializer(serializers.ModelSerializer):
 
@@ -7,20 +7,14 @@ class TimestampSerializer(serializers.ModelSerializer):
         fields = "__all__"
         model = Timestamp
 
-class ArtistInfoSerializer(serializers.ModelSerializer):
+class ArtistSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = "__all__"
-        model = ArtistInfo
+        model = Artist
 
-class AlbumInfoSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        fields = "__all__"
-        model = AlbumInfo
-
-class TrackInfoSerializer(serializers.ModelSerializer):
+class AlbumSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = "__all__"
-        model = TrackInfo
+        model = Album

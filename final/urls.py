@@ -15,16 +15,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# TimestampListCreateAPIView,
-# ArtistInfoListCreateAPIView, ArtistInfoRetrieveDestroyAPIView, AlbumInfoListCreateAPIView, AlbumInfoRetrieveDestroyAPIView, TrackInfoListCreateAPIView, TrackInfoRetrieveDestroyAPIView,
-from app.views import IndexView, ProxyView
+
+from app.views import IndexView, ArtistProxyView, AlbumProxyView, TimestampListCreateAPIView, ArtistListCreateAPIView, ArtistRetrieveUpdateDestroyAPIView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(template_name='index.html'), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('proxy/', ProxyView.as_view()),
-
-    # path('timestamps/', TimestampListCreateAPIView.as_view()),
+    path('artist/proxy/', ArtistProxyView.as_view()),
+    path('album/proxy/', AlbumProxyView.as_view()),
+    path('artist/', ArtistListCreateAPIView.as_view()),
+    path('artist/<int:pk>', ArtistRetrieveUpdateDestroyAPIView.as_view()),
+    path('album/', AlbumListCreateAPIView.as_view()),
+    path('album/<int:pk>', AlbumRetrieveUpdateDestroyAPIView.as_view()),
+    path('timestamps/', TimestampListCreateAPIView.as_view()),
 ]
