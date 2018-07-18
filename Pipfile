@@ -8,10 +8,10 @@ requests = "*"
 django = "*"
 djangorestframework = "*"
 djoser = "*"
-"psycopg2-binary" = "*"
 gunicorn = "*"
 django-heroku = "*"
 pillow = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 

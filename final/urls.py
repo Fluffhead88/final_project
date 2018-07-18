@@ -21,7 +21,7 @@ from app.views import IndexView, ProxyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view()),
+    path('', IndexView.as_view(template_name='index.html'), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('proxy/', ProxyView.as_view()),

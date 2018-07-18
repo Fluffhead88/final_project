@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+# import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'final.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'static/build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,12 +122,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'app.User'
 
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, "static"),
+os.path.join(BASE_DIR, 'static/build'),
+os.path.join(BASE_DIR, 'static/build/static'),
+# os.path.join(BASE_DIR, 'static/build/static')
 ]
 
 MEDIA_URL = '/media/'
@@ -138,7 +144,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
      )
 }
+
 LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
 LASTFM_API_SECRET = os.environ.get("LASTFM_API_SECRET")
+
 import django_heroku
 django_heroku.settings(locals())
