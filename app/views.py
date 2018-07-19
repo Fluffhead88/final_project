@@ -39,9 +39,9 @@ class ArtistListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ArtistSerializer
 
     def get_queryset(self):
-        return ArtistInfo.objects.all()
+        return Artist.objects.all()
 
-        return ArtistInfo.objects.filter(user=self.request.user)
+        return Artist.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -52,15 +52,15 @@ class ArtistRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArtistSerializer
 
     def get_queryset(self):
-        return ArtistInfo.objects.filter(user=self.request.user)
+        return Artist.objects.filter(user=self.request.user)
 
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
 
     def get_queryset(self):
-        return AlbumInfo.objects.all()
+        return Album.objects.all()
 
-        return AlbumInfo.objects.filter(user=self.request.user)
+        return Album.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -71,4 +71,4 @@ class AlbumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AlbumSerializer
 
     def get_queryset(self):
-        return AlbumInfo.objects.filter(user=self.request.user)
+        return Album.objects.filter(user=self.request.user)
