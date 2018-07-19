@@ -14,6 +14,7 @@ from rest_framework import filters
 class IndexView(TemplateView):
     template_name="index.html"
 
+# viewsets? ModelViewSet?
 class ArtistProxyView(APIView):
     def get(self, request):
 

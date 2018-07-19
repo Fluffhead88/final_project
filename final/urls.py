@@ -17,13 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from app.views import IndexView, ArtistProxyView, AlbumProxyView, TimestampListCreateAPIView, ArtistListCreateAPIView, ArtistRetrieveUpdateDestroyAPIView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView
-
+# router?
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(template_name='index.html'), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('artist/proxy/', ArtistProxyView.as_view()),
+    path('artist/proxy/', ArtistProxyView.as_view(), name='artist_proxy'),
     path('album/proxy/', AlbumProxyView.as_view()),
     path('artist/', ArtistListCreateAPIView.as_view()),
     path('artist/<int:pk>', ArtistRetrieveUpdateDestroyAPIView.as_view()),

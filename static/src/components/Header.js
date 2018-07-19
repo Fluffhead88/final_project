@@ -7,9 +7,9 @@ function Header(props) {
   return (
     <div className="row">
       <nav className="col nav">
-        <button><NavLink to='/'>Home</NavLink></button>
-        <button><NavLink to='/collections'>Collections</NavLink></button>
-        <button><NavLink to='/mycollection'>MyCollection</NavLink></button>
+        <button className="nav_button"><NavLink to='/'>Home</NavLink></button>
+        <button className="nav_button"><NavLink to='/collections'>Collections</NavLink></button>
+        <button className="nav_button"><NavLink to='/mycollection'>MyCollection</NavLink></button>
       </nav>
 
       <div className="login">

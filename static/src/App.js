@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import $ from 'jquery';
+import Home from './components/Home.js'
 
 const URL = "http://localhost:8000/album/proxy/"
 
@@ -92,6 +93,7 @@ let id=1
 render(){
   return(
     <div>
+      <Home/>
       <div>{this.state.album.name}</div>
       <div>{this.state.album.artist}</div>
       <div>{this.state.album.url}</div>
