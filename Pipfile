@@ -13,6 +13,7 @@ django-heroku = "*"
 pillow = "*"
 "psycopg2-binary" = "*"
 django-cors-headers = "*"
+django-filter = "*"
 
 [dev-packages]
 

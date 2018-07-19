@@ -9,6 +9,7 @@ from app.serializers import TimestampSerializer, ArtistSerializer, AlbumSerializ
 import requests
 from app.permissions import IsOwnerOrReadOnly
 from django.conf import settings
+from rest_framework import filters
 
 class IndexView(TemplateView):
     template_name="index.html"
@@ -37,6 +38,8 @@ class TimestampListCreateAPIView(generics.ListCreateAPIView):
 
 class ArtistListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ArtistSerializer
+    filter_backends=(filters.SearchFilter)
+    search_fields=('artist')
 
     def get_queryset(self):
         return Artist.objects.all()
@@ -56,6 +59,8 @@ class ArtistRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
+    filter_backends=(filters.SearchFilter)
+    search_fields=('album')
 
     def get_queryset(self):
         return Album.objects.all()
