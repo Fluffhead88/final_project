@@ -10,7 +10,7 @@ function Header(props) {
       <div class="nav-wrapper container">
         <a id="logo-container" href="#" class="brand-logo">Logo</a>
         <ul class="right hide-on-med-and-down">
-          <button className="waves-effect waves-light btn nav_button"><NavLink to='/'>Home</NavLink></button>
+          <button className="waves-effect waves-light grey btn nav_button"><NavLink to='/'>Home</NavLink></button>
           <button className="waves-effect waves-light btn nav_button"><NavLink to='/collections'>Collections</NavLink></button>
           <button className="waves-effect waves-light btn nav_button"><NavLink to='/mycollection'>My Collection</NavLink></button>
         </ul>

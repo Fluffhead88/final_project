@@ -90,13 +90,22 @@ let id=1
   }
 
   render() {
+    let tracks;
+    if(this.state.album.tracks) {
+      tracks = this.state.album.tracks.track.map(function(trackItem){
+        return(
+          <div>{trackItem.name}</div>
+        )
+      })
+    }
+
     return (
       <div className="myCollection container">
         <h1>MyCollection</h1>
         <div>{this.state.album.name}</div>
         <div>{this.state.album.artist}</div>
         <div>{this.state.album.url}</div>
-        {/* <div>{this.state.album.track}</div> */}
+        <div>{tracks}</div>
         <input type="button" value="Post Request" onClick={this._postRequest}/>
         <input type="button" value="Put Request" onClick={this._editRequest}/>
         <input type="button" value="Delete Request" onClick={this._deleteRequest}/>
