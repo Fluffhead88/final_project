@@ -1,12 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-# from app.views import ProxyView
-
-# json_data = album_data
-    # Artist.objects.create(user=request.user, artist_name=json_data.get("album").get("artist"))
-    #
-    # Album.objects.create(user=request.user, album_name=json_data.get("album").get("name"),
-    # image=json_data.get("album").get("image").get("size").get("medium"), url=json_data.get("album").get("url"), release=json_data.get("album").get("tags").get("tag").get("name", 0))
 
 
 class User(AbstractUser):

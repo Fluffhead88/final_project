@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from rest_framework import generics
+from rest_framework import viewsets, generics
 from app.models import Timestamp, Artist, Album
 from app.serializers import TimestampSerializer, ArtistSerializer, AlbumSerializer
 import requests
@@ -37,13 +37,19 @@ class TimestampListCreateAPIView(generics.ListCreateAPIView):
     queryset = Timestamp.objects.all()
     serializer_class = TimestampSerializer
 
+    # json_data = album_data
+        # Artist.objects.create(user=request.user, artist_name=json_data.get("album").get("artist"))
+        #
+        # Album.objects.create(user=request.user, album_name=json_data.get("album").get("name"),
+        # image=json_data.get("album").get("image").get("size").get("medium"), url=json_data.get("album").get("url"), release=json_data.get("album").get("tags").get("tag").get("name", 0))
+
 class ArtistListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = ArtistSerializer
     filter_backends=(filters.SearchFilter)
     search_fields=('artist')
 
     def get_queryset(self):
-        return Artist.objects.all()
+        return Artist.objects.create(user=request.user, artist_name=artist_data.get("album").get("artist"))
 
         return Artist.objects.filter(user=self.request.user)
 
@@ -64,7 +70,7 @@ class AlbumListCreateAPIView(generics.ListCreateAPIView):
     search_fields=('album')
 
     def get_queryset(self):
-        return Album.objects.all()
+        return Album.objects.create(user=request.user, album_name=album_data.get("album").get("name"))
 
         return Album.objects.filter(user=self.request.user)
 
