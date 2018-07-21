@@ -22,20 +22,26 @@ class AlbumSearch extends Component {
 
   render() {
     return (
-      <form onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} className="AlbumSearch">
-        <div className="AlbumSearch">
 
-          <label htmlFor="artistSearch">Enter Artist</label>
-          <input name="artistSearch" type="text" className="form-control" id="artistSearch" placeholder="Artist" value={this.state.artistSearch} onChange={this._handleInput}/>
+      <div class="row">
+        <form class="col s12">
+          <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} >
+            <div class="input-field col s6">
+              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.artistSearch} onChange={this._handleInput}/>
+              <label for="input_text">Artist Search</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} onChange={this._handleInput} required/>
+              <label for="input_text">Album Search</label>
+            </div>
+          </div>
+          <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
+        </form>
+      </div>
 
 
-          <label htmlFor="albumSearch">Enter Album</label>
-          <input name="albumSearch" type="text" className="form-control" id="albumSearch" placeholder="Album" value={this.state.albumSearch} onChange={this._handleInput} required/>
-
-        </div>
-
-          <button type="submit" className="btn btn-primary">Search</button>
-      </form>
     );
   }
 }

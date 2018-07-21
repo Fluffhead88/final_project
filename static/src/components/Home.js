@@ -89,7 +89,7 @@ class="close" title="Close Modal">&times;</span>
 
               <div class="col s12 m4">
                 <div class="icon-block">
-                  <h2 class="center gray-text"><i class="medium material-icons">music_note</i></h2>
+                  <h2 class="center gray-text"><i class="medium material-icons">album</i></h2>
                   <h5 class="center">Browse</h5>
 
                   <p class="light">See what albums your friends have. See how your collection stacks up to others. Find records that you want to add to your collection.</p>

@@ -8,7 +8,6 @@ function Header(props) {
 
     <nav class="white" role="navigation">
       <div class="nav-wrapper container">
-        <a id="logo-container" href="#" class="material-icons">album</a>
         <ul class="right hide-on-med-and-down">
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/'>Home</NavLink></button>
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/collections'>Collections</NavLink></button>

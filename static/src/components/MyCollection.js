@@ -98,18 +98,53 @@ let id=1
         )
       })
     }
-
+    let release;
+    if(this.state.album.tags){
+      release = this.state.album.tags.tag.map(function(releaseItem){
+        return(
+          <div>{releaseItem.name}</div>
+        )
+      })
+    }
+    let image;
+    if(this.state.album.image){
+      image = this.state.album.image.map(function(imageItem){
+        return(
+          <div>{imageItem.size}</div>
+        )
+      })
+    }
     return (
       <div className="myCollection container">
-        <h1>MyCollection</h1>
-        <div>{this.state.album.name}</div>
-        <div>{this.state.album.artist}</div>
-        <div>{this.state.album.url}</div>
-        <div>{tracks}</div>
-        <input type="button" value="Post Request" onClick={this._postRequest}/>
-        <input type="button" value="Put Request" onClick={this._editRequest}/>
-        <input type="button" value="Delete Request" onClick={this._deleteRequest}/>
+        <h1>My Collection</h1>
         <AlbumSearch/>
+        <div className="row album_info">
+          <div className="col s4 m4">
+            <p className="name">Album Name</p>
+          <div>{this.state.album.name}</div>
+            <p className="name">Artist</p>
+          <div>{this.state.album.artist}</div>
+          <p className="name">Release</p>
+          <div>{release}</div>
+
+          </div>
+          <div className="col s4 m4">
+            <p className="name">Tracks</p>
+          <div>{tracks}</div>
+
+          </div>
+            <div className="col s4 m4">
+            <p className="name">Image Stuff</p>
+          {image}
+          <p className="name">Link</p>
+        <div>{this.state.album.url}</div>
+        </div>
+
+        </div>
+        <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
+        <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
+        <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/>
+
       </div>
     );
   }

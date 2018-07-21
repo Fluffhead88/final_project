@@ -37,13 +37,13 @@ class UserSearch extends Component {
           <form class="col s12">
             <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} >
               <div class="input-field col s6">
-                <input id="input_text" type="text" placeholder="params" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
+                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
                 <label for="input_text">User Search</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s6">
-                <input id="input_text" type="text" placeholder="params" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
+                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
                 <label for="input_text">Album Search</label>
               </div>
             </div>
