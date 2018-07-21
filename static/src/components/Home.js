@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 
 import './Home.css';
-import image1 from './images/vinyl_bins.jpeg'
+// import image1 from './images/vinyl_bins.jpeg'
 import image2 from './images/records.jpg'
-import image3 from './images/vinyl_bins.jpeg'
+// import image3 from './images/vinyl_bins.jpeg'
+import image4 from './images/records_sun.jpg'
 // import $ from 'jquery'
 //
 // $(document).ready(function(){
 //     $('.parallax').parallax();
 // });
+
 
 class Home extends Component {
   constructor(props) {
@@ -28,7 +30,7 @@ class Home extends Component {
                 <h5 class="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
               </div>
               <div class="row center">
-                <a href="" id="login-button" class="btn-large waves-effect waves-light red lighten-1" onclick="document.getElementById('id01').style.display='block'">Create Collection</a>
+                <a href="" id="login-button" class="btn-large waves-effect waves-light red lighten-2" onclick="document.getElementById('id01').style.display='block'">Create Collection</a>
 
 
 
@@ -67,7 +69,7 @@ class="close" title="Close Modal">&times;</span>
 
             </div>
           </div>
-          <div class='parallax'><img src={image1} alt="Unsplashed background img 1"/></div>
+          <div class='image'><img src={image2} alt="Unsplashed background img 1"/></div>
         </div>
 
 
@@ -108,7 +110,7 @@ class="close" title="Close Modal">&times;</span>
         </div>
 
 
-        <div class="parallax-container valign-wrapper">
+        {/* <div class="parallax-container valign-wrapper">
           <div class="section no-pad-bot">
             <div class="container">
               <div class="row center">
@@ -116,21 +118,7 @@ class="close" title="Close Modal">&times;</span>
               </div>
             </div>
           </div>
-          <div class="parallax"><img src={image2} alt="Unsplashed background img 2"/></div>
-        </div>
-
-        <div class="container">
-          <div class="section">
-
-            <div class="row">
-              <div class="col s12 center">
-                <h3><i class="mdi-content-send brown-text"></i></h3>
-                <h4>Contact</h4>
-                <p class="left-align light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque id nunc nec volutpat. Etiam pellentesque tristique arcu, non consequat magna fermentum ac. Cras ut ultricies eros. Maecenas eros justo, ullamcorper a sapien id, viverra ultrices eros. Morbi sem neque, posuere et pretium eget, bibendum sollicitudin lacus. Aliquam eleifend sollicitudin diam, eu mattis nisl maximus sed. Nulla imperdiet semper molestie. Morbi massa odio, condimentum sed ipsum ac, gravida ultrices erat. Nullam eget dignissim mauris, non tristique erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
-              </div>
-            </div>
-
-          </div>
+          <div class="image"><img src={image2} alt="Unsplashed background img 2"/></div>
         </div>
 
 
@@ -142,10 +130,10 @@ class="close" title="Close Modal">&times;</span>
               </div>
             </div>
           </div>
-          <div class="parallax"><img src={image3} alt="Unsplashed background img 3"/></div>
-        </div>
+          <div class="image"><img src={image3} alt="Unsplashed background img 3"/></div>
+        </div> */}
 
-        <footer class="page-footer teal">
+        <footer class="page-footer red-lighten-2">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -159,8 +147,8 @@ class="close" title="Close Modal">&times;</span>
                 <ul>
                   <li><a class="white-text" href="#!">Link 1</a></li>
                   <li><a class="white-text" href="#!">Link 2</a></li>
-                  <li><a class="white-text" href="#!">Link 3</a></li>
-                  <li><a class="white-text" href="#!">Link 4</a></li>
+                  {/* <li><a class="white-text" href="#!">Link 3</a></li>
+                  <li><a class="white-text" href="#!">Link 4</a></li> */}
                 </ul>
               </div>
               <div class="col l3 s12">
@@ -168,15 +156,15 @@ class="close" title="Close Modal">&times;</span>
                 <ul>
                   <li><a class="white-text" href="#!">Link 1</a></li>
                   <li><a class="white-text" href="#!">Link 2</a></li>
-                  <li><a class="white-text" href="#!">Link 3</a></li>
-                  <li><a class="white-text" href="#!">Link 4</a></li>
+                  {/* <li><a class="white-text" href="#!">Link 3</a></li>
+                  <li><a class="white-text" href="#!">Link 4</a></li> */}
                 </ul>
               </div>
             </div>
           </div>
           <div class="footer-copyright">
             <div class="container">
-            Made by <a class="brown-text text-lighten-3" href="https://fluffhead88.github.io/take-two/">Zachary Thigpen</a>
+            Made by <a class="white-text text-lighten-1" href="https://fluffhead88.github.io/take-two/">Zachary Thigpen</a>
             </div>
           </div>
         </footer>

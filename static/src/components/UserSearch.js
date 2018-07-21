@@ -22,17 +22,36 @@ class UserSearch extends Component {
 
   render() {
     return (
-      <form onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} className="UserSearch">
+      <div>
+      {/* <form onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} className="UserSearch">
         <div className="searchFormField">
           <label htmlFor="input">Input?</label>
           <input name="params" type="text" className="form-control" id="input" placeholder="params" value={this.state.params} onChange={this._handleInput} required/>
         </div>
 
           <button type="submit" className="btn btn-primary">Search</button>
-      </form>
+      </form> */}
 
 
+        <div class="row">
+          <form class="col s12">
+            <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} >
+              <div class="input-field col s6">
+                <input id="input_text" type="text" placeholder="params" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
+                <label for="input_text">User Search</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s6">
+                <input id="input_text" type="text" placeholder="params" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
+                <label for="input_text">Album Search</label>
+              </div>
+            </div>
+            <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
+          </form>
+        </div>
 
+</div>
 
 
 // {/* <div>

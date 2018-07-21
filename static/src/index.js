@@ -7,7 +7,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min.js';
 import 'jquery/dist/jquery.min.js';
 
-
+ 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import BaseLayout from './BaseLayout';
