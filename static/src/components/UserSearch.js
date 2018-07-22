@@ -7,7 +7,8 @@ class UserSearch extends Component {
     super(props);
 
     this.state = {
-      params: ''
+      userSearch: '',
+      albumSearch: '',
     }
 
     this._handleInput = this._handleInput.bind(this);
@@ -15,8 +16,11 @@ class UserSearch extends Component {
 
   _handleInput(event) {
     let data = event.target.value;
-    if (event.target.name === "params") {
-      this.setState({params: data});
+    if (event.target.name === "userSearch") {
+      this.setState({userSearch: data});
+    }
+    if (event.target.name === "albumSearch"){
+      this.setState({albumSearch: data});
     }
   }
 
@@ -35,15 +39,17 @@ class UserSearch extends Component {
 
         <div class="row">
           <form class="col s12">
-            <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} >
+            <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.userSearch)}} >
               <div class="input-field col s6">
-                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
+                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.userSearch} onChange={this._handleInput} required/>
                 <label for="input_text">User Search</label>
               </div>
             </div>
-            <div class="row">
+            <div><button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
+          </div>
+            <div class="row AlbumSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.albumSearch)}}>
               <div class="input-field col s6">
-                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.params} onChange={this._handleInput} required/>
+                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} onChange={this._handleInput} required/>
                 <label for="input_text">Album Search</label>
               </div>
             </div>

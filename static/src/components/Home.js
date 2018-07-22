@@ -4,7 +4,7 @@ import './Home.css';
 // import image1 from './images/vinyl_bins.jpeg'
 import image2 from './images/records.jpg'
 // import image3 from './images/vinyl_bins.jpeg'
-import image4 from './images/records_sun.jpg'
+import image4 from './images/records_sun3.png'
 // import $ from 'jquery'
 //
 // $(document).ready(function(){
@@ -33,7 +33,7 @@ class Home extends Component {
                 <a href="" id="login-button" class="btn-large waves-effect waves-light red lighten-2" onclick="document.getElementById('id01').style.display='block'">Create Collection</a>
 
 
-
+{/*
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display=none"
 class="close" title="Close Modal">&times;</span>
@@ -62,7 +62,7 @@ class="close" title="Close Modal">&times;</span>
       <span class="psw">Forgot <a href="#">password?</a></span>
     </div>
   </form>
-</div>
+</div> */}
 
               </div>
               <br></br>

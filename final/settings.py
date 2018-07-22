@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'django_filters',
     'corsheaders',
 ]
 
@@ -133,10 +134,10 @@ AUTH_USER_MODEL = 'app.User'
 CORS_ORIGIN_ALLOW_ALL = True
 
 STATICFILES_DIRS = [
-os.path.join(BASE_DIR, "static"),
-os.path.join(BASE_DIR, 'static/build'),
-os.path.join(BASE_DIR, 'static/build/static'),
-# os.path.join(BASE_DIR, 'static/build/static')
+    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, 'static/build'),
+    os.path.join(BASE_DIR, 'static/build/static'),
+    # os.path.join(BASE_DIR, 'static/build/static')
 ]
 
 MEDIA_URL = '/media/'
@@ -144,11 +145,11 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
-'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
 
-     )
+    )
 }
 
 LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")

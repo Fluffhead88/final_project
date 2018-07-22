@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import AlbumSearch from "./AlbumSearch.js"
+// import $ from 'jquery';
+import image4 from './images/records_sun2.png'
+// import image2 from './images/records.jpg'
 
 import './MyCollection.css';
+
+
 
 const URL = "http://localhost:8000/album/proxy/"
 
@@ -115,6 +120,7 @@ let id=1
       })
     }
     return (
+      <div>
       <div className="myCollection container">
         <h1>My Collection</h1>
         <AlbumSearch/>
@@ -144,6 +150,26 @@ let id=1
         <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
         <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
         <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/>
+        </div>
+        {/* <ul class="collapsible">
+     <li>
+       <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
+       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+     </li>
+     <li>
+       <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+     </li>
+     <li>
+       <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+       <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+     </li>
+   </ul> */}
+ <div className='row center'>
+   <div className='col s12 center'>
+ <div class='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+ </div>
+</div>
 
       </div>
     );
