@@ -4,10 +4,9 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'materialize-css/dist/css/materialize.min.css';
-import 'materialize-css/dist/js/materialize.min.js';
 import 'jquery/dist/jquery.min.js';
+import 'materialize-css/dist/js/materialize.min.js';
 
- 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import BaseLayout from './BaseLayout';

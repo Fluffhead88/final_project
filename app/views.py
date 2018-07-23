@@ -32,7 +32,8 @@ class AlbumProxyView(APIView):
 
 
  # get users to search
-
+ 
+# model api views
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
     filter_backends=(filters.SearchFilter,)

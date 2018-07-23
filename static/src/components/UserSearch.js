@@ -32,7 +32,7 @@ class UserSearch extends Component {
             <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.userSearch)}} >
               <div class="input-field col s6">
                 <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.userSearch} onChange={this._handleInput} required/>
-                <label for="input_text">User Search</label>
+                <label htmlFor="input_text">User Search</label>
               </div>
             </div>
             <div><button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
@@ -40,7 +40,7 @@ class UserSearch extends Component {
             <div class="row AlbumSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.albumSearch)}}>
               <div class="input-field col s6">
                 <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} onChange={this._handleInput} required/>
-                <label for="input_text">Album Search</label>
+                <label htmlFor="input_text">Album Search</label>
               </div>
             </div>
             <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
@@ -60,29 +60,29 @@ class UserSearch extends Component {
 //     <div class="row">
 //       <div class="input-field col s6">
 //         <input placeholder="Placeholder" id="first_name" type="text" class="validate"/>
-//         <label for="first_name">First Name</label>
+//         <label htmlFor="first_name">First Name</label>
 //       </div>
 //       <div class="input-field col s6">
 //         <input id="last_name" type="text" class="validate"/>
-//         <label for="last_name">Last Name</label>
+//         <label htmlFor="last_name">Last Name</label>
 //       </div>
 //     </div>
 //     <div class="row">
 //       <div class="input-field col s12">
 //         <input disabled value="I am not editable" id="disabled" type="text" class="validate"/>
-//         <label for="disabled">Disabled</label>
+//         <label htmlFor="disabled">Disabled</label>
 //       </div>
 //     </div>
 //     <div class="row">
 //       <div class="input-field col s12">
 //         <input id="password" type="password" class="validate"/>
-//         <label for="password">Password</label>
+//         <label htmlFor="password">Password</label>
 //       </div>
 //     </div>
 //     <div class="row">
 //       <div class="input-field col s12">
 //         <input id="email" type="email" class="validate"/>
-//         <label for="email">Email</label>
+//         <label htmlFor="email">Email</label>
 //       </div>
 //     </div>
 //     <div class="row">
@@ -90,7 +90,7 @@ class UserSearch extends Component {
 //         This is an inline input field:
 //         <div class="input-field inline">
 //           <input id="email_inline" type="email" class="validate"/>
-//           <label for="email_inline">Email</label>
+//           <label htmlFor="email_inline">Email</label>
 //           <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
 //         </div>
 //       </div>

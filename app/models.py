@@ -7,8 +7,8 @@ class User(AbstractUser):
 
 class Album(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to='static/uploads', verbose_name='image', blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='static/uploads', verbose_name='image', null=True)
     artist = models.CharField(max_length=255)
     album = models.CharField(max_length=255)
     url = models.URLField(max_length=2000, blank=True)

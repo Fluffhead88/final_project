@@ -1,6 +1,6 @@
 from django.test import TestCase, RequestFactory, Client
 import json
-from app.models import Album
+from app.models import Album, User
 from django.urls import reverse
 from rest_framework.test import APIClient
 from model_mommy import mommy
@@ -10,6 +10,7 @@ from rest_framework.authtoken.models import Token
 class AlbumViewSetTest(TestCase):
     def setUp(self):
         self.album = mommy.make(Album)
+        self.user = mommy.make(User)
 
     def test_album_list(self):
         # Make sure the rest framework router is configured
@@ -37,8 +38,9 @@ class AlbumViewSetTest(TestCase):
         # Functional test: get detail of album
         c = APIClient()
         album_data = {
+            'user_id' : self.user.pk,
             'artist': 'Phish',
-            'title': 'Rift',
+            'album': 'Rift',
 
         }
 
@@ -50,21 +52,19 @@ class AlbumViewSetTest(TestCase):
         response_data = json.loads(response.content)
         response_data.pop('id')
 
-        # API should not return active field in response
-        album_data.pop('active')
-
         # Make sure the album was created with the values we provided
         self.assertEquals(response_data, album_data)
 
-class ArtistModelTest(TestCase):
+class AlbumModelTest(TestCase):
     def setUp(self):
-        self.album = Album.objects.create(artist='Phish', title='Rift',)
+        self.user = mommy.make(User)
+        self.album = Album.objects.create(artist='Phish', album='Rift', notes='awesome', user=self.user)
 
     def test_get_notes(self):
-        Rift = Album.objects.get(title='Rift')
-        Rift_notes = Rift.get_notes()
+        rift = Album.objects.get(album='Rift')
+        rift_notes = rift.notes
 
-        self.assertEquals(Rift_notes, 'This album is great')
+        self.assertEquals(rift_notes, 'awesome')
 
     # def test_default_description(self):
     #     self.assertEquals(self.album.notes, 'snowy wonderland')

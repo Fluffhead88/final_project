@@ -12,37 +12,51 @@ import image2 from './images/records.jpg'
 // });
 const URL = "http://127.0.0.1:8000/auth/token/create/"
 
-// _postAuthCreation() {
-//   let self = this;
-//
-//   fetch(URL,{
-//     method: 'POST'.
-//     body:JSON.stringify(something),
-//     headers:{}
-//   })
-//   .then(function(response){
-//     if(!response.ok){
-//       throw Error(response.statusText);
-//     }
-//     return response.json()
-//   })
-//   .then(function(responseJSON){
-//     console.log('response', responseJSON)
-//     self.setState({stuff: responseJSON.stuff});
-//   })
-//   .catch(function(error){
-//     console.log('Looks like there was a problem: \n', error);
-//   });
-// }
-
 class Home extends Component {
   constructor(props) {
     super(props);
-  }
+    this.state = {
+      artistSearch: '',
+      albumSearch: ''
+    }
+
+    this._handleInput = this._handleInput.bind(this);
+}
+    _handleInput(event) {
+      let data = event.target.value;
+
+      let obj =  {}
+      let key = event.target.name;
+      obj[key] = event.target.value;
+      this.setState(obj);
+    }
+    // _postAuthCreation() {
+    //   let self = this;
+    //
+    //   fetch(URL,{
+    //     method: 'POST'.
+    //     body:JSON.stringify(something),
+    //     headers:{}
+    //   })
+    //   .then(function(response){
+    //     if(!response.ok){
+    //       throw Error(response.statusText);
+    //     }
+    //     return response.json()
+    //   })
+    //   .then(function(responseJSON){
+    //     console.log('response', responseJSON)
+    //     self.setState({stuff: responseJSON.stuff});
+    //   })
+    //   .catch(function(error){
+    //     console.log('Looks like there was a problem: \n', error);
+    //   });
+    // }
+
 
   render() {
     return (
-      <body>
+      <div>
         <div id="index-banner" className="parallax-container">
           <div className="section no-pad-bot">
             <div className="container">
@@ -52,7 +66,20 @@ class Home extends Component {
                 <h5 className="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
               </div>
               <div className="row center">
-                <a href="" id="login-button" className="btn-large waves-effect waves-light red lighten-2" onclick="document.getElementById('id01').style.display='block'">Create Collection</a>
+                {/* onClick={document.getElementById('id01').style.display='block'} */}
+                <a href="" id="login-button" className="btn-large waves-effect waves-light red lighten-2" >Create Collection</a>
+              </div>
+              <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+              {/* <!-- Modal Structure --> */}
+              <div id="modal1" className="modal">
+                <div className="modal-content">
+                  <h4>Modal Header</h4>
+                  <p>A bunch of text</p>
+                </div>
+                <div className="modal-footer">
+                  <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
+                </div>
               </div>
               <br></br>
             </div>
@@ -90,9 +117,9 @@ class Home extends Component {
         <div className="container">
           <form className="login form">
             <div className="container">
-              <label for="uname"><b>Username</b></label>
+              <label htmlFor="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required/>
-              <label for="psw"><b>Password</b></label>
+              <label htmlFor="psw"><b>Password</b></label>
               <input type="password" placeholder="Enter Password" name="psw" required/>
               <button type="submit">Login</button>
             </div>
@@ -127,9 +154,11 @@ class Home extends Component {
             </div>
           </div>
         </footer>
-        {/*
-        <div id="id01" className="modal">
-          <span onclick="document.getElementById('id01').style.display=none"
+
+
+
+        {/* <div id="id01" className="modal">
+          <span onClick="document.getElementById('id01').style.display=none"
         className="close" title="Close Modal">&times;</span>
 
 
@@ -139,10 +168,10 @@ class Home extends Component {
             </div>
 
             <div className="container">
-              <label for="uname"><b>Username</b></label>
+              <label htmlFor="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required/>
 
-              <label for="psw"><b>Password</b></label>
+              <label htmlFor="psw"><b>Password</b></label>
               <input type="password" placeholder="Enter Password" name="psw" required/>
 
               <button type="submit">Login</button>
@@ -152,18 +181,18 @@ class Home extends Component {
             </div>
 
             <div className="container">
-              <button type="button" onclick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
+              <button type="button" onClick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
               <span className="psw">Forgot <a href="#">password?</a></span>
             </div>
           </form>
         </div> */}
 
         {/* <!--  Scripts--> */}
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        {/* <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="js/materialize.js"></script>
-        <script src="js/init.js"></script>
+        <script src="js/init.js"></script> */}
 
-        </body>
+      </div>
 
     );
   }

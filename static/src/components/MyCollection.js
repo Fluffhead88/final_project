@@ -141,20 +141,33 @@ _deleteRequest(){
     let imageURL;
 
     if(this.state.album.image) {
-      imageURL = this.state.album.image[0]['#text'];
+      imageURL = this.state.album.image[4]['#text'];
     }
 
-    if(this.state.album.image){
-      imageURL = this.state.album.image[0]['#text']
+    let summary;
+
+    if(this.state.album.wiki){
+      summary = this.state.album.wiki.summary;
     }
-    // let summary;
-    // if(this.state.album.wiki){
-    //   summary = this.state.album.wiki.map(function(summaryItem, index){
-    //     return(
-    //       <div key={index}>{summaryItem.summary}</div>
-    //     )
-    //   })
-    // }
+
+    let name;
+
+    if(this.state.album.name){
+      name = this.state.album.name;
+    }
+
+    let artist;
+
+    if(this.state.album.artist){
+      artist = this.state.album.artist;
+    }
+
+    let url;
+
+    if(this.state.album.url){
+      url = this.state.album.url;
+    }
+
     return (
       <div>
         <div className="myCollection container">
@@ -163,25 +176,25 @@ _deleteRequest(){
             <div className="row album_info">
               <div className="col s4 m4">
                 <p className="name">Album Name</p>
-                <div>{this.state.album.name}</div>
+                <div>{name}</div>
                   <p className="name">Artist</p>
-                <div>{this.state.album.artist}</div>
-                  <p className="name">Release</p>
-                <div>{release}</div>
+                <div>{artist}</div>
               </div>
               <div className="col s4 m4">
                 <p className="name">Tracks</p>
                   <div>{tracks}</div>
                 </div>
               <div className="col s4 m4">
-                <p className="name">Image Stuff</p>
-                  <div>{imageURL}</div>
-                    <p className="name">Link</p>
-                    <div>{this.state.album.url}</div>
-                    {/* <p className="name">Summary</p>
-                    <div>{summary}</div> */}
+                <img src={imageURL} alt=""/>
               </div>
             </div>
+            <div className="row summary">
+              <div className="col s12">
+              <a href={url}>Link to album on Last.FM</a>
+              <p className="name">Summary</p>
+              <div>{summary}</div>
+              </div>
+              </div>
             <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
             <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
             <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/>
