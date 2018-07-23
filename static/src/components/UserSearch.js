@@ -27,16 +27,6 @@ class UserSearch extends Component {
   render() {
     return (
       <div>
-      {/* <form onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.params)}} className="UserSearch">
-        <div className="searchFormField">
-          <label htmlFor="input">Input?</label>
-          <input name="params" type="text" className="form-control" id="input" placeholder="params" value={this.state.params} onChange={this._handleInput} required/>
-        </div>
-
-          <button type="submit" className="btn btn-primary">Search</button>
-      </form> */}
-
-
         <div class="row">
           <form class="col s12">
             <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.userSearch)}} >
@@ -56,8 +46,7 @@ class UserSearch extends Component {
             <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
           </form>
         </div>
-
-</div>
+      </div>
 
 
 // {/* <div>

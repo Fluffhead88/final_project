@@ -35,7 +35,6 @@ class AlbumSearch extends Component {
 
   render() {
     return (
-
       <div class="row">
         <form class="col s12">
           <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}} >
@@ -53,8 +52,6 @@ class AlbumSearch extends Component {
           <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
         </form>
       </div>
-
-
     );
   }
 }

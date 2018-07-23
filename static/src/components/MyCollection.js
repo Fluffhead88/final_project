@@ -14,10 +14,11 @@ class MyCollection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      album: {}
+      album: {},
+      artist: {}
     }
   }
-
+// this fetch should return my album listing to the site
   componentDidMount(){
   let self=this;
 
@@ -121,36 +122,33 @@ let id=1
     }
     return (
       <div>
-      <div className="myCollection container">
-        <h1>My Collection</h1>
-        <AlbumSearch/>
-        <div className="row album_info">
-          <div className="col s4 m4">
-            <p className="name">Album Name</p>
-          <div>{this.state.album.name}</div>
-            <p className="name">Artist</p>
-          <div>{this.state.album.artist}</div>
-          <p className="name">Release</p>
-          <div>{release}</div>
-
+        <div className="myCollection container">
+          <h1>My Collection</h1>
+          <AlbumSearch/>
+            <div className="row album_info">
+              <div className="col s4 m4">
+                <p className="name">Album Name</p>
+                <div>{this.state.album.name}</div>
+                  <p className="name">Artist</p>
+                <div>{this.state.album.artist}</div>
+                  <p className="name">Release</p>
+                <div>{release}</div>
+              </div>
+              <div className="col s4 m4">
+                <p className="name">Tracks</p>
+                  <div>{tracks}</div>
+                </div>
+              <div className="col s4 m4">
+                <p className="name">Image Stuff</p>
+                  <div>{image}</div>
+                    <p className="name">Link</p>
+                    <div>{this.state.album.url}</div>
+              </div>
+            </div>
+            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
+            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
+            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/>
           </div>
-          <div className="col s4 m4">
-            <p className="name">Tracks</p>
-          <div>{tracks}</div>
-
-          </div>
-            <div className="col s4 m4">
-            <p className="name">Image Stuff</p>
-          {image}
-          <p className="name">Link</p>
-        <div>{this.state.album.url}</div>
-        </div>
-
-        </div>
-        <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
-        <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
-        <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/>
-        </div>
         {/* <ul class="collapsible">
      <li>
        <div class="collapsible-header"><i class="material-icons">filter_drama</i>First</div>
@@ -165,13 +163,12 @@ let id=1
        <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
      </li>
    </ul> */}
- <div className='row center'>
-   <div className='col s12 center'>
- <div class='image'><img src={image4} alt="Unsplashed background img 1"/></div>
- </div>
-</div>
-
-      </div>
+           <div className='row center'>
+             <div className='col s12 center'>
+               <div class='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+             </div>
+           </div>
+          </div>
     );
   }
 }

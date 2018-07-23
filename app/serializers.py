@@ -1,20 +1,10 @@
 from rest_framework import serializers
-from app.models import Timestamp, Artist, Album
+from app.models import Album
 
-class TimestampSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        fields = "__all__"
-        model = Timestamp
-
-class ArtistSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        fields = "__all__"
-        model = Artist
 
 class AlbumSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = "__all__"
+        read_only_fields = ("user",)
         model = Album

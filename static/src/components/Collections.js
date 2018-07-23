@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserSeach from './UserSearch.js'
 import image4 from './images/records_sun3.png'
-import image2 from './images/records.jpg'
+// import image2 from './images/records.jpg'
 
 import './Collections.css';
 
@@ -14,11 +14,11 @@ class Collections extends Component {
     return (
       <div>
       <div className="collections container">
-          <div className="row search">
+        <div className="row search">
           <div className="col s12 m4 l8">
-        <h1>Collections</h1>
-        <UserSeach/>
-        </div>
+            <h1>Collections</h1>
+            <UserSeach/>
+          </div>
         </div>
         <div className="user_collections">
           <div className="row">
@@ -30,9 +30,9 @@ class Collections extends Component {
       </div>
       <div className='row center'>
         <div className='col s12 center'>
-      <div class='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+          <div class='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+        </div>
       </div>
-     </div>
     </div>
     );
   }
