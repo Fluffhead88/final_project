@@ -7,11 +7,13 @@ class User(AbstractUser):
 
 class Album(models.Model):
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ImageField(upload_to='static/uploads', verbose_name='image', blank=True)
-    artist = models.CharField(max_length=255) # make this a char field
+    artist = models.CharField(max_length=255)
+    album = models.CharField(max_length=255)
     url = models.URLField(max_length=2000, blank=True)
-    track_name = models.CharField(max_length=255, blank=True)
-    release = models.IntegerField(blank=True)
+    track = models.CharField(max_length=255, blank=True)
+    release = models.IntegerField(blank=True, null=True)
     notes = models.CharField(max_length=2000, blank=True)
 
     def __str__(self):

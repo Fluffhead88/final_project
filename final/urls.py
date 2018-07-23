@@ -26,6 +26,6 @@ urlpatterns = [
     path('artist/proxy/', ArtistProxyView.as_view(), name='artist-proxy'),
     path('album/proxy/', AlbumProxyView.as_view(), name='album-proxy'),
     path('album/', AlbumListCreateAPIView.as_view(), name='album-list'),
-    path('album/<int:pk>', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),
+    path('album/<int:pk>/', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),
 
 ]

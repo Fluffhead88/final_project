@@ -10,7 +10,30 @@ import image2 from './images/records.jpg'
 // $(document).ready(function(){
 //     $('.parallax').parallax();
 // });
+const URL = "http://127.0.0.1:8000/auth/token/create/"
 
+// _postAuthCreation() {
+//   let self = this;
+//
+//   fetch(URL,{
+//     method: 'POST'.
+//     body:JSON.stringify(something),
+//     headers:{}
+//   })
+//   .then(function(response){
+//     if(!response.ok){
+//       throw Error(response.statusText);
+//     }
+//     return response.json()
+//   })
+//   .then(function(responseJSON){
+//     console.log('response', responseJSON)
+//     self.setState({stuff: responseJSON.stuff});
+//   })
+//   .catch(function(error){
+//     console.log('Looks like there was a problem: \n', error);
+//   });
+// }
 
 class Home extends Component {
   constructor(props) {
@@ -20,91 +43,102 @@ class Home extends Component {
   render() {
     return (
       <body>
-        <div id="index-banner" class="parallax-container">
-          <div class="section no-pad-bot">
-            <div class="container">
+        <div id="index-banner" className="parallax-container">
+          <div className="section no-pad-bot">
+            <div className="container">
               <br></br>
-              <h1 class="header center gray-text text-lighten-2">Record Collection</h1>
-              <div class="row center">
-                <h5 class="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
+              <h1 className="header center gray-text text-lighten-2">Record Collection</h1>
+              <div className="row center">
+                <h5 className="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
               </div>
-              <div class="row center">
-                <a href="" id="login-button" class="btn-large waves-effect waves-light red lighten-2" onclick="document.getElementById('id01').style.display='block'">Create Collection</a>
+              <div className="row center">
+                <a href="" id="login-button" className="btn-large waves-effect waves-light red lighten-2" onclick="document.getElementById('id01').style.display='block'">Create Collection</a>
               </div>
               <br></br>
             </div>
           </div>
-          <div class='image'><img src={image2} alt="Unsplashed background img 1"/></div>
+          <div className='image'><img src={image2} alt="Unsplashed background img 1"/></div>
         </div>
-        <div class="container">
-          <div class="section">
+        <div className="container">
+          <div className="section">
             {/* <!--   Icon Section   --> */}
-            <div class="row">
-              <div class="col s12 m4">
-                <div class="icon-block">
-                  <h2 class="center gray-text"><i class="medium material-icons">folder</i></h2>
-                  <h5 class="center">Organize</h5>
-                  <p class="light">Input your personal library of records and keep this information in one place.</p>
+            <div className="row">
+              <div className="col s12 m4">
+                <div className="icon-block">
+                  <h2 className="center gray-text"><i className="medium material-icons">folder</i></h2>
+                  <h5 className="center">Organize</h5>
+                  <p className="light">Input your personal library of records and keep this information in one place.</p>
                 </div>
               </div>
-              <div class="col s12 m4">
-                <div class="icon-block">
-                  <h2 class="center gray-text"><i class="medium material-icons">album</i></h2>
-                  <h5 class="center">Browse</h5>
-                  <p class="light">See what albums your friends have. See how your collection stacks up to others. Find records that you want to add to your collection.</p>
+              <div className="col s12 m4">
+                <div className="icon-block">
+                  <h2 className="center gray-text"><i className="medium material-icons">album</i></h2>
+                  <h5 className="center">Browse</h5>
+                  <p className="light">See what albums your friends have. See how your collection stacks up to others. Find records that you want to add to your collection.</p>
                 </div>
               </div>
-              <div class="col s12 m4">
-                <div class="icon-block">
-                  <h2 class="center gray-text"><i class="medium material-icons">playlist_add</i></h2>
-                  <h5 class="center">Expand</h5>
-                  <p class="light">Find a record that you want to someone else currently owns. Message other users and propose trades of albums to grow and refine your collection.</p>
+              <div className="col s12 m4">
+                <div className="icon-block">
+                  <h2 className="center gray-text"><i className="medium material-icons">playlist_add</i></h2>
+                  <h5 className="center">Expand</h5>
+                  <p className="light">Find a record that you want that someone else currently owns. Message other users and propose trades of albums to grow and refine your collection.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <footer class="page-footer red-lighten-2">
-          {/* <div class="container">
-            <div class="row">
-              <div class="col l6 s12">
-                <h5 class="white-text">Bio</h5>
-                <p class="grey-text text-lighten-4">Stuff</p>
+        <div className="container">
+          <form className="login form">
+            <div className="container">
+              <label for="uname"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="uname" required/>
+              <label for="psw"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="psw" required/>
+              <button type="submit">Login</button>
+            </div>
+          </form>
+        </div>
+        <footer className="page-footer red-lighten-2">
+          {/* <div className="container">
+            <div className="row">
+              <div className="col l6 s12">
+                <h5 className="white-text">Bio</h5>
+                <p className="grey-text text-lighten-4">Stuff</p>
               </div>
-              <div class="col l3 s12">
-                <h5 class="white-text">Settings</h5>
+              <div className="col l3 s12">
+                <h5 className="white-text">Settings</h5>
                 <ul>
-                  <li><a class="white-text" href="#!">Link 1</a></li>
-                  <li><a class="white-text" href="#!">Link 2</a></li>
+                  <li><a className="white-text" href="#!">Link 1</a></li>
+                  <li><a className="white-text" href="#!">Link 2</a></li>
                 </ul>
               </div>
-              <div class="col l3 s12">
-                <h5 class="white-text">Connect</h5>
+              <div className="col l3 s12">
+                <h5 className="white-text">Connect</h5>
                 <ul>
-                  <li><a class="white-text" href="#!">Link 1</a></li>
-                  <li><a class="white-text" href="#!">Link 2</a></li>
+                  <li><a className="white-text" href="#!">Link 1</a></li>
+                  <li><a className="white-text" href="#!">Link 2</a></li>
                 </ul>
               </div>
             </div>
           </div> */}
-          <div class="footer-copyright">
-            <div class="container">
-            Made by <a class="white-text text-lighten-1" href="https://fluffhead88.github.io/take-two/">Zachary Thigpen</a>
+          <div className="footer-copyright">
+            <div className="container">
+            Made by <a className="white-text text-lighten-1" href="https://fluffhead88.github.io/take-two/">Zachary Thigpen</a>
             </div>
           </div>
         </footer>
         {/*
-        <div id="id01" class="modal">
+        <div id="id01" className="modal">
           <span onclick="document.getElementById('id01').style.display=none"
-        class="close" title="Close Modal">&times;</span>
+        className="close" title="Close Modal">&times;</span>
 
 
-          <form class="modal-content animate" action="/action_page.php">
-            <div class="imgcontainer">
-              <img src="img_avatar2.png" alt="Avatar" class="avatar"/>
+          <form className="modal-content animate" action="/action_page.php">
+            <div className="imgcontainer">
+              <img src="img_avatar2.png" alt="Avatar" className="avatar"/>
             </div>
 
-            <div class="container">
+            <div className="container">
               <label for="uname"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" name="uname" required/>
 
@@ -117,9 +151,9 @@ class Home extends Component {
               </label>
             </div>
 
-            <div class="container">
-              <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-              <span class="psw">Forgot <a href="#">password?</a></span>
+            <div className="container">
+              <button type="button" onclick="document.getElementById('id01').style.display='none'" className="cancelbtn">Cancel</button>
+              <span className="psw">Forgot <a href="#">password?</a></span>
             </div>
           </form>
         </div> */}

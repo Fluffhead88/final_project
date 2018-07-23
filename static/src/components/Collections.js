@@ -30,7 +30,7 @@ class Collections extends Component {
       </div>
       <div className='row center'>
         <div className='col s12 center'>
-          <div class='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+          <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
         </div>
       </div>
     </div>
