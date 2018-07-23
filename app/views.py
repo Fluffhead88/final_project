@@ -3,8 +3,8 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets, generics
-from app.models import Album
-from app.serializers import AlbumSerializer
+from app.models import Album, Users
+from app.serializers import AlbumSerializer, UsersSerializer
 import requests
 from app.permissions import IsOwnerOrReadOnly
 from django.conf import settings
@@ -32,7 +32,7 @@ class AlbumProxyView(APIView):
 
 
  # get users to search
- 
+
 # model api views
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
@@ -42,7 +42,7 @@ class AlbumListCreateAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
 
         return Album.objects.all()
-        #return Artist.objects.filter(user=self.request.user)
+        #return Album.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -53,3 +53,16 @@ class AlbumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)
+
+class UsersListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = UsersSerializer
+    filter_backends=(filters.SearchFilter,)
+    search_fields=('user',)
+
+    def get_queryset(self):
+
+        return Users.objects.all()
+        #return Album.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)

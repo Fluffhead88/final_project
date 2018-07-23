@@ -16,94 +16,33 @@ class UserSearch extends Component {
 
   _handleInput(event) {
     let data = event.target.value;
-    if (event.target.name === "userSearch") {
-      this.setState({userSearch: data});
-    }
-    if (event.target.name === "albumSearch"){
-      this.setState({albumSearch: data});
-    }
+
+    let obj =  {}
+    let key = event.target.name;
+    obj[key] = event.target.value;
+    this.setState(obj);
   }
 
   render() {
     return (
-      <div>
-        <div class="row">
-          <form class="col s12">
-            <div class="row UserSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.userSearch)}} >
-              <div class="input-field col s6">
-                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.userSearch} onChange={this._handleInput} required/>
-                <label htmlFor="input_text">User Search</label>
-              </div>
+      <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props.getSearchResults(this.state)}}>
+        <form className="col s12">
+          <div className="row userSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}}>
+            <div className="input-field col s6">
+              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.userSearch} name='userSearch' onChange={this._handleInput}/>
+              <label htmlFor="input_text">User Search</label>
             </div>
-            <div><button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
           </div>
-            <div class="row AlbumSearch" onSubmit={(event)=>{event.preventDefault(),this.props.search(this.state.albumSearch)}}>
-              <div class="input-field col s6">
-                <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} onChange={this._handleInput} required/>
-                <label htmlFor="input_text">Album Search</label>
-              </div>
+          <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
+          <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props.getSearchResults(this.state)}}>
+            <div className="input-field col s6">
+              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} name='albumSearch' onChange={this._handleInput} required/>
+              <label htmlFor="input_text">Album Search</label>
             </div>
-            <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
-          </form>
-        </div>
+          </div>
+          <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
+        </form>
       </div>
-
-
-// {/* <div>
-//       <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-//
-//       <div id="modal1" class="modal">
-//         <div class="modal-content">
-//
-//       <div class="row">
-//   <form class="col s12">
-//     <div class="row">
-//       <div class="input-field col s6">
-//         <input placeholder="Placeholder" id="first_name" type="text" class="validate"/>
-//         <label htmlFor="first_name">First Name</label>
-//       </div>
-//       <div class="input-field col s6">
-//         <input id="last_name" type="text" class="validate"/>
-//         <label htmlFor="last_name">Last Name</label>
-//       </div>
-//     </div>
-//     <div class="row">
-//       <div class="input-field col s12">
-//         <input disabled value="I am not editable" id="disabled" type="text" class="validate"/>
-//         <label htmlFor="disabled">Disabled</label>
-//       </div>
-//     </div>
-//     <div class="row">
-//       <div class="input-field col s12">
-//         <input id="password" type="password" class="validate"/>
-//         <label htmlFor="password">Password</label>
-//       </div>
-//     </div>
-//     <div class="row">
-//       <div class="input-field col s12">
-//         <input id="email" type="email" class="validate"/>
-//         <label htmlFor="email">Email</label>
-//       </div>
-//     </div>
-//     <div class="row">
-//       <div class="col s12">
-//         This is an inline input field:
-//         <div class="input-field inline">
-//           <input id="email_inline" type="email" class="validate"/>
-//           <label htmlFor="email_inline">Email</label>
-//           <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-//         </div>
-//       </div>
-//     </div>
-//   </form>
-// </div>
-//  </div>
-//   <div class="modal-footer">
-//  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-// </div>
-// </div>
-// </div> */}
-
     );
   }
 }

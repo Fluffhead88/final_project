@@ -13,9 +13,7 @@ class MyCollection extends Component {
     super(props);
     this.state = {
       album: {},
-      // artist: {},
-      // albumSearch: '',
-      // artistSearch: ''
+
     }
 
   this._getSearchResults = this._getSearchResults.bind(this);
@@ -44,9 +42,7 @@ class MyCollection extends Component {
 
 _getSearchResults(searchParams) {
   let self = this;
-  // console.log(searchParams)
-  // this.setState(searchParams);
-  // console.log(this.state)
+
 
   fetch(`http://localhost:8000/album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
   .then(function(response){
@@ -64,24 +60,25 @@ _getSearchResults(searchParams) {
   });
 }
 
-_postRequest(){
-
-  let context = {}
-
-  fetch(URL,{
-    method:'POST',
-    body:JSON.stringify(context),
-    headers:{
-      'Content-Type': 'application/json'
-    }
-  })
-  .then(function(response){
-    console.log(response);
-  })
-  .catch(function(error){
-    console.log('Looks like there was a problem \n,', error)
-  });
-}
+// _postRequest(){
+//   let self = this;
+//
+//   let context = {this.state.album};
+//
+//   fetch(URL,{
+//     method:'POST',
+//     body:JSON.stringify(context),
+//     headers:{
+//       'Content-Type': 'application/json'
+//     }
+//   })
+//   .then(function(response){
+//     console.log(response);
+//   })
+//   .catch(function(error){
+//     console.log('Looks like there was a problem \n,', error)
+//   });
+// }
 
 _editRequest(obj){
 

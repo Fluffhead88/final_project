@@ -21,6 +21,7 @@ class Home extends Component {
     }
 
     this._handleInput = this._handleInput.bind(this);
+    // this._postAuthCreation = this._postAuthCreation.bind(this);
 }
     _handleInput(event) {
       let data = event.target.value;
