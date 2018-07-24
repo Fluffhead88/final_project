@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import CreateAccount from './CreateAccount.js'
 import './Home.css';
 // import image1 from './images/vinyl_bins.jpeg'
 import image2 from './images/records.jpg'
@@ -21,7 +21,7 @@ class Home extends Component {
     }
 
     this._handleInput = this._handleInput.bind(this);
-    // this._postLoginAuth = this._postLoginAuth.bind(this);
+    this._postLoginAuth = this._postLoginAuth.bind(this);
 
 }
     _handleInput(event) {
@@ -33,29 +33,36 @@ class Home extends Component {
       this.setState(obj);
     }
 
-    // _postLoginAuth(searchParams) {
-    //   let self = this;
-    //
-    //
-    //   fetch(`http://127.0.0.1:8000/auth/token/create/?username=${searchParams.username}&password=${searchParams.password}`,{
-    //     method: 'POST',
-    //     body: JSON.stringify(username, password),
-    //     headers: {}
-    //   })
-    //   .then(function(response){
-    //     if(!response.ok){
-    //       throw Error(response.statusText);
-    //     }
-    //     return response.json()
-    //   })
-    //   .then(function(responseJSON){
-    //     console.log('response', responseJSON)
-    //     self.setState({sdfsd: responseJSON.asdfasd});
-    //   })
-    //   .catch(function(error){
-    //     console.log('Looks like there was a problem: \n', error);
-    //   });
-    // }
+    _postLoginAuth(event) {
+      event.preventDefault();
+      let data = this.state;
+
+      fetch(URL,{
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+
+        }
+      })
+      .then(function(response){
+        if(!response.ok){
+          throw Error(response.statusText);
+        }
+        return response.json()
+      })
+      .then(function(responseJSON){
+        console.log('response', responseJSON.auth_token)
+        sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
+        // Headers.set('auth_token', responseJSON.auth_token)
+        // console.log('headers', Headers)
+
+      })
+      .catch(function(error){
+        console.log('Looks like there was a problem: \n', error);
+      });
+    }
+
 
 
   render() {
@@ -82,7 +89,7 @@ class Home extends Component {
                   <p>A bunch of text</p>
                 </div>
                 <div className="modal-footer">
-                  <a href="#!" className="modal-close waves-effect waves-green btn-flat">Agree</a>
+                  <a href="#!" className="modal-close waves-effect waves-light red lighten-2">Agree</a>
                 </div>
               </div>
               <br></br>
@@ -119,17 +126,21 @@ class Home extends Component {
           </div>
         </div>
         <div className="container">
-          <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props._postLoginAuth(this.state)}}>
-          <form className="login form col s8">
+          <div className="row">
+            <div>Login</div>
+          <form className="login form col s8" onSubmit={this._postLoginAuth}>
             <div className="container">
               <label htmlFor="username"><b>Username</b></label>
               <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
               <label htmlFor="password"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" value={this.state.albumSearch} name='password' onChange={this._handleInput} required/>
+              <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
               <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Login</button>
             </div>
           </form>
         </div>
+        </div>
+        <div>
+          <CreateAccount/>
         </div>
         <footer className="page-footer red-lighten-2">
           {/* <div className="container">

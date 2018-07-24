@@ -17,7 +17,6 @@ class AlbumSearch extends Component {
 
   _handleInput(event) {
     let data = event.target.value;
-
     let obj =  {}
     let key = event.target.name;
     obj[key] = event.target.value;

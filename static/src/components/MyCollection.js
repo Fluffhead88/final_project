@@ -17,7 +17,7 @@ class MyCollection extends Component {
     }
 
   this._getSearchResults = this._getSearchResults.bind(this);
-
+  this._postAddAlbum = this._postAddAlbum.bind(this);
   }
 // this fetch should return my album listing to the site
   componentDidMount(){
@@ -60,25 +60,39 @@ _getSearchResults(searchParams) {
   });
 }
 
-// _postRequest(){
-//   let self = this;
-//
-//   let context = {this.state.album};
-//
-//   fetch(URL,{
-//     method:'POST',
-//     body:JSON.stringify(context),
-//     headers:{
-//       'Content-Type': 'application/json'
-//     }
-//   })
-//   .then(function(response){
-//     console.log(response);
-//   })
-//   .catch(function(error){
-//     console.log('Looks like there was a problem \n,', error)
-//   });
-// }
+_postAddAlbum(){
+
+  let data = {};
+  let tracks = this.state.album.tracks;
+  let mytracks = tracks.track.map(function(track){
+    return {title:track.name};
+  })
+
+  // console.log(mytracks);
+
+  data["artist"] = this.state.album.artist;
+  data["album"] = this.state.album.name;
+  data["url"] = this.state.album.url;
+  data["tracks"] = mytracks;
+
+  console.log(JSON.stringify(data))
+
+  let token = sessionStorage.getItem('auth_token');
+  fetch("http://localhost:8000/album/",{
+    method:'POST',
+    body:JSON.stringify(data),
+    headers:{
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+  })
+  .then(function(response){
+    console.log(response);
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem \n,', error)
+  });
+}
 
 _editRequest(obj){
 
@@ -189,6 +203,7 @@ _deleteRequest(){
               <div className="col s4 m4">
                 <img src={imageURL} alt=""/>
               </div>
+              <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
             </div>
             <div className="row summary">
               <div className="col s12">

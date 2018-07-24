@@ -1,0 +1,73 @@
+import React, { Component } from 'react';
+
+class CreateAccount extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+      email: '',
+    }
+
+  this._postCreateAccount = this._postCreateAccount.bind(this);
+  this._handleInput = this._handleInput.bind(this);
+}
+
+_handleInput(event) {
+  // let data = event.target.value;
+  let obj =  {}
+  let key = event.target.name;
+  obj[key] = event.target.value;
+  this.setState(obj);
+}
+
+_postCreateAccount(event) {
+  event.preventDefault();
+  let data = this.state;
+
+  fetch('http://127.0.0.1:8000/auth/users/create/',{
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(function(response){
+    if(!response.ok){
+      throw Error(response.statusText);
+    }
+    return response.json()
+  })
+  .then(function(responseJSON){
+    console.log('response', responseJSON.data)
+    sessionStorage.setItem('auth_token', responseJSON.data)
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem: \n', error);
+  });
+}
+
+
+
+render() {
+  return (
+    <div className="container">
+      <div className="row">
+        <div>Create Account</div>
+      <form className="login form col s8" onSubmit={this._postCreateAccount}>
+        <div className="container">
+          <label htmlFor="username"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
+          <label htmlFor="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
+          <label htmlFor="password"><b>Password</b></label>
+          <input type="email" placeholder="Enter Email" value={this.state.email} name='email' onChange={this._handleInput} required/>
+          <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Create</button>
+        </div>
+      </form>
+    </div>
+    </div>
+  );
+  }
+}
+export default CreateAccount
