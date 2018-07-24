@@ -30,10 +30,6 @@ class AlbumProxyView(APIView):
         album_data = requests.get(f'{api_url}?method=album.getinfo&api_key={settings.LASTFM_API_KEY}&artist={artist}&album={album}&format=json').json()
         return Response(album_data)
 
-
- # get users to search
-
-# model api views
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
     filter_backends=(filters.SearchFilter,)
@@ -62,7 +58,14 @@ class UsersListCreateAPIView(generics.ListCreateAPIView):
     def get_queryset(self):
 
         return Users.objects.all()
-        #return Album.objects.filter(user=self.request.user)
+        #return Users.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsOwnerOrReadOnly]
+    serializer_class = UsersSerializer
+
+    def get_queryset(self):
+        return Users.objects.filter(user=self.request.user)

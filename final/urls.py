@@ -16,8 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView
-# router?
+from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(template_name='index.html'), name='index'),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('album/', AlbumListCreateAPIView.as_view(), name='album-list'),
     path('album/<int:pk>/', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
+    path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 ]
