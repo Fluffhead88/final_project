@@ -8,6 +8,33 @@ import './Collections.css';
 class Collections extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      user : {},
+      album: {}
+    }
+
+    this._getSearchResults = this._getSearchResults.bind(this);
+  }
+
+
+  _getSearchResults(searchParams) {
+    let self = this;
+
+
+    fetch(`http://localhost:8000/users/?user=${searchParams.userSearch}&album=${searchParams.albumSearch}`)
+    .then(function(response){
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response.json()
+    })
+    .then(function(responseJSON){
+      console.log('response', responseJSON)
+      self.setState({album: responseJSON.album});
+    })
+    .catch(function(error){
+      console.log('Looks like there was a problem: \n', error);
+    });
   }
 
   render() {
@@ -22,7 +49,7 @@ class Collections extends Component {
         <div className="row search">
           <div className="col s12 m4 l8">
             <h1>Collections</h1>
-            <UserSeach/>
+            <UserSeach getSearchResults={this._getSearchResults}/>
           </div>
         </div>
         <div className="user_collections">

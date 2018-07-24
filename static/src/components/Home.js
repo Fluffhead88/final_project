@@ -16,12 +16,13 @@ class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      artistSearch: '',
-      albumSearch: ''
+      username: '',
+      password: ''
     }
 
     this._handleInput = this._handleInput.bind(this);
-    // this._postAuthCreation = this._postAuthCreation.bind(this);
+    // this._postLoginAuth = this._postLoginAuth.bind(this);
+
 }
     _handleInput(event) {
       let data = event.target.value;
@@ -31,13 +32,15 @@ class Home extends Component {
       obj[key] = event.target.value;
       this.setState(obj);
     }
-    // _postAuthCreation() {
+
+    // _postLoginAuth(searchParams) {
     //   let self = this;
     //
-    //   fetch(URL,{
-    //     method: 'POST'.
-    //     body:JSON.stringify(something),
-    //     headers:{}
+    //
+    //   fetch(`http://127.0.0.1:8000/auth/token/create/?username=${searchParams.username}&password=${searchParams.password}`,{
+    //     method: 'POST',
+    //     body: JSON.stringify(username, password),
+    //     headers: {}
     //   })
     //   .then(function(response){
     //     if(!response.ok){
@@ -47,7 +50,7 @@ class Home extends Component {
     //   })
     //   .then(function(responseJSON){
     //     console.log('response', responseJSON)
-    //     self.setState({stuff: responseJSON.stuff});
+    //     self.setState({sdfsd: responseJSON.asdfasd});
     //   })
     //   .catch(function(error){
     //     console.log('Looks like there was a problem: \n', error);
@@ -116,15 +119,17 @@ class Home extends Component {
           </div>
         </div>
         <div className="container">
-          <form className="login form">
+          <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props._postLoginAuth(this.state)}}>
+          <form className="login form col s8">
             <div className="container">
-              <label htmlFor="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="uname" required/>
-              <label htmlFor="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required/>
-              <button type="submit">Login</button>
+              <label htmlFor="username"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
+              <label htmlFor="password"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" value={this.state.albumSearch} name='password' onChange={this._handleInput} required/>
+              <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Login</button>
             </div>
           </form>
+        </div>
         </div>
         <footer className="page-footer red-lighten-2">
           {/* <div className="container">

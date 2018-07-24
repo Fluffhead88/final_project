@@ -11,7 +11,7 @@ class AlbumSearch extends Component {
       albumSearch: ''
     }
 
-    this._handleInput = this._handleInput.bind(this);
+  this._handleInput = this._handleInput.bind(this);
 
   }
 
@@ -40,7 +40,7 @@ class AlbumSearch extends Component {
               <label htmlFor="input_text">Album Search</label>
             </div>
           </div>
-          <button type="submit" className="waves-effect waves-light red lighten-2 btn">Search</button>
+          <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Search</button>
         </form>
       </div>
     );
