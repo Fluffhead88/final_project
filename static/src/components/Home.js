@@ -85,7 +85,7 @@ class Home extends Component {
               <br></br>
             </div>
           </div>
-          <div className='image'><img src={image2} alt="Unsplashed background img 1"/></div>
+          <div className='home_image'><img src={image2} alt="Unsplashed background img 1"/></div>
         </div>
         <div className="container">
           <div className="section">
@@ -95,7 +95,7 @@ class Home extends Component {
                 <div className="icon-block">
                   <h2 className="center gray-text"><i className="medium material-icons">folder</i></h2>
                   <h5 className="center">Organize</h5>
-                  <p className="light">Input your personal library of records and keep this information in one place.</p>
+                  <p className="light">Store your personal library of records and keep them cataloged in one place.</p>
                 </div>
               </div>
               <div className="col s12 m4">

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserSeach from './UserSearch.js'
-import image4 from './images/records_sun3.png'
+import image4 from './images/records_sun_small.png'
 // import image2 from './images/records.jpg'
 
 import './Collections.css';
@@ -13,6 +13,11 @@ class Collections extends Component {
   render() {
     return (
       <div>
+        <div className='row center'>
+          <div className='col s12 center'>
+            <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+          </div>
+        </div>
       <div className="collections container">
         <div className="row search">
           <div className="col s12 m4 l8">
@@ -28,11 +33,7 @@ class Collections extends Component {
           </div>
         </div>
       </div>
-      <div className='row center'>
-        <div className='col s12 center'>
-          <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
-        </div>
-      </div>
+
     </div>
     );
   }

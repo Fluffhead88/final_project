@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AlbumSearch from "./AlbumSearch.js"
 // import $ from 'jquery';
-import image4 from './images/records_sun2.png'
+import image4 from './images/records_small.png'
 // import image2 from './images/records.jpg'
 
 import './MyCollection.css';
@@ -144,7 +144,7 @@ _deleteRequest(){
     let summary;
 
     if(this.state.album.wiki){
-      summary = this.state.album.wiki.summary;
+      summary = this.state.album.wiki.content;
     }
 
     let name;
@@ -167,6 +167,11 @@ _deleteRequest(){
 
     return (
       <div>
+        <div className='row center'>
+          <div className='col s12 center'>
+            <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
+          </div>
+        </div>
         <div className="myCollection container">
           <h1>My Collection</h1>
           <AlbumSearch getSearchResults={this._getSearchResults}/>
@@ -210,11 +215,7 @@ _deleteRequest(){
        <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
      </li>
    </ul> */}
-           <div className='row center'>
-             <div className='col s12 center'>
-               <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
-             </div>
-           </div>
+
           </div>
     );
   }

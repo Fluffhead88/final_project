@@ -28,13 +28,13 @@ class AlbumSearch extends Component {
     return (
       <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props.getSearchResults(this.state)}}>
         <form className="col s12">
-          <div className="row artistSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}} >
+          <div className="row artistSearch">
             <div className="input-field col s6">
               <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.artistSearch} name='artistSearch' onChange={this._handleInput}/>
               <label htmlFor="input_text">Artist Search</label>
             </div>
           </div>
-          <div className="row albumSearch">
+          <div className="row albumSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}} >
             <div className="input-field col s6">
               <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} name='albumSearch' onChange={this._handleInput} required/>
               <label htmlFor="input_text">Album Search</label>
