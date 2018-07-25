@@ -13,36 +13,15 @@ class MyCollection extends Component {
     super(props);
     this.state = {
       album: {},
+      mycollection:[],
 
     }
 
   this._getSearchResults = this._getSearchResults.bind(this);
   this._postAddAlbum = this._postAddAlbum.bind(this);
-  this._getMyCollection = this._getMyCollection.bind(this);
   this._deleteAlbum = this._deleteAlbum.bind(this);
   this._editAlbum = this._editAlbum.bind(this);
   }
-
-// possibly change to display collection on page load
-  componentDidMount(){
-  let self=this;
-
-  fetch(URL)
-  .then(function(response){
-    if(!response.ok){
-      throw Error(response.statusText);
-    }
-
-    return response.json()
-  })
-  .then(responseAsJSON=> {
-    let album = responseAsJSON.album;
-    self.setState({album});
-  })
-  .catch(function(error){
-    console.log('Looks like there was a problem: \n', error);
-  });
-}
 
 // function to process search parameters and get back album info from last.fm api
 _getSearchResults(searchParams) {
@@ -67,7 +46,8 @@ _getSearchResults(searchParams) {
 
 // function to get current user's collection - fires and works but need to figure out
 // display and possible change to componentDidMount to show on page load
-_getMyCollection() {
+componentDidMount() {
+  let self = this;
   let token = sessionStorage.getItem('auth_token');
   fetch("http://localhost:8000/myalbums/",{
     method:'GET',
@@ -84,6 +64,7 @@ _getMyCollection() {
   })
   .then(function(responseJSON){
     console.log('response', responseJSON);
+    self.setState({mycollection: responseJSON})
   })
   .catch(function(error){
     console.log('Looks like there was a problem \n,', error)
@@ -231,14 +212,16 @@ _deleteAlbum(){
           <h1>My Collection</h1>
 
           {/* button that fires function to show the collection - change display later */}
-          <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button>
+          {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
 
           {/* importing the album search and puts the function to get search results back */}
           <AlbumSearch getSearchResults={this._getSearchResults}/>
+            {/* {this.state.albumSearch.length > 1 ? */}
             <div className="row album_info">
               <div className="col s4 m4">
 
                 {/* displays the information from last.fm api */}
+
                 <p className="name">Album Name</p>
                 <div>{name}</div>
                   <p className="name">Artist</p>
@@ -254,7 +237,7 @@ _deleteAlbum(){
 
               {/* button to add album to users collection */}
               <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
-            </div>
+
             <div className="row summary">
               <div className="col s12">
               <a href={url}>Link to album on Last.FM</a>
@@ -262,7 +245,11 @@ _deleteAlbum(){
               <div>{summary}</div>
               </div>
               </div>
+            </div>
 
+             {/* // If the user isn't searching, don't show display of search */}
+             {/* :" "
+             } */}
               {/* this will be linked to the email function via mailgun */}
                 <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact User</button>
 

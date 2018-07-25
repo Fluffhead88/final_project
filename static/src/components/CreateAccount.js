@@ -25,6 +25,7 @@ _handleInput(event) {
 // email will be used to message other users
 // auth token is stored in session storage so log out is not required
 _postCreateAccount(event) {
+  let self = this;
   event.preventDefault();
   let data = this.state;
 
@@ -44,6 +45,12 @@ _postCreateAccount(event) {
   .then(function(responseJSON){
     console.log('response', responseJSON.data)
     sessionStorage.setItem('auth_token', responseJSON.data)
+    let obj = {
+      username: '',
+      password: '',
+      email: '',
+    }
+    self.setState(obj)
   })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);

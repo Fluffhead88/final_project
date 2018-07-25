@@ -37,6 +37,7 @@ class Home extends Component {
     _postLoginAuth(event) {
       event.preventDefault();
       let data = this.state;
+      let self = this;
 
       fetch(URL,{
         method: 'POST',
@@ -55,8 +56,11 @@ class Home extends Component {
       .then(function(responseJSON){
         console.log('response', responseJSON.auth_token)
         sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
-        // Headers.set('auth_token', responseJSON.auth_token)
-        // console.log('headers', Headers)
+        let obj = {
+          username: '',
+          password: ''
+        }
+        self.setState(obj)
 
       })
       .catch(function(error){
@@ -157,7 +161,7 @@ class Home extends Component {
           {/* import create account component */}
           <CreateAccount/>
         </div>
-        <footer className="page-footer red-lighten-2">
+
           {/* <div className="container">
             <div className="row">
               <div className="col l6 s12">
@@ -182,12 +186,7 @@ class Home extends Component {
           </div> */}
 
           {/* link takes you to github */}
-          <div className="footer-copyright">
-            <div className="container">
-            Made by <a className="white-text text-lighten-1" href="https://fluffhead88.github.io/take-two/">Zachary Thigpen</a>
-            </div>
-          </div>
-        </footer>
+
 
 
 {/* modal stuff that's not working */}

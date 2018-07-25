@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView
 
@@ -31,3 +33,6 @@ urlpatterns = [
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 ]
+
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
