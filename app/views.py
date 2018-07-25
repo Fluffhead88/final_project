@@ -9,6 +9,7 @@ import requests
 from app.permissions import IsOwnerOrReadOnly
 from django.conf import settings
 from rest_framework import filters
+from django.db.models import Q
 
 class IndexView(TemplateView):
     template_name="index.html"
@@ -49,6 +50,12 @@ class AlbumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)
+
+class MyAlbumsListAPIView(generics.ListAPIView):
+    serializer_class = AlbumSerializer
+
+    def get_queryset(self):
+        return Album.objects.filter(Q(user=self.request.user))
 
 class UsersListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = UsersSerializer

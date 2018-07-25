@@ -13,7 +13,7 @@ class Collections extends Component {
       album: {}
     }
 
-    this._getSearchResults = this._getSearchResults.bind(this);
+    // this._getSearchResults = this._getSearchResults.bind(this);
   }
 
 // function to return search results - redundant to user search import - keeping for reference

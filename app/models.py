@@ -25,7 +25,7 @@ class Track(models.Model):
     album = models.ForeignKey(Album, related_name="tracks", on_delete=models.CASCADE, blank=True)
     title = models.CharField(max_length=255)
 
-# user model to search users on front end to show their collections 
+# user model to search users on front end to show their collections
 class Users(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)

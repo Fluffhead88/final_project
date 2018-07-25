@@ -28,7 +28,6 @@ class AlbumSerializer(serializers.ModelSerializer):
             Track.objects.update_or_create(title=track.pop('title'), album=album)
         return album
 
-
 class UsersSerializer(serializers.ModelSerializer):
 
     class Meta:

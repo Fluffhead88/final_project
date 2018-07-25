@@ -69,7 +69,7 @@ _getSearchResults(searchParams) {
 // display and possible change to componentDidMount to show on page load
 _getMyCollection() {
   let token = sessionStorage.getItem('auth_token');
-  fetch("http://localhost:8000/album/",{
+  fetch("http://localhost:8000/myalbums/",{
     method:'GET',
     headers:{
       'Content-Type': 'application/json',
@@ -77,7 +77,13 @@ _getMyCollection() {
     }
   })
   .then(function(response){
-    console.log(response);
+    if(!response.ok){
+      throw Error(response.statusText);
+    }
+    return response.json()
+  })
+  .then(function(responseJSON){
+    console.log('response', responseJSON);
   })
   .catch(function(error){
     console.log('Looks like there was a problem \n,', error)
