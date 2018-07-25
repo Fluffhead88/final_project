@@ -84,7 +84,7 @@ _postAddAlbum(){
   data["album"] = this.state.album.name;
   data["url"] = this.state.album.url;
   data["tracks"] = mytracks;
-  data["image"] = this.state.album.image[4]['#text'];
+  data["image"] = this.state.album.image[3]['#text'];
   data['notes'] = '';
 
   let token = sessionStorage.getItem('auth_token');
@@ -126,9 +126,9 @@ _postAddAlbum(){
 // function to delete album from user's collection - need to figure out ID issue
 _deleteAlbum(album){
 
-  let id = {}
+  let id = album.id;
   let token = sessionStorage.getItem('auth_token');
-  fetch(`http://localhost:8000/myalbum/${id}`,{
+  fetch(`http://localhost:8000/myalbums/${id}/`,{
     method:'DELETE',
     headers:{
       'Content-Type': 'application/json',
@@ -182,27 +182,31 @@ _deleteAlbum(album){
 
   render() {
     console.log('state', this.state)
-
+    let self = this;
     let mycollection = this.state.mycollection.map(function(Item){
+      let tracks = Item.tracks.map(function(track, index){
+        return (<div key={index}>{track.title}</div>)
+      })
       return(
         <div key={Item.id} className="row album_info">
           <div className="col s4 m4">
 
             {/* displays the information from last.fm api */}
 
-            <p className="name"></p>
-            <div>{Item.name}</div>
-              <p className="name"></p>
-            <div>{Item.artist}</div>
+            <p className="artist_name"></p>
+            <h5>{Item.artist}</h5>
+              <p className="album_name"></p>
+            <h6>{Item.album}</h6>
+            <div><button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn" onClick={()=>self._deleteAlbum(Item)}>delete</button></div>
           </div>
           <div className="col s4 m4">
             <p className="name">Tracks</p>
-              <div>{Item.mytracks}</div>
-            </div>
+            {tracks}
+          </div>
           <div className="col s4 m4">
             <img src={Item.image} alt=""/>
           </div>
-          </div>
+        </div>
         // {/* <Album delete={()=>this._deleteAlbum(collectionItem)} /> */}
       )
     })
@@ -233,7 +237,7 @@ _deleteAlbum(album){
     // gets single image URL from list to be displayed in image tag
     let imageURL;
       if(this.state.album.image) {
-        imageURL = this.state.album.image[4]['#text'];
+        imageURL = this.state.album.image[3]['#text'];
     }
 
     // currently returning content from wikipedia, good info but all albums don't
@@ -312,7 +316,7 @@ _deleteAlbum(album){
             </div>
               : ""}
 
-                <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact User</button>
+
 
 
             {/* <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>

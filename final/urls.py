@@ -30,7 +30,7 @@ urlpatterns = [
     path('album/', AlbumListCreateAPIView.as_view(), name='album-list'),
     path('album/<int:pk>/', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),
     path('myalbums/', MyAlbumsListAPIView.as_view(), name='myalbums-list'),
-    path('myalbums/<int:pk>', MyAlbumsRetrieveUpdateDestroyAPIView.as_view(), name='myalbums-detail'),
+    path('myalbums/<int:pk>/', MyAlbumsRetrieveUpdateDestroyAPIView.as_view(), name='myalbums-detail'),
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 ]

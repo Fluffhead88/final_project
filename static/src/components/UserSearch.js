@@ -24,11 +24,11 @@ class UserSearch extends Component {
   }
 
   // function to search users to show their collections - incomplete
-  _getUserResults(searchParams) {
+  _getUserResults(id) {
     let self = this;
+    let user = 
 
-
-    fetch('http://localhost:8000/users')
+    fetch('http://localhost:8000/album/')
     .then(function(response){
       if(!response.ok){
         throw Error(response.statusText);

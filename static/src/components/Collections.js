@@ -15,6 +15,29 @@ class Collections extends Component {
 
     // this._getSearchResults = this._getSearchResults.bind(this);
   }
+  componentDidMount() {
+    let self = this;
+    fetch("http://localhost:8000/album/",{
+      method:'GET',
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    })
+    .then(function(response){
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      // console.log(response.json())
+      return response.json()
+    })
+    .then(function(responseJSON){
+      console.log('response', responseJSON);
+      self.setState({mycollection: responseJSON})
+    })
+    .catch(function(error){
+      console.log('Looks like there was a problem \n,', error)
+    });
+  }
 
 // function to return search results - redundant to user search import - keeping for reference
   // _getSearchResults(searchParams) {
@@ -59,7 +82,7 @@ class Collections extends Component {
         <div className="user_collections">
           <div className="row">
             <div className="col s12 m4 l8">
-
+              <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact User</button>
               {/* area to display several user's collections - card type display */}
               <h1>Example Collection Area</h1>
             </div>

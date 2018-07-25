@@ -34,12 +34,13 @@ class AlbumProxyView(APIView):
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
     filter_backends=(filters.SearchFilter,)
-    search_fields=('album', 'artist',)
+    search_fields=('album', 'user',)
 
     def get_queryset(self):
 
-        return Album.objects.prefetch_related("tracks").all()
+        # return Album.objects.prefetch_related("tracks").all()
         #return Album.objects.filter(user=self.request.user)
+        return Album.objects.prefetch_related("tracks").all()
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

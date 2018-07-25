@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateAccount from './CreateAccount.js'
 import './Home.css';
+import $ from 'jquery';
 // import image1 from './images/vinyl_bins.jpeg'
 import image2 from './images/records.jpg'
 // import image3 from './images/vinyl_bins.jpeg'
@@ -91,10 +92,10 @@ class Home extends Component {
                 {/* onClick={document.getElementById('id01').style.display='block'} */}
                 <a href="" id="login-button" className="btn-large waves-effect waves-light red lighten-2" >Create Collection</a>
               </div>
-              <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+              {/* <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> */}
 
               {/* <!-- Modal Structure --> */}
-              <div id="modal1" className="modal">
+              {/* <div id="modal1" className="modal">
                 <div className="modal-content">
                   <h4>Modal Header</h4>
                   <p>A bunch of text</p>
@@ -102,7 +103,7 @@ class Home extends Component {
                 <div className="modal-footer">
                   <a href="#!" className="modal-close waves-effect waves-light red lighten-2">Agree</a>
                 </div>
-              </div>
+              </div> */}
               <br></br>
             </div>
           </div>

@@ -57,8 +57,6 @@ _postCreateAccount(event) {
   });
 }
 
-
-
 render() {
   return (
     <div className="container">
@@ -66,18 +64,18 @@ render() {
 
         {/* form to create account upon submit */}
         <div>Create Account</div>
-      <form className="login form col s8" onSubmit={this._postCreateAccount}>
-        <div className="container">
-          <label htmlFor="username"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
-          <label htmlFor="password"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
-          <label htmlFor="password"><b>Password</b></label>
-          <input type="email" placeholder="Enter Email" value={this.state.email} name='email' onChange={this._handleInput} required/>
-          <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Create</button>
-        </div>
-      </form>
-    </div>
+        <form className="login form col s8" onSubmit={this._postCreateAccount}>
+          <div className="container">
+            <label htmlFor="username"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
+            <label htmlFor="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
+            <label htmlFor="password"><b>Password</b></label>
+            <input type="email" placeholder="Enter Email" value={this.state.email} name='email' onChange={this._handleInput} required/>
+            <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
     </div>
   );
   }
