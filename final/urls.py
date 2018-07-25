@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView
+from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView, MyAlbumsRetrieveUpdateDestroyAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +30,7 @@ urlpatterns = [
     path('album/', AlbumListCreateAPIView.as_view(), name='album-list'),
     path('album/<int:pk>/', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),
     path('myalbums/', MyAlbumsListAPIView.as_view(), name='myalbums-list'),
+    path('myalbums/<int:pk>', MyAlbumsRetrieveUpdateDestroyAPIView.as_view(), name='myalbums-detail'),
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 ]

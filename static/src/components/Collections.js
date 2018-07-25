@@ -61,7 +61,7 @@ class Collections extends Component {
             <div className="col s12 m4 l8">
 
               {/* area to display several user's collections - card type display */}
-              <h1>Exmaple Collection Area</h1>
+              <h1>Example Collection Area</h1>
             </div>
           </div>
         </div>

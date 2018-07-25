@@ -57,6 +57,12 @@ class MyAlbumsListAPIView(generics.ListAPIView):
     def get_queryset(self):
         return Album.objects.filter(Q(user=self.request.user))
 
+class MyAlbumsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = AlbumSerializer
+
+    def get_queryset(self):
+        return Album.objects.filter(Q(user=self.request.user))
+
 class UsersListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = UsersSerializer
     filter_backends=(filters.SearchFilter,)

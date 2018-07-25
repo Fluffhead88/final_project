@@ -20,7 +20,7 @@ class MyCollection extends Component {
   this._getSearchResults = this._getSearchResults.bind(this);
   this._postAddAlbum = this._postAddAlbum.bind(this);
   this._deleteAlbum = this._deleteAlbum.bind(this);
-  this._editAlbum = this._editAlbum.bind(this);
+  // this._editAlbum = this._editAlbum.bind(this);
   }
 
 // function to process search parameters and get back album info from last.fm api
@@ -104,31 +104,31 @@ _postAddAlbum(){
   });
 }
 
-_editAlbum(obj){
-
-  let id = {}
-  let token = sessionStorage.getItem('auth_token');
-  fetch("http://localhost:8000/album/",{
-    method:'PUT',
-    headers:{
-      'Content-Type': 'application/json',
-      'Authorization': token
-    }
-  })
-  .then(function(response){
-    console.log(response);
-  })
-  .catch(function(error){
-    console.log('Looks like there was a problem \n,', error)
-  });
-}
+// _editAlbum(obj){
+//
+//   let id = {}
+//   let token = sessionStorage.getItem('auth_token');
+//   fetch("http://localhost:8000/album/",{
+//     method:'PUT',
+//     headers:{
+//       'Content-Type': 'application/json',
+//       'Authorization': token
+//     }
+//   })
+//   .then(function(response){
+//     console.log(response);
+//   })
+//   .catch(function(error){
+//     console.log('Looks like there was a problem \n,', error)
+//   });
+// }
 
 // function to delete album from user's collection - need to figure out ID issue
-_deleteAlbum(){
+_deleteAlbum(album){
 
   let id = {}
   let token = sessionStorage.getItem('auth_token');
-  fetch("http://localhost:8000/album/",{
+  fetch(`http://localhost:8000/myalbum/${id}`,{
     method:'DELETE',
     headers:{
       'Content-Type': 'application/json',
@@ -143,8 +143,69 @@ _deleteAlbum(){
   });
 }
 
+// _showSearchResults() {
+//   if(this.state.album.name) {
+//     return (
+//       <div className="row album_info">
+//         <div className="col s4 m4">
+//
+//           {/* displays the information from last.fm api */}
+//
+//           <p className="name">Album Name</p>
+//           <div>{name}</div>
+//             <p className="name">Artist</p>
+//           <div>{artist}</div>
+//         </div>
+//         <div className="col s4 m4">
+//           <p className="name">Tracks</p>
+//             <div>{tracks}</div>
+//           </div>
+//         <div className="col s4 m4">
+//           <img src={imageURL} alt=""/>
+//         </div>
+//
+//         {/* button to add album to users collection */}
+//         <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
+//
+//       <div className="row summary">
+//         <div className="col s12">
+//         <a href={url}>Link to album on Last.FM</a>
+//         <p className="name">Summary</p>
+//         <div>{summary}</div>
+//         </div>
+//         </div>
+//       </div>
+//     )
+//   }
+//   return;
+// }
+
   render() {
     console.log('state', this.state)
+
+    let mycollection = this.state.mycollection.map(function(Item){
+      return(
+        <div key={Item.id} className="row album_info">
+          <div className="col s4 m4">
+
+            {/* displays the information from last.fm api */}
+
+            <p className="name"></p>
+            <div>{Item.name}</div>
+              <p className="name"></p>
+            <div>{Item.artist}</div>
+          </div>
+          <div className="col s4 m4">
+            <p className="name">Tracks</p>
+              <div>{Item.mytracks}</div>
+            </div>
+          <div className="col s4 m4">
+            <img src={Item.image} alt=""/>
+          </div>
+          </div>
+        // {/* <Album delete={()=>this._deleteAlbum(collectionItem)} /> */}
+      )
+    })
 
     // digging into the data from last.fm api to display for album search
 
@@ -210,6 +271,7 @@ _deleteAlbum(){
         </div>
         <div className="myCollection container">
           <h1>My Collection</h1>
+          <div>{mycollection}</div>
 
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
@@ -217,6 +279,8 @@ _deleteAlbum(){
           {/* importing the album search and puts the function to get search results back */}
           <AlbumSearch getSearchResults={this._getSearchResults}/>
             {/* {this.state.albumSearch.length > 1 ? */}
+
+            {this.state.album.name ?
             <div className="row album_info">
               <div className="col s4 m4">
 
@@ -246,11 +310,8 @@ _deleteAlbum(){
               </div>
               </div>
             </div>
+              : ""}
 
-             {/* // If the user isn't searching, don't show display of search */}
-             {/* :" "
-             } */}
-              {/* this will be linked to the email function via mailgun */}
                 <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact User</button>
 
 
