@@ -22,6 +22,45 @@ class UserSearch extends Component {
     obj[key] = event.target.value;
     this.setState(obj);
   }
+  _getUserResults(searchParams) {
+    let self = this;
+
+
+    fetch(`http://localhost:8000/album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
+    .then(function(response){
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response.json()
+    })
+    .then(function(responseJSON){
+      console.log('response', responseJSON)
+      self.setState({album: responseJSON.album});
+    })
+    .catch(function(error){
+      console.log('Looks like there was a problem: \n', error);
+    });
+  }
+
+  _getAlbumResults(searchParams) {
+    let self = this;
+
+
+    fetch(`http://localhost:8000/album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
+    .then(function(response){
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response.json()
+    })
+    .then(function(responseJSON){
+      console.log('response', responseJSON)
+      self.setState({album: responseJSON.album});
+    })
+    .catch(function(error){
+      console.log('Looks like there was a problem: \n', error);
+    });
+  }
 
   render() {
     return (

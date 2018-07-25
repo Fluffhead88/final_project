@@ -18,6 +18,8 @@ class MyCollection extends Component {
 
   this._getSearchResults = this._getSearchResults.bind(this);
   this._postAddAlbum = this._postAddAlbum.bind(this);
+  this._getMyCollection = this._getMyCollection.bind(this);
+  this._deleteAlbum = this._deleteAlbum.bind(this);
   }
 // this fetch should return my album listing to the site
   componentDidMount(){
@@ -60,22 +62,37 @@ _getSearchResults(searchParams) {
   });
 }
 
+_getMyCollection() {
+  let token = sessionStorage.getItem('auth_token');
+  fetch("http://localhost:8000/album/",{
+    method:'GET',
+    headers:{
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+  })
+  .then(function(response){
+    console.log(response);
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem \n,', error)
+  });
+}
+
 _postAddAlbum(){
 
   let data = {};
+
   let tracks = this.state.album.tracks;
   let mytracks = tracks.track.map(function(track){
     return {title:track.name};
   })
-
-  // console.log(mytracks);
-
   data["artist"] = this.state.album.artist;
   data["album"] = this.state.album.name;
   data["url"] = this.state.album.url;
   data["tracks"] = mytracks;
-
-  console.log(JSON.stringify(data))
+  data["image"] = this.state.album.image[4]['#text'];
+  data['notes'] = '';
 
   let token = sessionStorage.getItem('auth_token');
   fetch("http://localhost:8000/album/",{
@@ -94,16 +111,15 @@ _postAddAlbum(){
   });
 }
 
-_editRequest(obj){
+_editAlbum(obj){
 
-  let context = {}
-  let id = 1
-
-  fetch(`URL${id}`,{
+  let id = {}
+  let token = sessionStorage.getItem('auth_token');
+  fetch("http://localhost:8000/album/",{
     method:'PUT',
-    body:JSON.stringify(context),
     headers:{
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': token
     }
   })
   .then(function(response){
@@ -114,22 +130,24 @@ _editRequest(obj){
   });
 }
 
-_deleteRequest(){
+_deleteAlbum(){
 
-  let id=1
-
-    fetch(`URL${id}`,{
-      method:'DELETE'
-    })
-
-    .then(function(response){
-      console.log(response);
-    })
-    .catch(function(error){
-      console.log('Looks like there was a problem: \n', error);
-    });
-
-  }
+  let id = {}
+  let token = sessionStorage.getItem('auth_token');
+  fetch("http://localhost:8000/album/",{
+    method:'DELETE',
+    headers:{
+      'Content-Type': 'application/json',
+      'Authorization': token
+    }
+  })
+  .then(function(response){
+    console.log(response);
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem \n,', error)
+  });
+}
 
   render() {
     console.log('state', this.state)
@@ -150,31 +168,22 @@ _deleteRequest(){
       })
     }
     let imageURL;
-
     if(this.state.album.image) {
       imageURL = this.state.album.image[4]['#text'];
     }
-
     let summary;
-
     if(this.state.album.wiki){
       summary = this.state.album.wiki.content;
     }
-
     let name;
-
     if(this.state.album.name){
       name = this.state.album.name;
     }
-
     let artist;
-
     if(this.state.album.artist){
       artist = this.state.album.artist;
     }
-
     let url;
-
     if(this.state.album.url){
       url = this.state.album.url;
     }
@@ -188,6 +197,7 @@ _deleteRequest(){
         </div>
         <div className="myCollection container">
           <h1>My Collection</h1>
+          <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button>
           <AlbumSearch getSearchResults={this._getSearchResults}/>
             <div className="row album_info">
               <div className="col s4 m4">
@@ -212,9 +222,9 @@ _deleteRequest(){
               <div>{summary}</div>
               </div>
               </div>
-            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
+            {/* <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
             <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
-            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/>
+            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/> */}
           </div>
         {/* <ul className="collapsible">
      <li>

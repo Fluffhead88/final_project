@@ -18,7 +18,9 @@ class AlbumSerializer(serializers.ModelSerializer):
         read_only_fields = ("user",)
         model = Album
 
-
+# this overrides the create on the serializer to get tracks off of track_data and iterate over
+# the track_data to add multiple tracks from the Track model to the album model. By default it
+# looks for only 1 item.
     def create(self, validated_data):
         track_data = validated_data.pop('tracks')
         album = super().create(validated_data=validated_data)

@@ -11,9 +11,9 @@ class Album(models.Model):
     artist = models.CharField(max_length=255)
     album = models.CharField(max_length=255)
     url = models.URLField(max_length=2000, blank=True)
-    # track = models.CharField(max_length=255, blank=True)
-    release = models.IntegerField(blank=True, null=True)
+    # release = models.IntegerField(blank=True, null=True)
     notes = models.CharField(max_length=2000, blank=True)
+    image = models.URLField(max_length=255, blank=True)
 
     def __str__(self):
         return self.album
