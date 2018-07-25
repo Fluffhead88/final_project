@@ -16,7 +16,6 @@ class AlbumSearch extends Component {
   }
 
   _handleInput(event) {
-    let data = event.target.value;
     let obj =  {}
     let key = event.target.name;
     obj[key] = event.target.value;
@@ -25,6 +24,8 @@ class AlbumSearch extends Component {
 
   render() {
     return (
+
+      // search for albums to add to users collection - search takes album and artist
       <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props.getSearchResults(this.state)}}>
         <form className="col s12">
           <div className="row artistSearch">

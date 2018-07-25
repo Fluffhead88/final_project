@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
+# creates unique users
 class User(AbstractUser):
     pass
 
+# main model that stores all the album information for a user
 class Album(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,10 +19,13 @@ class Album(models.Model):
     def __str__(self):
         return self.album
 
+# seperated out track model because of last.fm's nesting structure - allows multiple tracks to be
+# tied to an album
 class Track(models.Model):
     album = models.ForeignKey(Album, related_name="tracks", on_delete=models.CASCADE, blank=True)
     title = models.CharField(max_length=255)
 
+# user model to search users on front end to show their collections 
 class Users(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)

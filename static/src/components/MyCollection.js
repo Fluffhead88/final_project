@@ -20,8 +20,10 @@ class MyCollection extends Component {
   this._postAddAlbum = this._postAddAlbum.bind(this);
   this._getMyCollection = this._getMyCollection.bind(this);
   this._deleteAlbum = this._deleteAlbum.bind(this);
+  this._editAlbum = this._editAlbum.bind(this);
   }
-// this fetch should return my album listing to the site
+
+// possibly change to display collection on page load
   componentDidMount(){
   let self=this;
 
@@ -42,6 +44,7 @@ class MyCollection extends Component {
   });
 }
 
+// function to process search parameters and get back album info from last.fm api
 _getSearchResults(searchParams) {
   let self = this;
 
@@ -62,6 +65,8 @@ _getSearchResults(searchParams) {
   });
 }
 
+// function to get current user's collection - fires and works but need to figure out
+// display and possible change to componentDidMount to show on page load
 _getMyCollection() {
   let token = sessionStorage.getItem('auth_token');
   fetch("http://localhost:8000/album/",{
@@ -79,6 +84,7 @@ _getMyCollection() {
   });
 }
 
+// function to edit album information - not needed except for possibly notes
 _postAddAlbum(){
 
   let data = {};
@@ -130,6 +136,7 @@ _editAlbum(obj){
   });
 }
 
+// function to delete album from user's collection - need to figure out ID issue
 _deleteAlbum(){
 
   let id = {}
@@ -151,40 +158,58 @@ _deleteAlbum(){
 
   render() {
     console.log('state', this.state)
+
+    // digging into the data from last.fm api to display for album search
+
+    // maps over track to return all tracks - weird part of last.fm nesting
     let tracks;
-    if(this.state.album.tracks) {
-      tracks = this.state.album.tracks.track.map(function(trackItem, index){
-        return(
-          <div key={index}>{trackItem.name}</div>
+      if(this.state.album.tracks) {
+        tracks = this.state.album.tracks.track.map(function(trackItem, index){
+          return(
+            <div key={index}>{trackItem.name}</div>
         )
       })
     }
+
+    // currently not using - trying to display just the release date but not
+    // consistent return from api call
     let release;
-    if(this.state.album.tags){
-      release = this.state.album.tags.tag.map(function(releaseItem, index){
-        return(
-          <div key={index}>{releaseItem.name}</div>
+      if(this.state.album.tags){
+        release = this.state.album.tags.tag.map(function(releaseItem, index){
+          return(
+            <div key={index}>{releaseItem.name}</div>
         )
       })
     }
+
+    // gets single image URL from list to be displayed in image tag
     let imageURL;
-    if(this.state.album.image) {
-      imageURL = this.state.album.image[4]['#text'];
+      if(this.state.album.image) {
+        imageURL = this.state.album.image[4]['#text'];
     }
+
+    // currently returning content from wikipedia, good info but all albums don't
+    // have wiki info, may turn into if statement to show if it exists for album
     let summary;
-    if(this.state.album.wiki){
-      summary = this.state.album.wiki.content;
+      if(this.state.album.wiki){
+        summary = this.state.album.wiki.content;
     }
+
+    // returns album name
     let name;
-    if(this.state.album.name){
-      name = this.state.album.name;
+      if(this.state.album.name){
+        name = this.state.album.name;
     }
+
+    // returns artist name
     let artist;
-    if(this.state.album.artist){
-      artist = this.state.album.artist;
+      if(this.state.album.artist){
+        artist = this.state.album.artist;
     }
+
+    // returns last.fm link - may not use
     let url;
-    if(this.state.album.url){
+      if(this.state.album.url){
       url = this.state.album.url;
     }
 
@@ -192,15 +217,22 @@ _deleteAlbum(){
       <div>
         <div className='row center'>
           <div className='col s12 center'>
+            {/* image of albums at top of page */}
             <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
           </div>
         </div>
         <div className="myCollection container">
           <h1>My Collection</h1>
+
+          {/* button that fires function to show the collection - change display later */}
           <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button>
+
+          {/* importing the album search and puts the function to get search results back */}
           <AlbumSearch getSearchResults={this._getSearchResults}/>
             <div className="row album_info">
               <div className="col s4 m4">
+
+                {/* displays the information from last.fm api */}
                 <p className="name">Album Name</p>
                 <div>{name}</div>
                   <p className="name">Artist</p>
@@ -213,6 +245,8 @@ _deleteAlbum(){
               <div className="col s4 m4">
                 <img src={imageURL} alt=""/>
               </div>
+
+              {/* button to add album to users collection */}
               <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
             </div>
             <div className="row summary">
@@ -222,10 +256,20 @@ _deleteAlbum(){
               <div>{summary}</div>
               </div>
               </div>
+
+              {/* this will be linked to the email function via mailgun */}
+                <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact User</button>
+
+
             {/* <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
             <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
             <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/> */}
+
+
           </div>
+
+          {/* collapsible that may come into play with collection display */}
+
         {/* <ul className="collapsible">
      <li>
        <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>

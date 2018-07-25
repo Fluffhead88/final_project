@@ -6,7 +6,7 @@ from rest_framework.test import APIClient
 from model_mommy import mommy
 from rest_framework.authtoken.models import Token
 
-
+# creates models with model.mommy and tests url end points
 class AlbumViewSetTest(TestCase):
     def setUp(self):
         self.album = mommy.make(Album)
@@ -55,6 +55,7 @@ class AlbumViewSetTest(TestCase):
         # Make sure the album was created with the values we provided
         self.assertEquals(response_data, album_data)
 
+# tests model fields 
 class AlbumModelTest(TestCase):
     def setUp(self):
         self.user = mommy.make(User)
@@ -65,9 +66,3 @@ class AlbumModelTest(TestCase):
         rift_notes = rift.notes
 
         self.assertEquals(rift_notes, 'awesome')
-
-    # def test_default_description(self):
-    #     self.assertEquals(self.album.notes, 'snowy wonderland')
-
-        # no_des_album = album.objects.create(name='Hoth', active=True)
-        # self.assertEquals(no_des_album.description, 'Not explored yet')

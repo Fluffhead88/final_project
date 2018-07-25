@@ -6,14 +6,17 @@ import './Header.css';
 function Header(props) {
   return (
 
-    <nav className="white" role="navigation">
+    <nav className="white">
       <div className="nav-wrapper container">
         <ul className="right hide-on-med-and-down">
+
+          {/* nav buttons to take user to each page */}
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/'>Home</NavLink></button>
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/collections'>Collections</NavLink></button>
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/mycollection'>My Collection</NavLink></button>
         </ul>
 
+      {/* mobile nav options */}
         {/* <ul id="nav-mobile" className="sidenav">
           <button className="waves-effect waves-light btn nav_button"><NavLink to='/'>Home</NavLink></button>
           <button className="waves-effect waves-light btn nav_button"><NavLink to='/collections'>Collections</NavLink></button>

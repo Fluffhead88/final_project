@@ -10,6 +10,8 @@ import image2 from './images/records.jpg'
 // $(document).ready(function(){
 //     $('.parallax').parallax();
 // });
+
+// end point for creating auth token with djoser
 const URL = "http://127.0.0.1:8000/auth/token/create/"
 
 class Home extends Component {
@@ -25,14 +27,13 @@ class Home extends Component {
 
 }
     _handleInput(event) {
-      let data = event.target.value;
-
       let obj =  {}
       let key = event.target.name;
       obj[key] = event.target.value;
       this.setState(obj);
     }
 
+// function to get auth token back from back end
     _postLoginAuth(event) {
       event.preventDefault();
       let data = this.state;
@@ -72,11 +73,17 @@ class Home extends Component {
           <div className="section no-pad-bot">
             <div className="container">
               <br></br>
+
+              {/* banner page title */}
               <h1 className="header center gray-text text-lighten-2">Record Collection</h1>
               <div className="row center">
+
+                {/* tagline under title */}
                 <h5 className="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
               </div>
               <div className="row center">
+
+                {/* this is for modal that's not working, should take you log in or create user */}
                 {/* onClick={document.getElementById('id01').style.display='block'} */}
                 <a href="" id="login-button" className="btn-large waves-effect waves-light red lighten-2" >Create Collection</a>
               </div>
@@ -95,11 +102,15 @@ class Home extends Component {
               <br></br>
             </div>
           </div>
+
+          {/* image on home page  */}
           <div className='home_image'><img src={image2} alt="Unsplashed background img 1"/></div>
         </div>
         <div className="container">
           <div className="section">
-            {/* <!--   Icon Section   --> */}
+
+
+            {/* <!--   Icon Section, describes what app is for  --> */}
             <div className="row">
               <div className="col s12 m4">
                 <div className="icon-block">
@@ -125,6 +136,8 @@ class Home extends Component {
             </div>
           </div>
         </div>
+
+        {/* section for log in - hopefully break into modal */}
         <div className="container">
           <div className="row">
             <div>Login</div>
@@ -140,6 +153,8 @@ class Home extends Component {
         </div>
         </div>
         <div>
+
+          {/* import create account component */}
           <CreateAccount/>
         </div>
         <footer className="page-footer red-lighten-2">
@@ -165,6 +180,8 @@ class Home extends Component {
               </div>
             </div>
           </div> */}
+
+          {/* link takes you to github */}
           <div className="footer-copyright">
             <div className="container">
             Made by <a className="white-text text-lighten-1" href="https://fluffhead88.github.io/take-two/">Zachary Thigpen</a>
@@ -173,7 +190,7 @@ class Home extends Component {
         </footer>
 
 
-
+{/* modal stuff that's not working */}
         {/* <div id="id01" className="modal">
           <span onClick="document.getElementById('id01').style.display=none"
         className="close" title="Close Modal">&times;</span>

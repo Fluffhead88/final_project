@@ -21,6 +21,9 @@ _handleInput(event) {
   this.setState(obj);
 }
 
+// post to user creation end point on back end - takes username, password, email
+// email will be used to message other users
+// auth token is stored in session storage so log out is not required
 _postCreateAccount(event) {
   event.preventDefault();
   let data = this.state;
@@ -53,6 +56,8 @@ render() {
   return (
     <div className="container">
       <div className="row">
+
+        {/* form to create account upon submit */}
         <div>Create Account</div>
       <form className="login form col s8" onSubmit={this._postCreateAccount}>
         <div className="container">
