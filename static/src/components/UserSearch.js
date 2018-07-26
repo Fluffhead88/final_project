@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import './UserSearch.css';
 
+const URL     = "http://127.0.0.1:8000/"
+const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
+
 class UserSearch extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +17,7 @@ class UserSearch extends Component {
 
     this._handleInput = this._handleInput.bind(this);
     this._getAlbumResults = this._getAlbumResults.bind(this);
-    this._getUserResults = this._getUserResults.bind(this);
+    // this._getUserResults = this._getUserResults.bind(this);
   }
 
   _handleInput(event) {
@@ -25,30 +28,30 @@ class UserSearch extends Component {
   }
 
   // function to search users to show their collections - incomplete
-  _getUserResults(id) {
-    let self = this;
-    let user =
-
-    fetch('http://localhost:8000/album/')
-    .then(function(response){
-      if(!response.ok){
-        throw Error(response.statusText);
-      }
-      return response.json()
-    })
-    .then(function(responseJSON){
-      console.log('response', responseJSON)
-      self.setState({users: responseJSON.users});
-    })
-    .catch(function(error){
-      console.log('Looks like there was a problem: \n', error);
-    });
-  }
+  // _getUserResults(id) {
+  //   let self = this;
+  //   let user =
+  //
+  //   fetch('http://localhost:8000/album/')
+  //   .then(function(response){
+  //     if(!response.ok){
+  //       throw Error(response.statusText);
+  //     }
+  //     return response.json()
+  //   })
+  //   .then(function(responseJSON){
+  //     console.log('response', responseJSON)
+  //     self.setState({users: responseJSON.users});
+  //   })
+  //   .catch(function(error){
+  //     console.log('Looks like there was a problem: \n', error);
+  //   });
+  // }
 
 // search for all albums - show what users have each album - incomplete
   _getAlbumResults(searchParams) {
     let self = this;
-    fetch("http://localhost:8000/album/",{
+    fetch(`${URL}album/`,{
       method:'GET',
       headers:{
         'Content-Type': 'application/json',
@@ -74,15 +77,16 @@ class UserSearch extends Component {
     return (
 
       // search users to show their collections
-      <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props._getUserResults(this.state)}}>
         <form className="col s12">
+      {/* <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props._getUserResults(this.state)}}>
+
           <div className="row userSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}}>
             <div className="input-field col s6">
               <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.userSearch} name='userSearch' onChange={this._handleInput}/>
               <label htmlFor="input_text">User Search</label>
             </div>
                 <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Search</button>
-          </div>
+          </div> */}
 
         {/* search all albums to show which users have the album */}
           <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props._getAlbumResults(this.state)}}>
@@ -93,8 +97,9 @@ class UserSearch extends Component {
               <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Search</button>
           </div>
 
-        </form>
-      </div>
+
+      {/* </div> */}
+      </form>
     );
   }
 }

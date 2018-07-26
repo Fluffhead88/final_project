@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+const URL     = "http://127.0.0.1:8000/"
+const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
+
 class CreateAccount extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +32,7 @@ _postCreateAccount(event) {
   event.preventDefault();
   let data = this.state;
 
-  fetch('http://127.0.0.1:8000/auth/users/create/',{
+  fetch(`${URL}auth/users/create/`,{
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

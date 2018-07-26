@@ -13,7 +13,8 @@ import image2 from './images/records.jpg'
 // });
 
 // end point for creating auth token with djoser
-const URL = "http://127.0.0.1:8000/auth/token/create/"
+const URL     = "http://127.0.0.1:8000/"
+const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
 // What is url when deployed in production?
 // something.herokuapp.com/auth/token/create/   ??????
 
@@ -42,7 +43,7 @@ class Home extends Component {
       let data = this.state;
       let self = this;
 
-      fetch(URL,{
+      fetch(`${URL}auth/token/create/`,{
         method: 'POST',
         body: JSON.stringify(data),
         headers: {

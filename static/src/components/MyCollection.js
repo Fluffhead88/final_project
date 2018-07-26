@@ -6,7 +6,8 @@ import image4 from './images/records_small.png'
 
 import './MyCollection.css';
 
-const URL = "http://localhost:8000/album/proxy/"
+const URL     = "http://127.0.0.1:8000/"
+const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
 
 class MyCollection extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ _getSearchResults(searchParams) {
   let self = this;
 
 
-  fetch(`http://localhost:8000/album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
+  fetch(`${URL}album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
   .then(function(response){
     if(!response.ok){
       throw Error(response.statusText);
@@ -49,7 +50,7 @@ _getSearchResults(searchParams) {
 componentDidMount() {
   let self = this;
   let token = sessionStorage.getItem('auth_token');
-  fetch("http://localhost:8000/myalbums/",{
+  fetch(`${URL}myalbums/`,{
     method:'GET',
     headers:{
       'Content-Type': 'application/json',
@@ -88,7 +89,7 @@ _postAddAlbum(){
   data['notes'] = '';
 
   let token = sessionStorage.getItem('auth_token');
-  fetch("http://localhost:8000/album/",{
+  fetch(`${URL}album/`,{
     method:'POST',
     body:JSON.stringify(data),
     headers:{
@@ -128,7 +129,7 @@ _deleteAlbum(album){
 
   let id = album.id;
   let token = sessionStorage.getItem('auth_token');
-  fetch(`http://localhost:8000/myalbums/${id}/`,{
+  fetch(`${URL}myalbums/${id}/`,{
     method:'DELETE',
     headers:{
       'Content-Type': 'application/json',

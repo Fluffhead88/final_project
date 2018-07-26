@@ -5,6 +5,9 @@ import image4 from './images/records_sun_small.png'
 
 import './Collections.css';
 
+const URL     = "http://127.0.0.1:8000/"
+const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
+
 class Collections extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +21,7 @@ class Collections extends Component {
   }
   componentDidMount() {
     let self = this;
-    fetch("http://localhost:8000/album/",{
+    fetch(`${URL}album/`,{
       method:'GET',
       headers:{
         'Content-Type': 'application/json',
