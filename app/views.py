@@ -31,6 +31,27 @@ class AlbumProxyView(APIView):
         album_data = requests.get(f'{api_url}?method=album.getinfo&api_key={settings.LASTFM_API_KEY}&artist={artist}&album={album}&format=json').json()
         return Response(album_data)
 
+class ContactAPIView(APIView):
+    def post(self, request):
+
+        album = Album.objects.get(id=request.POST.get('album_id'))
+
+        url = 'https://api.mailgun.net/v3/{}/messages'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org')
+        auth = ('api', settings.MAILGUN_API_KEY)
+        data = {
+            'from': 'Mailgun User <mailgun@{}>'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org'),
+            'to': album.user.email,
+            # set reply to requesting user
+            'subject': album.album,
+            'text': 'Plaintext content',
+            # look up reply to on mailgun
+        }
+        print(self.request.user.email)
+        response = requests.post(url, auth=auth, data=data)
+        response.raise_for_status()
+
+        return Response(['It works!'])
+
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
     filter_backends=(filters.SearchFilter,)

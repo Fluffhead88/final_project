@@ -18,11 +18,11 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView, MyAlbumsRetrieveUpdateDestroyAPIView
+from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView, MyAlbumsRetrieveUpdateDestroyAPIView, ContactAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(template_name='index.html'), name='index'),
+    path('', IndexView.as_view(), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('artist/proxy/', ArtistProxyView.as_view(), name='artist-proxy'),
@@ -31,6 +31,7 @@ urlpatterns = [
     path('album/<int:pk>/', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),
     path('myalbums/', MyAlbumsListAPIView.as_view(), name='myalbums-list'),
     path('myalbums/<int:pk>/', MyAlbumsRetrieveUpdateDestroyAPIView.as_view(), name='myalbums-detail'),
+    path('contact/', ContactAPIView.as_view(), name='contact'),
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
 ]

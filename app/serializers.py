@@ -7,8 +7,6 @@ class TrackSerializer(serializers.ModelSerializer):
         fields = ["title", "album"]
         model = Track
 
-
-
 class AlbumSerializer(serializers.ModelSerializer):
 
     tracks = TrackSerializer(many=True)
