@@ -62,7 +62,8 @@ ROOT_URLCONF = 'final.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'static/build')],
+        #'DIRS': [os.path.join(BASE_DIR, 'static/build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -154,6 +155,7 @@ REST_FRAMEWORK = {
 
 LASTFM_API_KEY = os.environ.get("LASTFM_API_KEY")
 LASTFM_API_SECRET = os.environ.get("LASTFM_API_SECRET")
+MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY")
 
 import django_heroku
 django_heroku.settings(locals())
