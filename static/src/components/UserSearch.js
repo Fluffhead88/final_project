@@ -9,6 +9,7 @@ class UserSearch extends Component {
     this.state = {
       userSearch: '',
       albumSearch: '',
+      album: {},
     }
 
     this._handleInput = this._handleInput.bind(this);
@@ -26,7 +27,7 @@ class UserSearch extends Component {
   // function to search users to show their collections - incomplete
   _getUserResults(id) {
     let self = this;
-    let user = 
+    let user =
 
     fetch('http://localhost:8000/album/')
     .then(function(response){
@@ -47,21 +48,25 @@ class UserSearch extends Component {
 // search for all albums - show what users have each album - incomplete
   _getAlbumResults(searchParams) {
     let self = this;
-
-
-    fetch('http://localhost:8000/')
+    fetch("http://localhost:8000/album/",{
+      method:'GET',
+      headers:{
+        'Content-Type': 'application/json',
+      }
+    })
     .then(function(response){
       if(!response.ok){
         throw Error(response.statusText);
       }
+      // console.log(response.json())
       return response.json()
     })
     .then(function(responseJSON){
-      console.log('response', responseJSON)
-      self.setState({album: responseJSON.album});
+      console.log('response', responseJSON);
+      self.setState({album: responseJSON.album})
     })
     .catch(function(error){
-      console.log('Looks like there was a problem: \n', error);
+      console.log('Looks like there was a problem \n,', error)
     });
   }
 

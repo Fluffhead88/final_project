@@ -10,7 +10,8 @@ class Collections extends Component {
     super(props);
     this.state = {
       user : {},
-      album: {}
+      album: {},
+      collections: [],
     }
 
     // this._getSearchResults = this._getSearchResults.bind(this);
@@ -32,7 +33,7 @@ class Collections extends Component {
     })
     .then(function(responseJSON){
       console.log('response', responseJSON);
-      self.setState({mycollection: responseJSON})
+      self.setState({collections: responseJSON})
     })
     .catch(function(error){
       console.log('Looks like there was a problem \n,', error)
@@ -61,6 +62,26 @@ class Collections extends Component {
   // }
 
   render() {
+    console.log('state', this.state)
+    let self = this;
+    let collections = this.state.collections.map(function(Item){
+
+      return(
+        <div key={Item.id} className="row album_info">
+          <div className="col s4 m4">
+            {/* displays the information from last.fm api */}
+            <p className="artist_name"></p>
+            <h5>{Item.artist}</h5>
+              <p className="album_name"></p>
+            <h6>{Item.album}</h6>
+            <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact</button>
+          </div>
+          <div className="col s4 m4">
+            <img src={Item.image} alt=""/>
+          </div>
+        </div>
+      )
+    })
     return (
       <div>
         <div className='row center'>
@@ -82,9 +103,9 @@ class Collections extends Component {
         <div className="user_collections">
           <div className="row">
             <div className="col s12 m4 l8">
-              <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact User</button>
+
               {/* area to display several user's collections - card type display */}
-              <h1>Example Collection Area</h1>
+              {collections}
             </div>
           </div>
         </div>

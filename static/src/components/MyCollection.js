@@ -207,7 +207,6 @@ _deleteAlbum(album){
             <img src={Item.image} alt=""/>
           </div>
         </div>
-        // {/* <Album delete={()=>this._deleteAlbum(collectionItem)} /> */}
       )
     })
 

@@ -38,7 +38,6 @@ class AlbumListCreateAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
 
-        # return Album.objects.prefetch_related("tracks").all()
         #return Album.objects.filter(user=self.request.user)
         return Album.objects.prefetch_related("tracks").all()
 
