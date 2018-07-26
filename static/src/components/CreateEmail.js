@@ -10,7 +10,7 @@ class CreateEmail extends Component {
     this.state = {
       album_id: props.album
     }
-  
+
   this._postCreateEmail = this._postCreateEmail.bind(this);
 }
 
