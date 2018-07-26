@@ -104,3 +104,5 @@ class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Users.objects.filter(user=self.request.user)
+
+        
