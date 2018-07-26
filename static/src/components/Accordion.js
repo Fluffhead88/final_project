@@ -13,13 +13,47 @@ class Accordion extends Component {
 
   componentDidMount(options) {
     var elems = document.querySelectorAll('.collapsible');
+    console.log('el', elems);
     var instances = Materialize.Collapsible.init(elems, options);
   }
 
   render() {
 
-    console.log(this.props.mycollection);
+    // let artists = this.props.mycollection.map(function(item, index){
+    //  let albums = [1,2,3].map(function(item, index){
+    //    let tracks = [1,2,3].map(function(item, index){
+    //       return (<div key={index}>{item}</div>)
+    //    });
+    //    return (
+    //      <li key={index}>
+    //      <div className="collapsible-header"><i className="material-icons">queue_music</i>album</div>
+    //      <div className="collapsible-body">
+    //        <ul className="collapsible">
+    //          <div className="collapsible-header"><i className="material-icons">album</i>track</div>
+    //          <div className="collapsible-body">
+    //            {tracks}
+    //          </div>
+    //        </ul>
+    //      </div>
+    //    </li>
+    //    )
+    //  });
+    //  return (
+    //    <ul className="collapsible">
+    //      <li>
+    //        <div className="collapsible-header"><i className="material-icons">filter_drama</i>{item.artist}</div>
+    //        <div className="collapsible-body">
+    //          <ul className="collapsible">
+    //            {albums}
+    //          </ul>
+    //        </div>
+    //      </li>
+    //    </ul>
+    //  )
+   // })
+
     let accordionItems = this.props.mycollection.map(function(item, index){
+      console.log('here', item)
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
       })
@@ -29,14 +63,13 @@ class Accordion extends Component {
           <div className="collapsible-body">
             <ul className="collapsible">
               <div className="collapsible-header"><i className="material-icons">album</i>{item.album}</div>
-              <div className="collapsible-body">
-                {tracks}
-              </div>
+              <div className="collapsible-body"><span>Track</span></div>
             </ul>
           </div>
         </li>
       )
     })
+
     return (
       <div>
         <ul className="collapsible">
@@ -56,7 +89,7 @@ class Accordion extends Component {
                    </div>
                  </li>
                </ul>
-             </div>
+        </div>
       </div>
     )
   }

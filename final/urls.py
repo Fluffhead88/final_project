@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -22,7 +22,6 @@ from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreat
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('artist/proxy/', ArtistProxyView.as_view(), name='artist-proxy'),
@@ -34,6 +33,7 @@ urlpatterns = [
     path('contact/', ContactAPIView.as_view(), name='contact'),
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
+    re_path('^.*/$', IndexView.as_view(), name='index'),
 ]
 
 if settings.DEBUG is True:

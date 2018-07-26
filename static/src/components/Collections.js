@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import UserSeach from './UserSearch.js'
+import CreateEmail from './CreateEmail.js'
 import image4 from './images/records_sun_small.png'
 // import image2 from './images/records.jpg'
 
@@ -70,16 +71,16 @@ class Collections extends Component {
     let collections = this.state.collections.map(function(Item){
 
       return(
-        <div key={Item.id} className="row album_info">
-          <div className="col s4 m4">
+        <div  className="row album_info">
+          <div key={Item.id} className="col s3 m4">
             {/* displays the information from last.fm api */}
             <p className="artist_name"></p>
             <h5>{Item.artist}</h5>
               <p className="album_name"></p>
             <h6>{Item.album}</h6>
-            <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Contact</button>
+            <CreateEmail album={Item.id}/>
           </div>
-          <div className="col s4 m4">
+          <div className="col s3 m4">
             <img src={Item.image} alt=""/>
           </div>
         </div>

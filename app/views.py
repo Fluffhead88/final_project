@@ -34,7 +34,8 @@ class AlbumProxyView(APIView):
 class ContactAPIView(APIView):
     def post(self, request):
 
-        album = Album.objects.get(id=request.POST.get('album_id'))
+        print('here', request.data)
+        album = Album.objects.get(id=request.data.get('album_id'))
 
         url = 'https://api.mailgun.net/v3/{}/messages'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org')
         auth = ('api', settings.MAILGUN_API_KEY)
