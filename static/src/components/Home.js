@@ -14,6 +14,8 @@ import image2 from './images/records.jpg'
 
 // end point for creating auth token with djoser
 const URL = "http://127.0.0.1:8000/auth/token/create/"
+// What is url when deployed in production?
+// something.herokuapp.com/auth/token/create/   ??????
 
 class Home extends Component {
   constructor(props) {
