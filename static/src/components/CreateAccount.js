@@ -66,8 +66,8 @@ render() {
       <div className="row">
 
         {/* form to create account upon submit */}
-        <div>Create Account</div>
-        <form className="login form col s8" onSubmit={this._postCreateAccount}>
+        <h5>Create Account</h5>
+        <form className="login form col s12" onSubmit={this._postCreateAccount}>
           <div className="container">
             <label htmlFor="username"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>

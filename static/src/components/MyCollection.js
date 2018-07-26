@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import AlbumSearch from "./AlbumSearch.js"
 // import $ from 'jquery';
 import image4 from './images/records_small.png'
+// import Materialize from 'materialize-css/dist/js/materialize.min.js';
 // import image2 from './images/records.jpg'
 
 import './MyCollection.css';
+
+import Accordion from './Accordion.js';
 
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
@@ -275,7 +278,8 @@ _deleteAlbum(album){
         </div>
         <div className="myCollection container">
           <h1>My Collection</h1>
-          <div>{mycollection}</div>
+          {/* <div>{mycollection}</div> */}
+          <Accordion mycollection={this.state.mycollection}/>
 
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}

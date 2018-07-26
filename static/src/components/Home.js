@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import CreateAccount from './CreateAccount.js'
+
 import './Home.css';
 import $ from 'jquery';
-// import image1 from './images/vinyl_bins.jpeg'
+import RegisterModal from './RegisterModal.js'
 import image2 from './images/records.jpg'
-// import image3 from './images/vinyl_bins.jpeg'
-// import image4 from './images/records_sun3.png'
-// import $ from 'jquery'
-//
-// $(document).ready(function(){
-//     $('.parallax').parallax();
-// });
 
 // end point for creating auth token with djoser
 const URL     = "http://127.0.0.1:8000/"
@@ -27,7 +20,7 @@ class Home extends Component {
     }
 
     this._handleInput = this._handleInput.bind(this);
-    this._postLoginAuth = this._postLoginAuth.bind(this);
+
 
 }
     _handleInput(event) {
@@ -38,39 +31,7 @@ class Home extends Component {
     }
 
 // function to get auth token back from back end
-    _postLoginAuth(event) {
-      event.preventDefault();
-      let data = this.state;
-      let self = this;
 
-      fetch(`${URL}auth/token/create/`,{
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-
-        }
-      })
-      .then(function(response){
-        if(!response.ok){
-          throw Error(response.statusText);
-        }
-        return response.json()
-      })
-      .then(function(responseJSON){
-        console.log('response', responseJSON.auth_token)
-        sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
-        let obj = {
-          username: '',
-          password: ''
-        }
-        self.setState(obj)
-
-      })
-      .catch(function(error){
-        console.log('Looks like there was a problem: \n', error);
-      });
-    }
 
 
 
@@ -93,7 +54,7 @@ class Home extends Component {
 
                 {/* this is for modal that's not working, should take you log in or create user */}
                 {/* onClick={document.getElementById('id01').style.display='block'} */}
-                <a href="" id="login-button" className="btn-large waves-effect waves-light red lighten-2" >Create Collection</a>
+                <RegisterModal/>
               </div>
               {/* <a className="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> */}
 
@@ -145,25 +106,10 @@ class Home extends Component {
           </div>
         </div>
 
-        {/* section for log in - hopefully break into modal */}
-        <div className="container">
-          <div className="row">
-            <div>Login</div>
-          <form className="login form col s8" onSubmit={this._postLoginAuth}>
-            <div className="container">
-              <label htmlFor="username"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
-              <label htmlFor="password"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
-              <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Login</button>
-            </div>
-          </form>
-        </div>
-        </div>
+
         <div>
 
-          {/* import create account component */}
-          <CreateAccount/>
+
         </div>
 
           {/* <div className="container">

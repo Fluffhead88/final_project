@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import LoginModal from './LoginModal.js'
 
 import './Header.css';
 
@@ -8,6 +9,9 @@ function Header(props) {
 
     <nav className="white">
       <div className="nav-wrapper container">
+          <ul className="left hide-on-med-and-down">
+            <LoginModal/>
+          </ul>
         <ul className="right hide-on-med-and-down">
 
           {/* nav buttons to take user to each page */}
