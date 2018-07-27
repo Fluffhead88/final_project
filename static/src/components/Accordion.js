@@ -18,7 +18,7 @@ class Accordion extends Component {
   }
 
   render() {
-
+    console.log('this props', this.props)
     // let artists = this.props.mycollection.map(function(item, index){
     //  let albums = [1,2,3].map(function(item, index){
     //    let tracks = [1,2,3].map(function(item, index){
@@ -54,6 +54,7 @@ class Accordion extends Component {
 
     let accordionItems = this.props.mycollection.map(function(item, index){
       console.log('here', item)
+
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
       })
@@ -61,7 +62,7 @@ class Accordion extends Component {
       return (
         <li key={index}>
           <div className="collapsible-header">
-            <i className="material-icons">album</i>{item.album}</div>
+            <i className="material-icons">album</i>{item.artist} - {item.album}</div>
           <div className="collapsible-body">
             {tracks}
           </div>

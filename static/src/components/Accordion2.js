@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 
-let collection = [{artist: 'Korn', album: {title: 'One', tracks: ['one', 'two', 'three']}},{'artist': 'Chevelle', album: {title: 'One', tracks: ['one', 'two', 'three']}},{artist: 'Korn', album: {title: 'Two', tracks: ['one', 'two', 'three']}},{'artist': 'Halestorm', album: {title: 'One', tracks: ['one', 'two', 'three']}},{artist: 'Korn', album: {title: 'Three', tracks: ['one', 'two', 'three']}}]
+let collection = [{artist: 'Korn', album: {title: 'One', tracks: ['one', 'two', 'three']}},{'artist': 'Chevelle', album: {title: 'One', tracks: ['one', 'two', 'three']}},{artist: 'Korn', album: {title: 'Two', tracks: ['two', 'seven', 'three']}},{'artist': 'Halestorm', album: {title: 'One', tracks: ['one', 'two', 'three']}},{artist: 'Korn', album: {title: 'Three', tracks: ['three', 'four', 'five']}}]
 // console.log('collection data', collection);
 
 let transform_collection = collection.map((obj) => {
@@ -38,7 +38,7 @@ let merge_collection = sort_collection.reduce((accumulator, currentValue) => {
 
  return accumulator;
 },[]);
-// console.log('merge', merge_collection);
+console.log('merge', merge_collection);
 
 class Accordion2 extends Component {
  constructor(props) {

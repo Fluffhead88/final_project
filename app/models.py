@@ -27,9 +27,6 @@ class Track(models.Model):
 
 # user model to search users on front end to show their collections
 class Users(models.Model):
-
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    # album = models.ForeignKey(Album, on_delete=models.CASCADE, null=True, blank=True)
-    image = models.ImageField(upload_to='media/', verbose_name='image', null=True, blank=True)
-    # email = models.CharField(max_length=255, null=True, blank=True)
-    # username = models.CharField(max_length=255, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    bio = models.CharField(max_length=250, blank=True, null=True)
+    image = models.ImageField(upload_to='media/', blank=True)

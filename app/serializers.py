@@ -30,5 +30,5 @@ class UsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         fields = "__all__"
-        read_only_fields = ("image", )
+        # read_only_fields = ("image", )
         model = Users

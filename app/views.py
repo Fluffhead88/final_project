@@ -99,8 +99,12 @@ class UsersListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+# class UsersListCreateAPIView(generics.ListCreateAPIView):
+#     queryset = User.objects.select_related('profile').all()
+#     serializer_class = UsersSerializer
+
 class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    # permission_classes = [IsOwnerOrReadOnly]
     serializer_class = UsersSerializer
 
     def get_queryset(self):

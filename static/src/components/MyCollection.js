@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import AlbumSearch from "./AlbumSearch.js"
 // import $ from 'jquery';
 import image4 from './images/records_small.png'
+import ProfileUpdateModal from './ProfileUpdateModal'
 // import Materialize from 'materialize-css/dist/js/materialize.min.js';
 // import image2 from './images/records.jpg'
 
 import './MyCollection.css';
 
-import Accordion from './Accordion.js';
+import Accordion3 from './Accordion3.js';
 
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
@@ -24,6 +25,7 @@ class MyCollection extends Component {
   this._getSearchResults = this._getSearchResults.bind(this);
   this._postAddAlbum = this._postAddAlbum.bind(this);
   this._deleteAlbum = this._deleteAlbum.bind(this);
+
   // this._editAlbum = this._editAlbum.bind(this);
   }
 
@@ -67,7 +69,7 @@ componentDidMount() {
     return response.json()
   })
   .then(function(responseJSON){
-    console.log('response', responseJSON);
+    console.log('api response', responseJSON);
     self.setState({mycollection: responseJSON})
   })
   .catch(function(error){
@@ -92,6 +94,9 @@ _postAddAlbum(){
   data['notes'] = '';
 
   let token = sessionStorage.getItem('auth_token');
+
+  console.log('data', data)
+
   fetch(`${URL}album/`,{
     method:'POST',
     body:JSON.stringify(data),
@@ -147,6 +152,7 @@ _deleteAlbum(album){
   });
 }
 
+
 // _showSearchResults() {
 //   if(this.state.album.name) {
 //     return (
@@ -185,7 +191,7 @@ _deleteAlbum(album){
 // }
 
   render() {
-    console.log('state', this.state)
+    console.log('mystate', this.state.mycollection)
     let self = this;
     let mycollection = this.state.mycollection.map(function(Item){
       let tracks = Item.tracks.map(function(track, index){
@@ -270,6 +276,7 @@ _deleteAlbum(album){
 
     return (
       <div>
+        <ProfileUpdateModal/>
         <div className='row center'>
           <div className='col s12 center'>
             {/* image of albums at top of page */}
@@ -279,7 +286,7 @@ _deleteAlbum(album){
         <div className="myCollection container">
           <h1>My Collection</h1>
           {/* <div>{mycollection}</div> */}
-          <Accordion mycollection={this.state.mycollection}/>
+          <Accordion3 mycollection={this.state.mycollection}/>
 
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
