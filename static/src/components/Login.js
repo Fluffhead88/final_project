@@ -49,7 +49,6 @@ _postLoginAuth(event) {
       password: ''
     }
     self.setState(obj)
-
   })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);

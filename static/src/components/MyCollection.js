@@ -96,6 +96,11 @@ _postAddAlbum(){
   let token = sessionStorage.getItem('auth_token');
 
   console.log('data', data)
+  console.log('this state', this.state.mycollection)
+
+  let collection = this.state.mycollection;
+  collection.push(data);
+  this.setState({mycollection: collection});
 
   fetch(`${URL}album/`,{
     method:'POST',

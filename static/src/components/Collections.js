@@ -71,20 +71,21 @@ class Collections extends Component {
     let collections = this.state.collections.map(function(Item){
 
       return(
-        <div  className="row album_info">
-          <div key={Item.id} className="col s3 m4">
+    <div className="col s3 m4">
+
+          <div>
+            <img src={Item.image} alt=""/>
+          </div>
+          {/* <div className="col s3 m4">
+            {Item.user}
+          </div> */}
+          <div key={Item.id}>
             {/* displays the information from last.fm api */}
             <p className="artist_name"></p>
             <h5>{Item.artist}</h5>
               <p className="album_name"></p>
             <h6>{Item.album}</h6>
             <CreateEmail album={Item.id}/>
-          </div>
-          <div className="col s3 m4">
-            <img src={Item.image} alt=""/>
-          </div>
-          <div className="col s3 m4">
-            {Item.user}
           </div>
         </div>
       )
@@ -109,11 +110,11 @@ class Collections extends Component {
         </div>
         <div className="user_collections">
           <div className="row">
-            <div className="col s12 m4 l8">
+
 
               {/* area to display several user's collections - card type display */}
               {collections}
-            </div>
+
           </div>
         </div>
       </div>
