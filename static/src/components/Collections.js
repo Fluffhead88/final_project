@@ -66,7 +66,7 @@ class Collections extends Component {
   // }
 
   render() {
-    console.log('state', this.state)
+    console.log('HEYstate', this.state.collections)
     let self = this;
     let collections = this.state.collections.map(function(Item){
 
@@ -82,6 +82,9 @@ class Collections extends Component {
           </div>
           <div className="col s3 m4">
             <img src={Item.image} alt=""/>
+          </div>
+          <div className="col s3 m4">
+            {Item.user}
           </div>
         </div>
       )

@@ -19,40 +19,16 @@ class Accordion extends Component {
 
   render() {
     console.log('this props', this.props)
-    // let artists = this.props.mycollection.map(function(item, index){
-    //  let albums = [1,2,3].map(function(item, index){
-    //    let tracks = [1,2,3].map(function(item, index){
-    //       return (<div key={index}>{item}</div>)
-    //    });
-    //    return (
-    //      <li key={index}>
-    //      <div className="collapsible-header"><i className="material-icons">queue_music</i>album</div>
-    //      <div className="collapsible-body">
-    //        <ul className="collapsible">
-    //          <div className="collapsible-header"><i className="material-icons">album</i>track</div>
-    //          <div className="collapsible-body">
-    //            {tracks}
-    //          </div>
-    //        </ul>
-    //      </div>
-    //    </li>
-    //    )
-    //  });
-    //  return (
-    //    <ul className="collapsible">
-    //      <li>
-    //        <div className="collapsible-header"><i className="material-icons">filter_drama</i>{item.artist}</div>
-    //        <div className="collapsible-body">
-    //          <ul className="collapsible">
-    //            {albums}
-    //          </ul>
-    //        </div>
-    //      </li>
-    //    </ul>
-    //  )
-   // })
+    let sort_collection = this.props.mycollection.sort((a, b) => {
+     if (a.artist < b.artist) {
+       return -1
+     } else if(a.artist > b.artist) {
+       return 1;
+     }
+     return 0;
+    });
 
-    let accordionItems = this.props.mycollection.map(function(item, index){
+    let accordionItems = sort_collection.map(function(item, index){
       console.log('here', item)
 
       let tracks = item.tracks.map(function(track, index){
@@ -64,7 +40,15 @@ class Accordion extends Component {
           <div className="collapsible-header">
             <i className="material-icons">album</i>{item.artist} - {item.album}</div>
           <div className="collapsible-body">
-            {tracks}
+            <div className="row">
+            <div className="col s4">
+              <p className="name">Tracks</p>
+              {tracks}
+            </div>
+            <div className="col s6">
+              <img src={item.image} alt=""/>
+            </div>
+            </div>
           </div>
         </li>
       )

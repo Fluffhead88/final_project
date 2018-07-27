@@ -16,6 +16,11 @@ class Accordion extends Component {
     var instances = Materialize.Collapsible.init(elems, options);
   }
 
+  static getDerivedStateFromProps(props, state) {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = Materialize.Collapsible.init(elems);
+  }
+
   render() {
 
     let collection = this.props.mycollection;
@@ -76,7 +81,7 @@ class Accordion extends Component {
       return(
         <li key={index}>
           <div className="collapsible-header">
-            <i className="material-icons">filter_drama</i>{item.artist}</div>
+            <i className="material-icons">filter_drama</i>{item.artist} - {item.title}</div>
           <div className="collapsible-body">
             <div className="row">
               <div className="col s12 m12">

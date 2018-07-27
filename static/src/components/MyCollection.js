@@ -8,7 +8,7 @@ import ProfileUpdateModal from './ProfileUpdateModal'
 
 import './MyCollection.css';
 
-import Accordion3 from './Accordion3.js';
+import Accordion from './Accordion.js';
 
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
@@ -286,7 +286,7 @@ _deleteAlbum(album){
         <div className="myCollection container">
           <h1>My Collection</h1>
           {/* <div>{mycollection}</div> */}
-          <Accordion3 mycollection={this.state.mycollection}/>
+          <Accordion mycollection={this.state.mycollection}/>
 
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
