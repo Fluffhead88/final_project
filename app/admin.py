@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from app.models import User, Album, Users
+from app.models import User, Album, UserProfile
 
 admin.site.register(User, UserAdmin)
 admin.site.register(Album)
-admin.site.register(Users)
+admin.site.register(UserProfile)

@@ -1,5 +1,15 @@
 from rest_framework import serializers
-from app.models import Album, Users, Track
+from app.models import Album, UserProfile, Track, User
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = "__all__"
+        model = User
+
+class LoginSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = ["username", "password"]
+        model = User
 
 class TrackSerializer(serializers.ModelSerializer):
 
@@ -26,9 +36,12 @@ class AlbumSerializer(serializers.ModelSerializer):
             Track.objects.update_or_create(title=track.pop('title'), album=album)
         return album
 
-class UsersSerializer(serializers.ModelSerializer):
-
+class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = "__all__"
-        # read_only_fields = ("image", )
-        model = Users
+        model = UserProfile
+        fields = ["profile_picture"]
+class UsersSerializer(serializers.ModelSerializer):
+    profile = UserProfileSerializer()
+    class Meta:
+        fields = ["username","profile"]
+        model = User

@@ -3,8 +3,8 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets, generics
-from app.models import Album, Users
-from app.serializers import AlbumSerializer, UsersSerializer
+from app.models import Album, UserProfile, User
+from app.serializers import AlbumSerializer, UsersSerializer, UserProfileSerializer
 import requests
 from app.permissions import IsOwnerOrReadOnly
 from django.conf import settings
@@ -87,17 +87,8 @@ class MyAlbumsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
         return Album.objects.filter(Q(user=self.request.user))
 
 class UsersListCreateAPIView(generics.ListCreateAPIView):
+    queryset = User.objects.select_related('profile').all()
     serializer_class = UsersSerializer
-    filter_backends=(filters.SearchFilter,)
-    search_fields=('user',)
-
-    def get_queryset(self):
-
-        return Users.objects.all()
-        #return Users.objects.filter(user=self.request.user)
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 # class UsersListCreateAPIView(generics.ListCreateAPIView):
 #     queryset = User.objects.select_related('profile').all()
