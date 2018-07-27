@@ -14,6 +14,7 @@ class Album(models.Model):
     url = models.URLField(max_length=2000, blank=True)
     notes = models.CharField(max_length=2000, blank=True)
     image = models.URLField(max_length=255, blank=True)
+    # profile = models.ImageField(upload_to='media/', verbose_name='image', null=True, blank=True)
 
     def __str__(self):
         return self.album
@@ -27,6 +28,8 @@ class Track(models.Model):
 # user model to search users on front end to show their collections
 class Users(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='static/uploads', verbose_name='image', null=True)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    # album = models.ForeignKey(Album, on_delete=models.CASCADE, null=True, blank=True)
+    image = models.ImageField(upload_to='media/', verbose_name='image', null=True, blank=True)
+    # email = models.CharField(max_length=255, null=True, blank=True)
+    # username = models.CharField(max_length=255, null=True, blank=True)

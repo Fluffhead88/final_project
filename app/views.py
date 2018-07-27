@@ -43,8 +43,9 @@ class ContactAPIView(APIView):
             'from': 'Mailgun User <mailgun@{}>'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org'),
             'to': album.user.email,
             # set reply to requesting user
-            'subject': album.album,
-            'text': 'Plaintext content',
+            # 'reply-to': self.user.email,
+            'subject': f'Interested: {album.album}',
+            'text': f'Hello I am interested in your album {album.album}. Let me know if you would be willing to trade albums with me. Thanks!',
             # look up reply to on mailgun
         }
         print(self.request.user.email)
@@ -60,7 +61,7 @@ class AlbumListCreateAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
 
-        #return Album.objects.filter(user=self.request.user)
+        #return Album.objects.prefetch_related("tracks").filter(user=self.request.user)
         return Album.objects.prefetch_related("tracks").all()
 
     def perform_create(self, serializer):
@@ -104,5 +105,3 @@ class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         return Users.objects.filter(user=self.request.user)
-
-        

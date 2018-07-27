@@ -101,7 +101,7 @@ class Collections extends Component {
             <h1>Collections</h1>
 
             {/* user search import */}
-            <UserSeach getSearchResults={this._getSearchResults}/>
+            <UserSeach/>
           </div>
         </div>
         <div className="user_collections">

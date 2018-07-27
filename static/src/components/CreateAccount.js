@@ -10,10 +10,13 @@ class CreateAccount extends Component {
       username: '',
       password: '',
       email: '',
+      image:'',
     }
 
   this._postCreateAccount = this._postCreateAccount.bind(this);
   this._handleInput = this._handleInput.bind(this);
+  this._postAddUser = this._postAddUser.bind(this);
+
 }
 
 _handleInput(event) {
@@ -59,6 +62,31 @@ _postCreateAccount(event) {
     console.log('Looks like there was a problem: \n', error);
   });
 }
+_postAddUser(){
+
+  let data = {};
+
+  // data["username"] = this.state.username;
+  // data["email"] = this.state.email;
+  data["image"] = '';
+
+
+  // let token = sessionStorage.getItem('auth_token');
+  fetch(`${URL}users/`,{
+    method:'POST',
+    body:JSON.stringify(data),
+    headers:{
+      'Content-Type': 'application/json',
+      // 'Authorization': token
+    }
+  })
+  .then(function(response){
+    console.log(response);
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem \n,', error)
+  });
+}
 
 render() {
   return (
@@ -75,6 +103,8 @@ render() {
             <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
             <label htmlFor="password"><b>Password</b></label>
             <input type="email" placeholder="Enter Email" value={this.state.email} name='email' onChange={this._handleInput} required/>
+            <label htmlFor="imageInput">Upload Image</label>
+            <input name="imageInput" type="file" id="imageInput" onChange={this._postAddUser} />
             <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Create</button>
           </div>
         </form>

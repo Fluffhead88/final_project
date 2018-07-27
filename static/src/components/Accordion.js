@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+// import AccordionTracks from './AccordionTracks'
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 
@@ -57,42 +57,83 @@ class Accordion extends Component {
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
       })
-      return(
+
+      return (
         <li key={index}>
-          <div className="collapsible-header"><i className="material-icons">queue_music</i>{item.artist}</div>
+          <div className="collapsible-header">
+            <i className="material-icons">album</i>{item.album}</div>
           <div className="collapsible-body">
-            <ul className="collapsible">
-              <div className="collapsible-header"><i className="material-icons">album</i>{item.album}</div>
-              <div className="collapsible-body"><span>Track</span></div>
-            </ul>
+            {tracks}
           </div>
         </li>
       )
-    })
 
+    return(
+      <li key={index}>
+        <div className="collapsible-header">
+          <i className="material-icons">queue_music</i>{item.artist}</div>
+        <div className="collapsible-body">
+          <div className="row">
+            <div className="col s12 m12">
+              <ul className="collapsible" data-collapsible="accordion">
+                {item.album}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </li>
+    )
+
+})
     return (
       <div>
-        <ul className="collapsible">
-          {accordionItems}
+        <ul className="collapsible" data-collapsible="accordion">
+            {accordionItems}
         </ul>
-        <div>
-               <ul className="collapsible">
-                 <li>
-                   <div className="collapsible-header"><i className="material-icons">filter_drama</i>Artist</div>
-                   <div className="collapsible-body">
-                     <ul className="collapsible">
-                       <li>
-                         <div className="collapsible-header"><i className="material-icons">filter_drama</i>Album</div>
-                         <div className="collapsible-body"><span>Track</span></div>
-                       </li>
-                     </ul>
-                   </div>
-                 </li>
-               </ul>
-        </div>
       </div>
     )
-  }
+
+ }
 }
 
-export default Accordion;
+ export default Accordion;
+
+//       return(
+//         <li key={index}>
+//           <div className="collapsible-header"><i className="material-icons">queue_music</i>{item.artist}</div>
+//           <div className="collapsible-body">
+//             <ul className="collapsible">
+//               <div className="collapsible-header"><i className="material-icons">album</i>{item.album}</div>
+//               <div className="collapsible-body"><span>Track</span></div>
+//             </ul>
+//           </div>
+//         </li>
+//       )
+//     })
+//
+//     return (
+//       <div>
+//         <ul className="collapsible">
+//           {accordionItems}
+//         </ul>
+//         {/* <div>
+//                <ul className="collapsible">
+//                  <li>
+//                    <div className="collapsible-header"><i className="material-icons">filter_drama</i>Artist</div>
+//                    <div className="collapsible-body">
+//                      <ul className="collapsible">
+//                        <li>
+//                          <div className="collapsible-header"><i className="material-icons">filter_drama</i>Album</div>
+//                          <div className="collapsible-body"><span>Track</span></div>
+//                        </li>
+//                      </ul>
+//                    </div>
+//                  </li>
+//                </ul>
+//         </div> */}
+//       </div>
+//     )
+//   }
+// }
+//
+// export default Accordion;
