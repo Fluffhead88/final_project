@@ -198,7 +198,7 @@ _deleteAlbum(album){
   render() {
     console.log('mystate', this.state.mycollection)
     let self = this;
-    let mycollection = this.state.mycollection.map(function(Item){
+    let deleteAlbum = this.state.mycollection.map(function(Item){
       let tracks = Item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
       })
@@ -208,19 +208,19 @@ _deleteAlbum(album){
 
             {/* displays the information from last.fm api */}
 
-            <p className="artist_name"></p>
+            {/* <p className="artist_name"></p>
             <h5>{Item.artist}</h5>
               <p className="album_name"></p>
-            <h6>{Item.album}</h6>
+            <h1>{Item.album}</h1> */}
             <div><button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn" onClick={()=>self._deleteAlbum(Item)}>delete</button></div>
           </div>
-          <div className="col s12 m4">
+          {/* <div className="col s12 m4">
             <p className="name">Tracks</p>
             {tracks}
           </div>
           <div className="col s12 m4 hide-on-small-only">
             <img src={Item.image} alt=""/>
-          </div>
+          </div> */}
         </div>
       )
     })
@@ -292,7 +292,7 @@ _deleteAlbum(album){
           <h1>My Collection</h1>
           {/* <div>{mycollection}</div> */}
           <Accordion mycollection={this.state.mycollection}/>
-
+          {deleteAlbum}
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
 

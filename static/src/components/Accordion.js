@@ -9,6 +9,12 @@ const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
 class Accordion extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      album_id: props.album
+
+    }
+    // this._deleteAlbum = this._deleteAlbum.bind(this);
   }
 
   componentDidMount(options) {
@@ -16,6 +22,25 @@ class Accordion extends Component {
     console.log('el', elems);
     var instances = Materialize.Collapsible.init(elems, options);
   }
+
+  // _deleteAlbum(album){
+  //   let self = this;
+  //   let token = sessionStorage.getItem('auth_token');
+  //
+  //   fetch(`${URL}myalbums/${this.id}/`,{
+  //     method:'DELETE',
+  //     headers:{
+  //       'Content-Type': 'application/json',
+  //       'Authorization': token
+  //     }
+  //   })
+  //   .then(function(response){
+  //     console.log(response);
+  //   })
+  //   .catch(function(error){
+  //     console.log('Looks like there was a problem \n,', error)
+  //   });
+  // }
 
   render() {
     console.log('this props', this.props)
@@ -29,7 +54,7 @@ class Accordion extends Component {
     });
 
     let accordionItems = sort_collection.map(function(item, index){
-      // console.log('here', item)
+      console.log('here', item)
 
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
@@ -39,6 +64,7 @@ class Accordion extends Component {
         <li key={index}>
           <div className="collapsible-header">
             <i className="material-icons">album</i>{item.artist} - {item.album}</div>
+            {/* <button type="button" onClick={this._deleteAlbum} className="waves-effect waves-light red lighten-2 btn-small">Delete</button> */}
           <div className="collapsible-body">
             <div className="row">
             <div className="col s12 m6">
