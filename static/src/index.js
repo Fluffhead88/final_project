@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'materialize-css/dist/js/materialize.min.js';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -14,8 +15,10 @@ import Home from './components/Home';
 import Collections from './components/Collections'
 import MyCollection from './components/MyCollection'
 
+const history = createBrowserHistory()
+
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter history={history}>
     <BaseLayout>
     <Switch>
       <Route exact path='/mycollection' component={MyCollection}/>

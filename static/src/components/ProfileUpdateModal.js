@@ -19,30 +19,32 @@ class ProfileUpdateModal extends Component {
 
   }
   _handleInput(event) {
-    let obj =  {}
-    let key = event.target.name;
-    obj[key] = event.target.value;
-    this.setState(obj);
+  let content = event.target.value;
+  if (event.target.name === 'image'){
+    let file = event.target.files[0];
+    console.log('image_stuff1', file);
+    this.setState({image:file});
+    }
   }
 
   _postAddUserImage(){
 
-    let data = {};
+    let data = new FormData();
     // data["username"] = this.state.username;
     // data["email"] = this.state.email;
-    data["image"] = '';
+    data.append('image', (this.state.image !== undefined ? this.state.image:''));
 
     let token = sessionStorage.getItem('auth_token');
     fetch(`${URL}users/`,{
       method:'POST',
       body: data,
       headers:{
-        'Content-Type': 'application/json',
+        'Content-Type': 'multipart/form-data',
         'Authorization': token
       }
     })
     .then(function(response){
-      console.log(response);
+      console.log('image_stuff', response);
     })
     .catch(function(error){
       console.log('Looks like there was a problem \n,', error)
@@ -58,16 +60,18 @@ class ProfileUpdateModal extends Component {
     return (
       <div>
       {/* // <!-- Modal Trigger --> */}
-      <a href="#modal3" id="profile_update" className="waves-effect waves-light red lighten-2 btn modal-trigger">Update Profile</a>
-       {/* // <!-- Modal Structure --> */}
-       <div id="modal3" className="modal">
-         <div className="row" onSubmit={this._postAddUserImage}>
-         <div className="modal-content">
-          <input name="imageInput" type="file" id="imageInput" onChange={this._handleInput} />
+        <a href="#modal3" id="profile_update" className="waves-effect waves-light red lighten-2 btn modal-trigger">Update Profile</a>
+         {/* // <!-- Modal Structure --> */}
+         <div id="modal3" className="modal">
+           <div className="row">
+             <div className="modal-content">
+             <form onSubmit={this._postAddUserImage} encType='multipart/form-data'>
+              <input name="imageInput" type="file" id="imageInput" onChange={this._handleInput} />
+              <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Submit</button>
+             </form>
+             </div>
+           </div>
          </div>
-         <input type="submit" className="waves-effect waves-light red lighten-2 btn-small"/>
-         </div>
-       </div>
        </div>
     )
   }

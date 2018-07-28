@@ -26,7 +26,38 @@ _handleInput(event) {
   obj[key] = event.target.value;
   this.setState(obj);
 }
-
+// _postLoginAuth(event) {
+//   event.preventDefault();
+//   let data = this.state;
+//   let self = this;
+//
+//   fetch(`${URL}auth/token/create/`,{
+//     method: 'POST',
+//     body: JSON.stringify(data),
+//     headers: {
+//       'Content-Type': 'application/json',
+//
+//     }
+//   })
+//   .then(function(response){
+//     if(!response.ok){
+//       throw Error(response.statusText);
+//     }
+//     return response.json()
+//   })
+//   .then(function(responseJSON){
+//     console.log('response', responseJSON.auth_token)
+//     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
+//     let obj = {
+//       username: '',
+//       password: ''
+//     }
+//     self.setState(obj)
+//   })
+//   .catch(function(error){
+//     console.log('Looks like there was a problem: \n', error);
+//   });
+// }
 // post to user creation end point on back end - takes username, password, email
 // email will be used to message other users
 // auth token is stored in session storage so log out is not required
@@ -50,7 +81,7 @@ _postCreateAccount(event) {
   })
   .then(function(responseJSON){
     console.log('response', responseJSON.data)
-    sessionStorage.setItem('auth_token', responseJSON.data)
+    // sessionStorage.setItem('auth_token', responseJSON.data)
     let obj = {
       username: '',
       password: '',
@@ -62,6 +93,7 @@ _postCreateAccount(event) {
     console.log('Looks like there was a problem: \n', error);
   });
 }
+
 
 
 render() {

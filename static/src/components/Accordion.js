@@ -29,7 +29,7 @@ class Accordion extends Component {
     });
 
     let accordionItems = sort_collection.map(function(item, index){
-      console.log('here', item)
+      // console.log('here', item)
 
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
@@ -41,11 +41,11 @@ class Accordion extends Component {
             <i className="material-icons">album</i>{item.artist} - {item.album}</div>
           <div className="collapsible-body">
             <div className="row">
-            <div className="col s4">
+            <div className="col s12 m6">
               <p className="name">Tracks</p>
               {tracks}
             </div>
-            <div className="col s6">
+            <div className="col s6 hide-on-small-only">
               <img src={item.image} alt=""/>
             </div>
             </div>

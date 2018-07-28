@@ -214,11 +214,11 @@ _deleteAlbum(album){
             <h6>{Item.album}</h6>
             <div><button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn" onClick={()=>self._deleteAlbum(Item)}>delete</button></div>
           </div>
-          <div className="col s4 m4">
+          <div className="col s12 m4">
             <p className="name">Tracks</p>
             {tracks}
           </div>
-          <div className="col s4 m4">
+          <div className="col s12 m4 hide-on-small-only">
             <img src={Item.image} alt=""/>
           </div>
         </div>

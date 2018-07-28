@@ -71,7 +71,7 @@ class Collections extends Component {
     let collections = this.state.collections.map(function(Item){
 
       return(
-    <div className="col s3 m4">
+    <div className="col s12 m4">
 
           <div>
             <img src={Item.image} alt=""/>
@@ -84,8 +84,7 @@ class Collections extends Component {
             <p className="artist_name"></p>
             <h5>{Item.artist}</h5>
               <p className="album_name"></p>
-            <h6>{Item.album}</h6>
-            <CreateEmail album={Item.id}/>
+            <h6>{Item.album}<CreateEmail album={Item.id}/></h6>
           </div>
         </div>
       )

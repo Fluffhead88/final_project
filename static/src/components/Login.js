@@ -48,7 +48,8 @@ _postLoginAuth(event) {
       username: '',
       password: ''
     }
-    self.setState(obj)
+    self.setState(obj);
+    this.props.history.push("/mycollection");
   })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);
