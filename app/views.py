@@ -38,8 +38,8 @@ class ContactAPIView(APIView):
             'to': album.user.email,
             # set reply to requesting user
             # 'reply-to': self.user.email,
-            'subject': f'Interested: {album.album}',
-            'text': f'Hello I am interested in your album {album.album}. Let me know if you would be willing to trade albums with me. Thanks!',
+            'subject': f'Interested: {album.album}, {album.artist}',
+            'text': f'Hello I am interested in your album {album.album} by {album.artist}. Let me know if you would be willing to trade albums with me. Thanks!',
             # look up reply to on mailgun
         }
         print(self.request.user.email)
@@ -84,7 +84,7 @@ class MyAlbumsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView
     def get_queryset(self):
         return Album.objects.filter(Q(user=self.request.user))
 
-# view for users to add profile image - needs work 
+# view for users to add profile image - needs work
 class UsersListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = UsersSerializer
     filter_backends=(filters.SearchFilter,)
