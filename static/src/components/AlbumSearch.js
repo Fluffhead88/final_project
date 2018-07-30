@@ -10,6 +10,7 @@ class AlbumSearch extends Component {
       albumSearch: ''
     }
   this._handleInput = this._handleInput.bind(this);
+  this._getSearchResults = this._getSearchResults.bind(this);
   }
 
   _handleInput(event) {
@@ -19,11 +20,21 @@ class AlbumSearch extends Component {
     this.setState(obj);
   }
 
+  _getSearchResults(event){
+    event.preventDefault();
+    this.props.getSearchResults(this.state);
+    // clear out state
+    this.setState({
+      artistSearch: '',
+      albumSearch: ''
+    });
+  }
+
   render() {
     return (
 
       // search for albums to add to users collection - search takes album and artist
-      <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props.getSearchResults(this.state)}}>
+      <div className="row" onSubmit={this._getSearchResults}>
         <form className="col s12">
           <div className="row artistSearch">
             <div className="input-field col s6">

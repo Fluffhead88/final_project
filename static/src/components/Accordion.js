@@ -16,8 +16,17 @@ class Accordion extends Component {
 
   componentDidMount(options) {
     var elems = document.querySelectorAll('.collapsible');
-    console.log('el', elems);
     var instances = Materialize.Collapsible.init(elems, options);
+
+    // var buttons = document.querySelectorAll('.delete_btn');
+    // buttons.forEach(function(button){
+    //   button.on('click', function(event) {
+    //     event.stopPropagation();
+    //   })
+    // })
+    // $('.collapsible .delete_btn').on('click', function(event){
+    //   event.stopPropagation();
+    // });
   }
 
 
@@ -45,7 +54,7 @@ class Accordion extends Component {
         <li key={index}>
           <div className="collapsible-header mycollection_display">
             <i className="material-icons">album</i>{item.artist} - {item.album}
-            <button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn " onClick={(event)=>self.props.deleteAlbum(event,item)}>delete</button>
+            <button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn" onClick={(event)=>self.props.deleteAlbum(event,item)}>delete</button>
           </div>
             <div className="collapsible-body">
               <div className="row">
@@ -60,21 +69,6 @@ class Accordion extends Component {
             </div>
         </li>
       )
-    return(
-      <li key={index}>
-        <div className="collapsible-header">
-          <i className="material-icons">queue_music</i>{item.artist}</div>
-        <div className="collapsible-body">
-          <div className="row">
-            <div className="col s12 m12">
-              <ul className="collapsible popout" data-collapsible="accordion">
-              {item.album}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </li>
-    )
 })
     return (
       <div>

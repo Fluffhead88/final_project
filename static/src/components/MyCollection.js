@@ -7,7 +7,6 @@ import ProfileUpdateModal from './ProfileUpdateModal'
 // import image2 from './images/records.jpg'
 import './MyCollection.css';
 import Accordion from './Accordion.js';
-
 import $ from 'jquery';
 
 const URL     = "http://127.0.0.1:8000/"
@@ -120,6 +119,15 @@ _postAddAlbum(){
 // function to delete album from user's collection - need to figure out ID issue
 _deleteAlbum(event, album){
 
+  // console.log('target', $(event.target).parent().parent().removeClass('active'))
+
+  // setTimeout(function() {
+  // console.log($(event.target).parent().parent().siblings())
+
+  // }, 1000)
+
+  // event.stopPropagation();
+
   // let data: {};
 
   // prevent li from getting ative class added
@@ -128,6 +136,7 @@ _deleteAlbum(event, album){
   let token = sessionStorage.getItem('auth_token');
   // console.log('delete album', id)
 // need to get this updating state
+  let element = this.target;
 
   let collection = this.state.mycollection;
   // find index of object inside array
@@ -146,6 +155,7 @@ _deleteAlbum(event, album){
   })
   .then(function(response){
     console.log(response);
+    // element.parent().parent().siblings().removeClass('active');
   })
   .catch(function(error){
     console.log('Looks like there was a problem \n,', error)

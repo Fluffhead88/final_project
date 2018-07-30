@@ -28,12 +28,6 @@ class Home extends Component {
       this.setState(obj);
     }
 
-    componentDidMount(options) {
-      var elems = document.querySelectorAll('.parallax');
-      console.log('el', elems);
-      var instances = Materialize.Parallax.init(elems, options);
-    }
-
   render() {
     console.log('home', this.props)
     return (
@@ -46,7 +40,7 @@ class Home extends Component {
               <h1 className="header center gray-text text-lighten-2">Record Collection</h1>
               <div className="row center">
                 {/* tagline under title */}
-                <h5 className="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
+                <h5 className="header col s12 light">Orangize and Expand your vinyl record collection</h5>
               </div>
               <div className="row center">
                 <RegisterModal history={this.props.history}/>
@@ -72,7 +66,7 @@ class Home extends Component {
                 <div className="icon-block">
                   <h2 className="center gray-text"><i className="medium material-icons">album</i></h2>
                   <h5 className="center">Browse</h5>
-                  <p className="light">See what albums your friends have. See how your collection stacks up to others. Find records that you want to add to your collection.</p>
+                  <p className="light">See what albums other users own. Find records that you want to add to your collection. Use the search to explore what's out there.</p>
                 </div>
               </div>
               <div className="col s12 m4">

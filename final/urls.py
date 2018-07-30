@@ -34,7 +34,7 @@ urlpatterns = [
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
     # re_path('^.*/$', IndexView.as_view(), name='index'),
-    re_path(r'^(?P<path>.*)/$', IndexView.as_view()),
+    # re_path(r'^(?P<path>.*)/$', IndexView.as_view()),
 ]
 
 

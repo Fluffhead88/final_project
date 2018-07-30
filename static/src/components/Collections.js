@@ -51,11 +51,11 @@ _handleFilter(event){
   this.setState(obj)
 }
   render() {
-    console.log('HEYstate', this.state.collections)
+    // console.log('HEYstate', this.state.collections)
     let self = this;
     let filteredCollections = this.state.collections.filter(function(item){
       item.filter = item.album + item.artist;
-      return _.includes(item.filter.toLowerCase() , self.state.filter.toLowerCase());
+      return _.includes(item.filter.toLowerCase() , self.state.filter.trim().toLowerCase());
     });
 
     console.log('filtered albums', filteredCollections);
@@ -63,22 +63,26 @@ _handleFilter(event){
     let collections = filteredCollections.map(function(Item){
 
       return(
-        <div key={Item.id} className="col s12 m5 l4 collections_cards">
-          <div>
-            <img src={Item.image} className='collections_image' alt=""/>
-          </div>
-          {/* maybe show username */}
-          {/* <div className="col s3 m4">
-            {Item.user}
-          </div> */}
-          <div key={Item.id}>
-            {/* displays the information from last.fm api */}
-            <p className="artist_name"></p>
-            <h5>{Item.artist}</h5>
-            <p className="album_name"></p>
-            <h6>{Item.album}</h6>
-            <div className="contact_button"><CreateEmail album={Item.id}/></div>
-          </div>
+        <div className='album_cards'>
+          <div key={Item.id} className="col s12 m5 l4 collections_cards">
+            <div>
+              <img src={Item.image} className='collections_image' alt=""/>
+            </div>
+            {/* maybe show username */}
+            {/* <div className="col s3 m4">
+              {Item.user}
+            </div> */}
+
+            <div key={Item.id}>
+
+              {/* displays the information from last.fm api */}
+                <p className="artist_name"></p>
+                <h5>{Item.artist}</h5>
+                <p className="album_name"></p>
+                <h6>{Item.album}</h6>
+                <div className="contact_button"><CreateEmail album={Item.id}/></div>
+              </div>
+            </div>
         </div>
       )
     })
