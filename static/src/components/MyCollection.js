@@ -302,6 +302,7 @@ _deleteAlbum(album){
 
             {this.state.album.name ?
             <div className="row album_info">
+              
               <div className="col s4 m4">
 
                 {/* displays the information from last.fm api */}

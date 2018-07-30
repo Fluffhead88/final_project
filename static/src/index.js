@@ -6,9 +6,8 @@ import registerServiceWorker from './registerServiceWorker';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'jquery/dist/jquery.min.js';
 import 'materialize-css/dist/js/materialize.min.js';
-import createBrowserHistory from 'history/createBrowserHistory';
-
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import BaseLayout from './BaseLayout';
 import Home from './components/Home';

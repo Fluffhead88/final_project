@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UserSeach from './UserSearch.js'
 import CreateEmail from './CreateEmail.js'
 import image4 from './images/records_sun_small.png'
+import CollectionsAccordion from './CollectionsAccordion.js'
 // import image2 from './images/records.jpg'
 
 import './Collections.css';
@@ -71,10 +72,10 @@ class Collections extends Component {
     let collections = this.state.collections.map(function(Item){
 
       return(
-    <div className="col s12 m4">
+    <div className="col s12 m5 l4 collections_cards">
 
           <div>
-            <img src={Item.image} alt=""/>
+            <img src={Item.image} className='collections_image' alt=""/>
           </div>
           {/* <div className="col s3 m4">
             {Item.user}
@@ -82,11 +83,14 @@ class Collections extends Component {
           <div key={Item.id}>
             {/* displays the information from last.fm api */}
             <p className="artist_name"></p>
-            <h5>{Item.artist}</h5>
+            <h6>{Item.artist}</h6>
               <p className="album_name"></p>
-            <h6>{Item.album}<CreateEmail album={Item.id}/></h6>
+            <h7>{Item.album}</h7>
+            <div className="contact_button"><CreateEmail album={Item.id}/></div>
           </div>
+
         </div>
+
       )
     })
     return (
@@ -109,7 +113,7 @@ class Collections extends Component {
         </div>
         <div className="user_collections">
           <div className="row">
-
+          <CollectionsAccordion collections={this.state.collections}/>
 
               {/* area to display several user's collections - card type display */}
               {collections}

@@ -31,20 +31,20 @@ _handleInput(event) {
 //   let data = this.state;
 //   let self = this;
 //
-//   fetch(`${URL}auth/token/create/`,{
-//     method: 'POST',
-//     body: JSON.stringify(data),
-//     headers: {
-//       'Content-Type': 'application/json',
-//
-//     }
-//   })
-//   .then(function(response){
-//     if(!response.ok){
-//       throw Error(response.statusText);
-//     }
-//     return response.json()
-//   })
+  // fetch(`${URL}auth/token/create/`,{
+  //   method: 'POST',
+  //   body: JSON.stringify(data),
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //
+  //   }
+  // })
+  // .then(function(response){
+  //   if(!response.ok){
+  //     throw Error(response.statusText);
+  //   }
+  //   return response.json()
+  // })
 //   .then(function(responseJSON){
 //     console.log('response', responseJSON.auth_token)
 //     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
