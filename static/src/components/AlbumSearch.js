@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import './AlbumSearch.css';
 
 class AlbumSearch extends Component {
@@ -10,9 +9,7 @@ class AlbumSearch extends Component {
       artistSearch: '',
       albumSearch: ''
     }
-
   this._handleInput = this._handleInput.bind(this);
-
   }
 
   _handleInput(event) {
@@ -30,13 +27,13 @@ class AlbumSearch extends Component {
         <form className="col s12">
           <div className="row artistSearch">
             <div className="input-field col s6">
-              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.artistSearch} name='artistSearch' onChange={this._handleInput}/>
+              <input id="input_text_1" type="text" placeholder="" data-length="120" value={this.state.artistSearch} name='artistSearch' onChange={this._handleInput}/>
               <label htmlFor="input_text">Artist Search</label>
             </div>
           </div>
           <div className="row albumSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}} >
             <div className="input-field col s6">
-              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} name='albumSearch' onChange={this._handleInput} required/>
+              <input id="input_text_2" type="text" placeholder="" data-length="120" value={this.state.albumSearch} name='albumSearch' onChange={this._handleInput} required/>
               <label htmlFor="input_text">Album Search</label>
             </div>
           </div>

@@ -12,6 +12,7 @@ class RegisterModal extends Component {
     super(props);
   }
 
+// allows modal to open and close
   componentDidMount(options) {
     var elems = document.querySelectorAll('.modal');
     var instances = Materialize.Modal.init(elems, options);
@@ -21,14 +22,14 @@ class RegisterModal extends Component {
     return (
       <div>
       {/* // <!-- Modal Trigger --> */}
-      <a href="#modal1" id="login-button" className="btn-large waves-effect waves-light red lighten-2 btn modal-trigger" >Create Account</a>
+        <a href="#modal1" id="login-button" className="btn-large waves-effect waves-light red lighten-2 btn modal-trigger" >Create Account</a>
        {/* // <!-- Modal Structure --> */}
-       <div id="modal1" className="modal">
-         <div className="modal-content">
+         <div id="modal1" className="modal">
+           <div className="modal-content">
            {/* import create account component */}
-           <CreateAccount/>
+             <CreateAccount/>
+           </div>
          </div>
-       </div>
        </div>
     )
   }

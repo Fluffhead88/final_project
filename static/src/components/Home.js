@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
 import './Home.css';
 import $ from 'jquery';
-import RegisterModal from './RegisterModal.js'
-import image2 from './images/records.jpg'
+import RegisterModal from './RegisterModal.js';
+import image2 from './images/records.jpg';
+import Materialize from 'materialize-css/dist/js/materialize.min.js';
 
 // end point for creating auth token with djoser
 const URL     = "http://127.0.0.1:8000/"
@@ -20,14 +20,18 @@ class Home extends Component {
     }
 
     this._handleInput = this._handleInput.bind(this);
-
-
 }
     _handleInput(event) {
       let obj =  {}
       let key = event.target.name;
       obj[key] = event.target.value;
       this.setState(obj);
+    }
+
+    componentDidMount(options) {
+      var elems = document.querySelectorAll('.parallax');
+      console.log('el', elems);
+      var instances = Materialize.Parallax.init(elems, options);
     }
 
   render() {
@@ -49,7 +53,6 @@ class Home extends Component {
               <br></br>
             </div>
           </div>
-
           {/* image on home page  */}
           <div className='home_image'><img src={image2} alt="Unsplashed background img 1"/></div>
         </div>
@@ -81,10 +84,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <div>
-        </div>
       </div>
-
     );
   }
 }

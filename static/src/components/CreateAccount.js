@@ -15,8 +15,6 @@ class CreateAccount extends Component {
 
   this._postCreateAccount = this._postCreateAccount.bind(this);
   this._handleInput = this._handleInput.bind(this);
-
-
 }
 
 _handleInput(event) {
@@ -26,6 +24,7 @@ _handleInput(event) {
   obj[key] = event.target.value;
   this.setState(obj);
 }
+// need to chain these fetches together so that creating an account logs a user in
 // _postLoginAuth(event) {
 //   event.preventDefault();
 //   let data = this.state;
@@ -94,13 +93,10 @@ _postCreateAccount(event) {
   });
 }
 
-
-
 render() {
   return (
     <div className="container">
       <div className="row">
-
         {/* form to create account upon submit */}
         <h5>Create Account</h5>
         <form className="login form col s12" onSubmit={this._postCreateAccount}>

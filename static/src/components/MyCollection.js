@@ -5,9 +5,7 @@ import image4 from './images/records_small.png'
 import ProfileUpdateModal from './ProfileUpdateModal'
 // import Materialize from 'materialize-css/dist/js/materialize.min.js';
 // import image2 from './images/records.jpg'
-
 import './MyCollection.css';
-
 import Accordion from './Accordion.js';
 
 const URL     = "http://127.0.0.1:8000/"
@@ -50,8 +48,7 @@ _getSearchResults(searchParams) {
   });
 }
 
-// function to get current user's collection - fires and works but need to figure out
-// display and possible change to componentDidMount to show on page load
+// loads users collection on page load
 componentDidMount() {
   let self = this;
   let token = sessionStorage.getItem('auth_token');
@@ -77,7 +74,7 @@ componentDidMount() {
   });
 }
 
-// function to edit album information - not needed except for possibly notes
+// adds searched album to users collection upon clicking save
 _postAddAlbum(){
 
   let data = {};
@@ -118,30 +115,19 @@ _postAddAlbum(){
   });
 }
 
-// _editAlbum(obj){
-//
-//   let id = {}
-//   let token = sessionStorage.getItem('auth_token');
-//   fetch("http://localhost:8000/album/",{
-//     method:'PUT',
-//     headers:{
-//       'Content-Type': 'application/json',
-//       'Authorization': token
-//     }
-//   })
-//   .then(function(response){
-//     console.log(response);
-//   })
-//   .catch(function(error){
-//     console.log('Looks like there was a problem \n,', error)
-//   });
-// }
-
 // function to delete album from user's collection - need to figure out ID issue
 _deleteAlbum(album){
 
+  // let data: {};
+
   let id = album.id;
   let token = sessionStorage.getItem('auth_token');
+// need to get this updating state
+
+  // let collection = this.state.mycollection;
+  // collection.remove(id);
+  // this.setState({mycollection: collection});
+
   fetch(`${URL}myalbums/${id}/`,{
     method:'DELETE',
     headers:{
@@ -205,6 +191,7 @@ _deleteAlbum(album){
       return(
         <div key={Item.id} className="row album_info">
           <div className="col s4 m4">
+{/* this is only good for the delete function - need to refactor */}
 
             {/* displays the information from last.fm api */}
 
@@ -233,17 +220,6 @@ _deleteAlbum(album){
         tracks = this.state.album.tracks.track.map(function(trackItem, index){
           return(
             <div key={index}>{trackItem.name}</div>
-        )
-      })
-    }
-
-    // currently not using - trying to display just the release date but not
-    // consistent return from api call
-    let release;
-      if(this.state.album.tags){
-        release = this.state.album.tags.tag.map(function(releaseItem, index){
-          return(
-            <div key={index}>{releaseItem.name}</div>
         )
       })
     }
@@ -298,15 +274,11 @@ _deleteAlbum(album){
 
           {/* importing the album search and puts the function to get search results back */}
           <AlbumSearch getSearchResults={this._getSearchResults}/>
-            {/* {this.state.albumSearch.length > 1 ? */}
-
+          {/* if statement to show search display only if search is done */}
             {this.state.album.name ?
             <div className="row album_info">
-              
               <div className="col s4 m4">
-
                 {/* displays the information from last.fm api */}
-
                 <p className="name">Album Name</p>
                 <div>{name}</div>
                   <p className="name">Artist</p>
@@ -319,48 +291,20 @@ _deleteAlbum(album){
               <div className="col s4 m4">
                 <img src={imageURL} alt=""/>
               </div>
-
               {/* button to add album to users collection */}
               <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
-
             <div className="row summary">
               <div className="col s12">
-              <a href={url}>Link to album on Last.FM</a>
-              <p className="name">Summary</p>
-              <div>{summary}</div>
-              </div>
+                <a href={url}>Link to album on Last.FM</a>
+                <p className="name">Summary</p>
+                <div>{summary}</div>
               </div>
             </div>
+          </div>
+    // end of optional display if statement
               : ""}
-
-
-
-
-            {/* <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Post Request" onClick={this._postRequest}/>
-            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Put Request" onClick={this._editRequest}/>
-            <input type="button" className="waves-effect waves-light red lighten-2 btn" value="Delete Request" onClick={this._deleteRequest}/> */}
-
-
-          </div>
-
-          {/* collapsible that may come into play with collection display */}
-
-        {/* <ul className="collapsible">
-     <li>
-       <div className="collapsible-header"><i className="material-icons">filter_drama</i>First</div>
-       <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-     </li>
-     <li>
-       <div className="collapsible-header"><i className="material-icons">place</i>Second</div>
-       <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-     </li>
-     <li>
-       <div className="collapsible-header"><i className="material-icons">whatshot</i>Third</div>
-       <div className="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
-     </li>
-   </ul> */}
-
-          </div>
+        </div>
+      </div>
     );
   }
 }

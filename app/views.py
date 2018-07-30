@@ -14,14 +14,7 @@ from django.db.models import Q
 class IndexView(TemplateView):
     template_name="index.html"
 
-class ArtistProxyView(APIView):
-    def get(self, request):
-
-        api_url = "http://ws.audioscrobbler.com/2.0/"
-        artist = request.GET.get('artist')
-        artist_data = requests.get(f'{api_url}?method=artist.gettopalbums&artist={artist}&api_key={settings.LASTFM_API_KEY}&format=json').json()
-        return Response(artist_data)
-
+# makes call to last.fm api - get album info
 class AlbumProxyView(APIView):
     def get(self, request):
 
@@ -31,6 +24,7 @@ class AlbumProxyView(APIView):
         album_data = requests.get(f'{api_url}?method=album.getinfo&api_key={settings.LASTFM_API_KEY}&artist={artist}&album={album}&format=json').json()
         return Response(album_data)
 
+# view for sending automated email to user from front end
 class ContactAPIView(APIView):
     def post(self, request):
 
@@ -54,6 +48,7 @@ class ContactAPIView(APIView):
 
         return Response(['It works!'])
 
+# creates album listings for user
 class AlbumListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = AlbumSerializer
     filter_backends=(filters.SearchFilter,)
@@ -67,6 +62,7 @@ class AlbumListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
+# detail view for each album
 class AlbumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AlbumSerializer
@@ -74,18 +70,21 @@ class AlbumRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Album.objects.filter(user=self.request.user)
 
+# list of albums for each user
 class MyAlbumsListAPIView(generics.ListAPIView):
     serializer_class = AlbumSerializer
 
     def get_queryset(self):
         return Album.objects.filter(Q(user=self.request.user))
 
+# detail view for each users albums
 class MyAlbumsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AlbumSerializer
 
     def get_queryset(self):
         return Album.objects.filter(Q(user=self.request.user))
 
+# view for users to add profile image - needs work 
 class UsersListCreateAPIView(generics.ListCreateAPIView):
     serializer_class = UsersSerializer
     filter_backends=(filters.SearchFilter,)

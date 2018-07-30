@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import AccordionTracks from './AccordionTracks'
 import CreateEmail from './CreateEmail.js'
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
@@ -18,7 +17,7 @@ class CollectionsAccordion extends Component {
     }
     // this._deleteAlbum = this._deleteAlbum.bind(this);
   }
-
+// initiates modal from Materialize
   componentDidMount(options) {
     var elems = document.querySelectorAll('.collapsible');
     console.log('el', elems);
@@ -45,7 +44,7 @@ class CollectionsAccordion extends Component {
   // }
 
   render() {
-    console.log('collection_accordion_stuff', this.props)
+    // takes sorting function and applies to all collections so they're alphabetical
     let sort_collection = this.props.collections.sort((a, b) => {
      if (a.artist < b.artist) {
        return -1
@@ -54,17 +53,14 @@ class CollectionsAccordion extends Component {
      }
      return 0;
     });
-
     let accordionItems = sort_collection.map(function(item, index){
-      console.log('here', item)
-
+      // console.log('here', item)
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
       })
 
       return (
         <li key={index}>
-
           <div className="collapsible-header">
             <i className="material-icons">album</i>{item.artist} - {item.album}
             <CreateEmail album={item.id} className="right-align"/>
@@ -72,10 +68,10 @@ class CollectionsAccordion extends Component {
             {/* <button type="button" onClick={this._deleteAlbum} className="waves-effect waves-light red lighten-2 btn-small">Delete</button> */}
           <div className="collapsible-body">
             <div className="row">
-            <div className="col s12 m6">
-              <p className="name">Tracks</p>
-              {tracks}
-            </div>
+              <div className="col s12 m6">
+                <p className="name">Tracks</p>
+                {tracks}
+              </div>
             <div className="col s6 hide-on-small-only">
               <img src={item.image} alt=""/>
             </div>
@@ -84,7 +80,6 @@ class CollectionsAccordion extends Component {
           </div>
         </li>
       )
-
     return(
       <li key={index}>
         <div className="collapsible-header">
@@ -100,16 +95,14 @@ class CollectionsAccordion extends Component {
         </div>
       </li>
     )
-
 })
     return (
       <div>
         <ul className="collapsible" data-collapsible="accordion">
-            {accordionItems}
+          {accordionItems}
         </ul>
       </div>
     )
-
  }
 }
 

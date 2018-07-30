@@ -57,12 +57,10 @@ _postLoginAuth(event) {
   });
 }
 
-
-
 render() {
   return (
     // {/* section for log in */}
-      <div className="row">
+    <div className="row">
       <form className="login form col s12" onSubmit={this._postLoginAuth}>
         <div className="container">
           <label htmlFor="username"><b>Username</b></label>

@@ -19,14 +19,13 @@ class ProfileUpdateModal extends Component {
 
   }
   _handleInput(event) {
-  let content = event.target.value;
   if (event.target.name === 'image'){
     let file = event.target.files[0];
     console.log('image_stuff1', file);
     this.setState({image:file});
     }
   }
-
+// not currenlty working - works on postman
   _postAddUserImage(){
 
     let data = new FormData();
@@ -51,6 +50,7 @@ class ProfileUpdateModal extends Component {
     });
   }
 
+// allows modal to open and close
   componentDidMount(options) {
     var elems = document.querySelectorAll('.modal');
     var instances = Materialize.Modal.init(elems, options);
@@ -65,10 +65,10 @@ class ProfileUpdateModal extends Component {
          <div id="modal3" className="modal">
            <div className="row">
              <div className="modal-content">
-             <form onSubmit={this._postAddUserImage} encType='multipart/form-data'>
-              <input name="imageInput" type="file" id="imageInput" onChange={this._handleInput} />
-              <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Submit</button>
-             </form>
+               <form onSubmit={this._postAddUserImage} encType='multipart/form-data'>
+                <input name="imageInput" type="file" id="imageInput" onChange={this._handleInput} />
+                <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Submit</button>
+               </form>
              </div>
            </div>
          </div>

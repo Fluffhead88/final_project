@@ -10,10 +10,8 @@ class CreateEmail extends Component {
     this.state = {
       album_id: props.album
     }
-
   this._postCreateEmail = this._postCreateEmail.bind(this);
 }
-
 _postCreateEmail() {
   let self = this;
   let token = sessionStorage.getItem('auth_token');

@@ -75,11 +75,9 @@ class UserSearch extends Component {
 
   render() {
     return (
-
       // search users to show their collections
         <form className="col s12">
       {/* <div className="row" onSubmit={(event)=>{event.preventDefault(); this.props._getUserResults(this.state)}}>
-
           <div className="row userSearch" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params)}}>
             <div className="input-field col s6">
               <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.userSearch} name='userSearch' onChange={this._handleInput}/>
@@ -96,10 +94,8 @@ class UserSearch extends Component {
             </div>
               <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Search</button>
           </div>
-
-
       {/* </div> */}
-      </form>
+        </form>
     );
   }
 }

@@ -4,7 +4,6 @@ import CreateEmail from './CreateEmail.js'
 import image4 from './images/records_sun_small.png'
 import CollectionsAccordion from './CollectionsAccordion.js'
 // import image2 from './images/records.jpg'
-
 import './Collections.css';
 
 const URL     = "http://127.0.0.1:8000/"
@@ -21,6 +20,7 @@ class Collections extends Component {
 
     // this._getSearchResults = this._getSearchResults.bind(this);
   }
+  // loads all albums on page
   componentDidMount() {
     let self = this;
     fetch(`${URL}album/`,{
@@ -68,36 +68,32 @@ class Collections extends Component {
 
   render() {
     console.log('HEYstate', this.state.collections)
-    let self = this;
     let collections = this.state.collections.map(function(Item){
 
       return(
-    <div className="col s12 m5 l4 collections_cards">
-
+        <div key={Item.id} className="col s12 m5 l4 collections_cards">
           <div>
             <img src={Item.image} className='collections_image' alt=""/>
           </div>
+          {/* maybe show username */}
           {/* <div className="col s3 m4">
             {Item.user}
           </div> */}
           <div key={Item.id}>
             {/* displays the information from last.fm api */}
             <p className="artist_name"></p>
-            <h6>{Item.artist}</h6>
-              <p className="album_name"></p>
-            <h7>{Item.album}</h7>
+            <h5>{Item.artist}</h5>
+            <p className="album_name"></p>
+            <h6>{Item.album}</h6>
             <div className="contact_button"><CreateEmail album={Item.id}/></div>
           </div>
-
         </div>
-
       )
     })
     return (
       <div>
         <div className='row center'>
           <div className='col s12 center'>
-
             {/* image at top */}
             <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
           </div>
@@ -106,22 +102,18 @@ class Collections extends Component {
         <div className="row search">
           <div className="col s12 m4 l8">
             <h1>Collections</h1>
-
             {/* user search import */}
             <UserSeach/>
           </div>
         </div>
         <div className="user_collections">
           <div className="row">
-          <CollectionsAccordion collections={this.state.collections}/>
-
+            <CollectionsAccordion collections={this.state.collections}/>
               {/* area to display several user's collections - card type display */}
               {collections}
-
           </div>
         </div>
       </div>
-
     </div>
     );
   }
