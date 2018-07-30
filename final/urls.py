@@ -18,14 +18,13 @@ from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from app.views import IndexView, ArtistProxyView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView, MyAlbumsRetrieveUpdateDestroyAPIView, ContactAPIView
+from app.views import IndexView, AlbumProxyView, AlbumListCreateAPIView, AlbumRetrieveUpdateDestroyAPIView, UsersListCreateAPIView, UsersRetrieveUpdateDestroyAPIView, MyAlbumsListAPIView, MyAlbumsRetrieveUpdateDestroyAPIView, ContactAPIView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', IndexView.as_view(), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
-    path('artist/proxy/', ArtistProxyView.as_view(), name='artist-proxy'),
     path('album/proxy/', AlbumProxyView.as_view(), name='album-proxy'),
     path('album/', AlbumListCreateAPIView.as_view(), name='album-list'),
     path('album/<int:pk>/', AlbumRetrieveUpdateDestroyAPIView.as_view(), name='album-detail'),

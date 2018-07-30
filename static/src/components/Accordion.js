@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 
-const URL     = "http://127.0.0.1:8000/"
-const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
-
 class Accordion extends Component {
   constructor(props) {
     super(props);
