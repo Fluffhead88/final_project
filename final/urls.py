@@ -22,7 +22,7 @@ from app.views import IndexView, AlbumProxyView, AlbumListCreateAPIView, AlbumRe
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', IndexView.as_view(), name='index'),
+    path('', IndexView.as_view(), name='index'),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
     path('album/proxy/', AlbumProxyView.as_view(), name='album-proxy'),
@@ -33,7 +33,8 @@ urlpatterns = [
     path('contact/', ContactAPIView.as_view(), name='contact'),
     path('users/', UsersListCreateAPIView.as_view(), name='users-list'),
     path('users/<int:pk>/', UsersRetrieveUpdateDestroyAPIView.as_view(), name='user-detail'),
-    re_path('^.*/$', IndexView.as_view(), name='index'),
+    # re_path('^.*/$', IndexView.as_view(), name='index'),
+    re_path(r'^(?P<path>.*)/$', IndexView.as_view()),
 ]
 
 
