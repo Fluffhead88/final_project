@@ -18,6 +18,7 @@ class LoginModal extends Component {
   }
 
   render() {
+    console.log('login modal', this.props)
     return (
       <div>
       {/* // <!-- Modal Trigger --> */}
@@ -26,7 +27,7 @@ class LoginModal extends Component {
          <div id="modal2" className="modal">
            <div className="modal-content">
            {/* import create account component */}
-            <Login/>
+            <Login history={this.props.history}/>
            </div>
          </div>
        </div>

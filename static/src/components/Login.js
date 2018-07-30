@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
+// import { Redirect } from 'react-router';
 
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
@@ -50,7 +50,8 @@ _postLoginAuth(event) {
       password: ''
     }
     self.setState(obj);
-    this.props.history.push("/mycollection");
+    console.log('history', self.props.history)
+    self.props.history.push("/mycollection");
   })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);
@@ -67,7 +68,7 @@ render() {
           <input type="text" placeholder="Enter Username" value={this.state.username} name='username' onChange={this._handleInput} required/>
           <label htmlFor="password"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" value={this.state.password} name='password' onChange={this._handleInput} required/>
-          <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Login</button>
+          <button className="modal-close waves-effect waves-light red lighten-2 btn-small" type="submit">Login</button>
         </div>
       </form>
     </div>

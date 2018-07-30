@@ -19,6 +19,7 @@ class RegisterModal extends Component {
   }
 
   render() {
+    console.log('register', this.props)
     return (
       <div>
       {/* // <!-- Modal Trigger --> */}
@@ -27,7 +28,7 @@ class RegisterModal extends Component {
          <div id="modal1" className="modal">
            <div className="modal-content">
            {/* import create account component */}
-             <CreateAccount/>
+             <CreateAccount history={this.props.history}/>
            </div>
          </div>
        </div>

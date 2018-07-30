@@ -63,7 +63,7 @@ class CollectionsAccordion extends Component {
         <li key={index}>
           <div className="collapsible-header">
             <i className="material-icons">album</i>{item.artist} - {item.album}
-            {/* <CreateEmail album={item.id} className="right-align"/> */}
+            <CreateEmail album={item.id} className="contact_on_accordion"/>
           </div>
             {/* <button type="button" onClick={this._deleteAlbum} className="waves-effect waves-light red lighten-2 btn-small">Delete</button> */}
           <div className="collapsible-body">
@@ -87,7 +87,7 @@ class CollectionsAccordion extends Component {
         <div className="collapsible-body">
           <div className="row">
             <div className="col s12 m12">
-              <ul className="collapsible" data-collapsible="accordion">
+              <ul className="collapsible popout" data-collapsible="accordion">
                 {item.album}
               </ul>
             </div>
@@ -98,7 +98,7 @@ class CollectionsAccordion extends Component {
 })
     return (
       <div>
-        <ul className="collapsible" data-collapsible="accordion">
+        <ul className="collapsible popout" data-collapsible="accordion">
           {accordionItems}
         </ul>
       </div>

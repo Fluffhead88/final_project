@@ -14,6 +14,7 @@ class CreateAccount extends Component {
     }
 
   this._postCreateAccount = this._postCreateAccount.bind(this);
+  this._postLoginAuth = this._postLoginAuth.bind(this);
   this._handleInput = this._handleInput.bind(this);
 }
 
@@ -25,41 +26,41 @@ _handleInput(event) {
   this.setState(obj);
 }
 // need to chain these fetches together so that creating an account logs a user in
-// _postLoginAuth(event) {
-//   event.preventDefault();
-//   let data = this.state;
-//   let self = this;
-//
-  // fetch(`${URL}auth/token/create/`,{
-  //   method: 'POST',
-  //   body: JSON.stringify(data),
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //
-  //   }
-  // })
-  // .then(function(response){
-  //   if(!response.ok){
-  //     throw Error(response.statusText);
-  //   }
-  //   return response.json()
-  // })
-//   .then(function(responseJSON){
-//     console.log('response', responseJSON.auth_token)
-//     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
-//     let obj = {
-//       username: '',
-//       password: ''
-//     }
-//     self.setState(obj)
-//   })
-//   .catch(function(error){
-//     console.log('Looks like there was a problem: \n', error);
-//   });
-// }
+_postLoginAuth() {
+  // event.preventDefault();
+  let data = {
+    username: this.state.username,
+    password: this.state.password
+  };
+  let self = this;
+
+  fetch(`${URL}auth/token/create/`,{
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json',
+
+    }
+  })
+  .then(function(response){
+    if(!response.ok){
+      throw Error(response.statusText);
+    }
+    return response.json()
+  })
+  .then(function(responseJSON){
+    console.log('response', responseJSON.auth_token)
+    sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
+    self.props.history.push("/mycollection");
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem: \n', error);
+  });
+}
 // post to user creation end point on back end - takes username, password, email
 // email will be used to message other users
 // auth token is stored in session storage so log out is not required
+
 _postCreateAccount(event) {
   let self = this;
   event.preventDefault();
@@ -76,24 +77,26 @@ _postCreateAccount(event) {
     if(!response.ok){
       throw Error(response.statusText);
     }
-    return response.json()
+    self._postLoginAuth();
+    // return response.json()
   })
-  .then(function(responseJSON){
-    console.log('response', responseJSON.data)
-    // sessionStorage.setItem('auth_token', responseJSON.data)
-    let obj = {
-      username: '',
-      password: '',
-      email: '',
-    }
-    self.setState(obj)
-  })
+  // .then(function(responseJSON){
+  //   console.log('response', responseJSON.data)
+  //   // sessionStorage.setItem('auth_token', responseJSON.data)
+  //   let obj = {
+  //     username: '',
+  //     password: '',
+  //     email: '',
+  //   }
+  //   self.setState(obj)
+  // })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);
   });
 }
 
 render() {
+  console.log('props creat account', this.props)
   return (
     <div className="container">
       <div className="row">
@@ -108,7 +111,7 @@ render() {
             <label htmlFor="password"><b>Password</b></label>
             <input type="email" placeholder="Enter Email" value={this.state.email} name='email' onChange={this._handleInput} required/>
             {/* <label htmlFor="imageInput">Upload Image</label> */}
-            <button className="waves-effect waves-light red lighten-2 btn-small" type="submit">Create</button>
+            <button className="modal-close waves-effect waves-light red lighten-2 btn-small" type="submit">Create</button>
           </div>
         </form>
       </div>

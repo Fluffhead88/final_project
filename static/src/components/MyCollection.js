@@ -8,6 +8,8 @@ import ProfileUpdateModal from './ProfileUpdateModal'
 import './MyCollection.css';
 import Accordion from './Accordion.js';
 
+import $ from 'jquery';
+
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
 
@@ -116,17 +118,24 @@ _postAddAlbum(){
 }
 
 // function to delete album from user's collection - need to figure out ID issue
-_deleteAlbum(album){
+_deleteAlbum(event, album){
 
   // let data: {};
 
+  // prevent li from getting ative class added
+
   let id = album.id;
   let token = sessionStorage.getItem('auth_token');
+  // console.log('delete album', id)
 // need to get this updating state
 
-  // let collection = this.state.mycollection;
-  // collection.remove(id);
-  // this.setState({mycollection: collection});
+  let collection = this.state.mycollection;
+  // find index of object inside array
+  let index = collection.indexOf(album);
+  // remove object using index
+  collection.splice(index, 1);
+
+  this.setState({mycollection: collection});
 
   fetch(`${URL}myalbums/${id}/`,{
     method:'DELETE',
@@ -144,43 +153,6 @@ _deleteAlbum(album){
 }
 
 
-// _showSearchResults() {
-//   if(this.state.album.name) {
-//     return (
-//       <div className="row album_info">
-//         <div className="col s4 m4">
-//
-//           {/* displays the information from last.fm api */}
-//
-//           <p className="name">Album Name</p>
-//           <div>{name}</div>
-//             <p className="name">Artist</p>
-//           <div>{artist}</div>
-//         </div>
-//         <div className="col s4 m4">
-//           <p className="name">Tracks</p>
-//             <div>{tracks}</div>
-//           </div>
-//         <div className="col s4 m4">
-//           <img src={imageURL} alt=""/>
-//         </div>
-//
-//         {/* button to add album to users collection */}
-//         <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
-//
-//       <div className="row summary">
-//         <div className="col s12">
-//         <a href={url}>Link to album on Last.FM</a>
-//         <p className="name">Summary</p>
-//         <div>{summary}</div>
-//         </div>
-//         </div>
-//       </div>
-//     )
-//   }
-//   return;
-// }
-
   render() {
     console.log('mystate', this.state.mycollection)
     let self = this;
@@ -192,22 +164,8 @@ _deleteAlbum(album){
         <div key={Item.id} className="row album_info">
           <div className="col s4 m4">
 {/* this is only good for the delete function - need to refactor */}
-
-            {/* displays the information from last.fm api */}
-
-            {/* <p className="artist_name"></p>
-            <h5>{Item.artist}</h5>
-              <p className="album_name"></p>
-            <h1>{Item.album}</h1> */}
             <div><button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn" onClick={()=>self._deleteAlbum(Item)}>delete</button></div>
           </div>
-          {/* <div className="col s12 m4">
-            <p className="name">Tracks</p>
-            {tracks}
-          </div>
-          <div className="col s12 m4 hide-on-small-only">
-            <img src={Item.image} alt=""/>
-          </div> */}
         </div>
       )
     })
@@ -267,8 +225,7 @@ _deleteAlbum(album){
         <div className="myCollection container">
           <h1>My Collection</h1>
           {/* <div>{mycollection}</div> */}
-          <Accordion mycollection={this.state.mycollection}/>
-          {deleteAlbum}
+          <Accordion mycollection={this.state.mycollection} deleteAlbum={this._deleteAlbum}/>
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
 
@@ -290,9 +247,10 @@ _deleteAlbum(album){
                 </div>
               <div className="col s4 m4">
                 <img src={imageURL} alt=""/>
+                <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
               </div>
               {/* button to add album to users collection */}
-              <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._postAddAlbum}>Save</button>
+
             <div className="row summary">
               <div className="col s12">
                 <a href={url}>Link to album on Last.FM</a>

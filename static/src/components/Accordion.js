@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import AccordionTracks from './AccordionTracks'
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
+import './Accordion.css';
 
 class Accordion extends Component {
   constructor(props) {
@@ -11,8 +12,6 @@ class Accordion extends Component {
       album_id: props.album
 
     }
-    // need to add delete button to each album
-    // this._deleteAlbum = this._deleteAlbum.bind(this);
   }
 
   componentDidMount(options) {
@@ -21,24 +20,6 @@ class Accordion extends Component {
     var instances = Materialize.Collapsible.init(elems, options);
   }
 
-  // _deleteAlbum(album){
-  //   let self = this;
-  //   let token = sessionStorage.getItem('auth_token');
-  //
-  //   fetch(`${URL}myalbums/${this.id}/`,{
-  //     method:'DELETE',
-  //     headers:{
-  //       'Content-Type': 'application/json',
-  //       'Authorization': token
-  //     }
-  //   })
-  //   .then(function(response){
-  //     console.log(response);
-  //   })
-  //   .catch(function(error){
-  //     console.log('Looks like there was a problem \n,', error)
-  //   });
-  // }
 
   render() {
     // console.log('this props', this.props)
@@ -52,6 +33,7 @@ class Accordion extends Component {
      }
      return 0;
     });
+    let self = this;
     // iterates over users albums to be added to accordion
     let accordionItems = sort_collection.map(function(item, index){
       // console.log('here', item)
@@ -61,9 +43,10 @@ class Accordion extends Component {
       })
       return (
         <li key={index}>
-          <div className="collapsible-header">
-            <i className="material-icons">album</i>{item.artist} - {item.album}</div>
-            {/* <button type="button" onClick={this._deleteAlbum} className="waves-effect waves-light red lighten-2 btn-small">Delete</button> */}
+          <div className="collapsible-header mycollection_display">
+            <i className="material-icons">album</i>{item.artist} - {item.album}
+            <button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn " onClick={(event)=>self.props.deleteAlbum(event,item)}>delete</button>
+          </div>
             <div className="collapsible-body">
               <div className="row">
                 <div className="col s12 m6">
@@ -84,7 +67,7 @@ class Accordion extends Component {
         <div className="collapsible-body">
           <div className="row">
             <div className="col s12 m12">
-              <ul className="collapsible" data-collapsible="accordion">
+              <ul className="collapsible popout" data-collapsible="accordion">
               {item.album}
               </ul>
             </div>
@@ -95,7 +78,7 @@ class Accordion extends Component {
 })
     return (
       <div>
-        <ul className="collapsible" data-collapsible="accordion">
+        <ul className="collapsible popout" data-collapsible="accordion">
           {accordionItems}
         </ul>
       </div>

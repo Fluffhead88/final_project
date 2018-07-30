@@ -89,7 +89,7 @@ class UserSearch extends Component {
         {/* search all albums to show which users have the album */}
           <div className="row" onSubmit={(event)=>{event.preventDefault(), this.props.search(this.state.params), this.props._getAlbumResults(this.state)}}>
             <div className="input-field col s6">
-              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} name='albumSearch' onChange={this._handleInput}/>
+              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.albumSearch} name='albumSearch' onChange={this._handleFilter}/>
               <label htmlFor="input_text">Album Search</label>
             </div>
               <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Search</button>

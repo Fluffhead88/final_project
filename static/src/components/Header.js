@@ -4,12 +4,13 @@ import LoginModal from './LoginModal.js'
 import './Header.css';
 
 function Header(props) {
+  console.log('header', props)
   return (
 
     <nav className="white">
       <div className="nav-wrapper container">
         <ul className="left hide-on-small-and-down">
-          <LoginModal/>
+          <LoginModal history={props.history}/>
         </ul>
         <ul className="right hide-on-small-and-down">
           {/* nav buttons to take user to each page */}

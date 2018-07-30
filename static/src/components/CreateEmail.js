@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './CreateEmail.css';
 
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
@@ -35,8 +36,8 @@ _postCreateEmail() {
 
 render() {
   return (
-    <div>
-      <button type="button" onClick={this._postCreateEmail} className="waves-effect waves-light red lighten-2 btn-small">Contact</button>
+    <div className="contact_button">
+      <button type="button" onClick={this._postCreateEmail} className="waves-effect waves-light red lighten-2 btn-small contact_button">Contact</button>
     </div>
   );
   }

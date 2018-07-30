@@ -37,11 +37,12 @@ class ContactAPIView(APIView):
             'from': 'Mailgun User <mailgun@{}>'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org'),
             'to': album.user.email,
             # set reply to requesting user
-            # 'reply-to': self.user.email,
+            # 'reply-to': request.user.email,
             'subject': f'Interested: {album.album}, {album.artist}',
             'text': f'Hello I am interested in your album {album.album} by {album.artist}. Let me know if you would be willing to trade albums with me. Thanks!',
             # look up reply to on mailgun
         }
+        
         print(self.request.user.email)
         response = requests.post(url, auth=auth, data=data)
         response.raise_for_status()

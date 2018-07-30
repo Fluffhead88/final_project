@@ -5,16 +5,14 @@ import Home from './components/Home.js'
 
 
 class App extends Component{
-//   constructor(props){
-//     super(props);
-//
-//
-// }
+  constructor(props){
+    super(props);
+}
 
 render(){
   return(
     <div>
-      <Home/>
+      <Home history={this.props.history}/>
     </div>
   )
 }

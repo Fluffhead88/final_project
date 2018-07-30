@@ -3,8 +3,8 @@ import UserSeach from './UserSearch.js'
 import CreateEmail from './CreateEmail.js'
 import image4 from './images/records_sun_small.png'
 import CollectionsAccordion from './CollectionsAccordion.js'
-// import image2 from './images/records.jpg'
 import './Collections.css';
+import _ from 'lodash';
 
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
@@ -16,9 +16,10 @@ class Collections extends Component {
       user : {},
       album: {},
       collections: [],
+      filter: '',
     }
 
-    // this._getSearchResults = this._getSearchResults.bind(this);
+    this._handleFilter = this._handleFilter.bind(this);
   }
   // loads all albums on page
   componentDidMount() {
@@ -45,30 +46,21 @@ class Collections extends Component {
     });
   }
 
-// function to return search results - redundant to user search import - keeping for reference
-  // _getSearchResults(searchParams) {
-  //   let self = this;
-  //
-  //
-  //   fetch(`http://localhost:8000/users/?user=${searchParams.userSearch}&album=${searchParams.albumSearch}`)
-  //   .then(function(response){
-  //     if(!response.ok){
-  //       throw Error(response.statusText);
-  //     }
-  //     return response.json()
-  //   })
-  //   .then(function(responseJSON){
-  //     console.log('response', responseJSON)
-  //     self.setState({album: responseJSON.album});
-  //   })
-  //   .catch(function(error){
-  //     console.log('Looks like there was a problem: \n', error);
-  //   });
-  // }
-
+_handleFilter(event){
+  let obj = {filter: event.target.value}
+  this.setState(obj)
+}
   render() {
     console.log('HEYstate', this.state.collections)
-    let collections = this.state.collections.map(function(Item){
+    let self = this;
+    let filteredCollections = this.state.collections.filter(function(item){
+      item.filter = item.album + item.artist;
+      return _.includes(item.filter.toLowerCase() , self.state.filter.toLowerCase());
+    });
+
+    console.log('filtered albums', filteredCollections);
+
+    let collections = filteredCollections.map(function(Item){
 
       return(
         <div key={Item.id} className="col s12 m5 l4 collections_cards">
@@ -103,14 +95,16 @@ class Collections extends Component {
           <div className="col s12 m4 l8">
             <h1>Collections</h1>
             {/* user search import */}
-            <UserSeach/>
+            <div className="input-field col s6">
+              <input id="input_text" type="text" placeholder="" data-length="120" value={this.state.filter} name='albumSearch' onChange={this._handleFilter}/>
+              <label htmlFor="input_text">Album Search</label>
+            </div>
           </div>
         </div>
         <div className="user_collections">
           <div className="row">
-            <CollectionsAccordion collections={this.state.collections}/>
-              {/* area to display several user's collections - card type display */}
-              {collections}
+            {/* ternary statement shows accordion until filter length is greater than zero, if input into filter, displays card */}
+            {this.state.filter.length > 3 ? <div>{collections}</div> : <CollectionsAccordion collections={this.state.collections}/>}
           </div>
         </div>
       </div>

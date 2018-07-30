@@ -35,6 +35,7 @@ class Home extends Component {
     }
 
   render() {
+    console.log('home', this.props)
     return (
       <div>
         <div id="index-banner" className="parallax-container">
@@ -48,7 +49,7 @@ class Home extends Component {
                 <h5 className="header col s12 light">Orangize and Expand your growing vinyl record collection</h5>
               </div>
               <div className="row center">
-                <RegisterModal/>
+                <RegisterModal history={this.props.history}/>
               </div>
               <br></br>
             </div>
