@@ -23,6 +23,7 @@ class MyCollection extends Component {
   this._getSearchResults = this._getSearchResults.bind(this);
   this._postAddAlbum = this._postAddAlbum.bind(this);
   this._deleteAlbum = this._deleteAlbum.bind(this);
+  this._getImage = this._getImage.bind(this);
 
   // this._editAlbum = this._editAlbum.bind(this);
   }
@@ -32,7 +33,7 @@ _getSearchResults(searchParams) {
   let self = this;
 
 
-  fetch(`${URL}album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
+  fetch(`${URLPROD}album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
   .then(function(response){
     if(!response.ok){
       throw Error(response.statusText);
@@ -48,11 +49,34 @@ _getSearchResults(searchParams) {
   });
 }
 
+_getImage() {
+  let self =this;
+  // let image = {};
+  let token = sessionStorage.getItem('auth_token');
+  fetch(`${URLPROD}users/${sessionStorage.getItem('auth_id')}/`,{
+  // fetch(`http://127.0.0.1:8000/users/1/`,{
+    method:'GET',
+    Authorization: token
+  })
+  .then(function(response){
+    if(!response.ok){
+      throw Error(response.statusText);
+    }
+    return response
+  })
+  .then(function(response){
+    console.log('response', response)
+    self.setState({image: response});
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem: \n', error);
+  });
+}
 // loads users collection on page load
 componentDidMount() {
   let self = this;
   let token = sessionStorage.getItem('auth_token');
-  fetch(`${URL}myalbums/`,{
+  fetch(`${URLPROD}myalbums/`,{
     method:'GET',
     headers:{
       'Content-Type': 'application/json',
@@ -99,7 +123,7 @@ _postAddAlbum(){
   collection.push(data);
   this.setState({mycollection: collection});
 
-  fetch(`${URL}album/`,{
+  fetch(`${URLPROD}album/`,{
     method:'POST',
     body:JSON.stringify(data),
     headers:{
@@ -149,7 +173,7 @@ _deleteAlbum(event, album){
 
   this.setState({mycollection: collection});
 
-  fetch(`${URL}myalbums/${id}/`,{
+  fetch(`${URLPROD}myalbums/${id}/`,{
     method:'DELETE',
     headers:{
       'Content-Type': 'application/json',
@@ -228,6 +252,8 @@ _deleteAlbum(event, album){
     return (
       <div>
         <ProfileUpdateModal/>
+        {/* <img src={this.props.user.image} alt=""/> */}
+        <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getImage}>Image</button>
         <div className='row center'>
           <div className='col s12 center'>
             {/* image of albums at top of page */}

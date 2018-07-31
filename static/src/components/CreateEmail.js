@@ -18,7 +18,7 @@ _postCreateEmail() {
   let token = sessionStorage.getItem('auth_token');
 
   console.log(this.state)
-  fetch(`${URL}contact/`,{
+  fetch(`${URLPROD}contact/`,{
     method: 'POST',
     body: JSON.stringify(this.state),
     headers: {
