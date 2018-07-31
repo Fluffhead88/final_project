@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './CreateEmail.css';
 import $ from 'jquery'
-const URL     = "http://127.0.0.1:8000/"
-const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
+// const URL     = "http://127.0.0.1:8000/"
+const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class CreateEmail extends Component {
   constructor(props) {
