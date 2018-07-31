@@ -75,7 +75,6 @@ class CollectionsAccordion extends Component {
             <div className="col s6 hide-on-small-only">
               <img src={item.image} alt=""/>
             </div>
-            <CreateEmail album={item.id}/>
             </div>
           </div>
         </li>

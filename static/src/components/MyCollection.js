@@ -124,7 +124,7 @@ _postAddAlbum(){
   let collection = this.state.mycollection;
   collection.push(data);
   this.setState({mycollection: collection});
-
+  let self=this;
   fetch(`${URL}album/`,{
     method:'POST',
     body:JSON.stringify(data),
@@ -134,7 +134,11 @@ _postAddAlbum(){
     }
   })
   .then(function(response){
-    console.log(response);
+    if(!response.ok){
+      throw Error(response.statusText);
+    }
+    self.setState({album:''})
+
   })
   .catch(function(error){
     console.log('Looks like there was a problem \n,', error)
@@ -144,28 +148,20 @@ _postAddAlbum(){
 // function to delete album from user's collection - need to figure out ID issue
 _deleteAlbum(event, album){
 
-  // console.log('target', $(event.target).parent().parent().removeClass('active'))
-
-  // setTimeout(function() {
-  // console.log($(event.target).parent().parent().siblings())
-
-  // }, 1000)
-
-  // event.stopPropagation();
-
-  // let data: {};
-
-  // prevent li from getting ative class added
+  let button = event.target;
+  $(button).parents().parents().removeClass('active');
+  $(button).parents().siblings('.collapsible-body').attr("style","display: none");
+  //
+  //   let merge_collection = this.state.merge_collection; // this is the data I'm iterating over to create the collapsible
+  //   let index = merge_collection.indexOf(item);
+  //   merge_collection.splice(index, 1);
+  //
+  //   this.setState({merge_collection});
 
   let id = album.id;
   let token = sessionStorage.getItem('auth_token');
   // console.log('delete album', id)
 // need to get this updating state
-  let button = event.target;
-  $(button).parents().parents().children('.collapsible-body').addClass('collapse');
-  event.stopPropagation();
-
-  let element = this.target;
 
   let collection = this.state.mycollection;
   // find index of object inside array
@@ -266,12 +262,13 @@ _deleteAlbum(event, album){
           <div className="profile-image"><img className="profile_image" src={this.state.image} alt=""/></div>
           <h1 className="collection-header">My Collection</h1>
           {/* <div>{mycollection}</div> */}
-          <Accordion mycollection={this.state.mycollection} deleteAlbum={this._deleteAlbum}/>
+          <AlbumSearch getSearchResults={this._getSearchResults}/>
+
           {/* button that fires function to show the collection - change display later */}
           {/* <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getMyCollection}>Show Collection</button> */}
 
           {/* importing the album search and puts the function to get search results back */}
-          <AlbumSearch getSearchResults={this._getSearchResults}/>
+
           {/* if statement to show search display only if search is done */}
             {this.state.album.name ?
             <div className="row album_info">
@@ -302,6 +299,7 @@ _deleteAlbum(event, album){
           </div>
     // end of optional display if statement
               : ""}
+              <Accordion mycollection={this.state.mycollection} deleteAlbum={this._deleteAlbum}/>
         </div>
       </div>
     );

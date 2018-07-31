@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './CreateEmail.css';
-
+import $ from 'jquery'
 const URL     = "http://127.0.0.1:8000/"
 const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
 
@@ -13,7 +13,12 @@ class CreateEmail extends Component {
     }
   this._postCreateEmail = this._postCreateEmail.bind(this);
 }
-_postCreateEmail() {
+_postCreateEmail(event) {
+
+  let button = event.target;
+  $(button).parents().parents().removeClass('active');
+  $(button).parents().siblings('.collapsible-body').attr("style","display: none");
+
   let self = this;
   let token = sessionStorage.getItem('auth_token');
 
