@@ -9,10 +9,9 @@ const URLPROD = "https://morning-beyond-85234.herokuapp.com/"
 class ProfileUpdateModal extends Component {
   constructor(props) {
     super(props);
-
     this.state={
       image:'',
-      bio:'',
+      bio:''
     }
 
   this._postAddUserImage = this._postAddUserImage.bind(this);
@@ -26,16 +25,15 @@ class ProfileUpdateModal extends Component {
     }
   }
 // not currenlty working - works on postman
-  _postAddUserImage(){
-
+  _postAddUserImage(event){
+    event.preventDefault();
     let data = new FormData();
     // data["username"] = this.state.username;
     // data["email"] = this.state.email;
-    data.append('image', (this.state.image !== undefined ? this.state.image:''));
-
+    data.append('image', (this.state.image !== undefined ? this.state.image : ''));
     let token = sessionStorage.getItem('auth_token');
-    fetch(`${URL}users/`,{
-      method:'POST',
+    fetch(`${URL}users/${sessionStorage.getItem('auth_id')}/`,{
+      method: 'PATCH',
       body: data,
       headers:{
         'Content-Type': 'multipart/form-data',

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Album, Users, Track
+from app.models import Album, User, Track
 
 class TrackSerializer(serializers.ModelSerializer):
 
@@ -31,4 +31,4 @@ class UsersSerializer(serializers.ModelSerializer):
     class Meta:
         fields = "__all__"
         # read_only_fields = ("image", )
-        model = Users
+        model = User

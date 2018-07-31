@@ -17,8 +17,7 @@ class MyCollection extends Component {
     super(props);
     this.state = {
       album: {},
-      mycollection:[],
-
+      mycollection:[]
     }
 
   this._getSearchResults = this._getSearchResults.bind(this);
@@ -139,7 +138,7 @@ _deleteAlbum(event, album){
   let button = event.target;
   $(button).parents().parents().children('.collapsible-body').addClass('collapse');
   event.stopPropagation();
-  
+
   let element = this.target;
 
   let collection = this.state.mycollection;
@@ -188,45 +187,44 @@ _deleteAlbum(event, album){
 
     // maps over track to return all tracks - weird part of last.fm nesting
     let tracks;
-      if(this.state.album.tracks) {
-        tracks = this.state.album.tracks.track.map(function(trackItem, index){
-          return(
-            <div key={index}>{trackItem.name}</div>
+    if(this.state.album.tracks) {
+      tracks = this.state.album.tracks.track.map(function(trackItem, index){
+        return(
+          <div key={index}>{trackItem.name}</div>
         )
       })
     }
 
     // gets single image URL from list to be displayed in image tag
     let imageURL;
-      if(this.state.album.image) {
-        imageURL = this.state.album.image[3]['#text'];
+    if(this.state.album.image) {
+      imageURL = this.state.album.image[3]['#text'];
     }
 
     // currently returning content from wikipedia, good info but all albums don't
     // have wiki info, may turn into if statement to show if it exists for album
     let summary;
-      if(this.state.album.wiki){
-        summary = this.state.album.wiki.content;
+    if(this.state.album.wiki){
+      summary = this.state.album.wiki.content;
     }
 
     // returns album name
     let name;
-      if(this.state.album.name){
-        name = this.state.album.name;
+    if(this.state.album.name){
+      name = this.state.album.name;
     }
 
     // returns artist name
     let artist;
-      if(this.state.album.artist){
-        artist = this.state.album.artist;
+    if(this.state.album.artist){
+      artist = this.state.album.artist;
     }
 
     // returns last.fm link - may not use
     let url;
-      if(this.state.album.url){
+    if(this.state.album.url){
       url = this.state.album.url;
     }
-
     return (
       <div>
         <ProfileUpdateModal/>

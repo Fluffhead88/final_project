@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractUser
 
 # creates unique users
 class User(AbstractUser):
-    pass
+    bio = models.CharField(max_length=250, blank=True, null=True)
+    image = models.ImageField(upload_to='media/', blank=True)
 
 # main model that stores all the album information for a user
 class Album(models.Model):
@@ -27,6 +28,6 @@ class Track(models.Model):
 
 # user model to search users on front end to show their collections
 class Users(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=250, blank=True, null=True)
     image = models.ImageField(upload_to='media/', blank=True)

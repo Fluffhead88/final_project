@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets, generics
-from app.models import Album, Users
+from app.models import Album, User
 from app.serializers import AlbumSerializer, UsersSerializer
 import requests
 from app.permissions import IsOwnerOrReadOnly
@@ -37,12 +37,12 @@ class ContactAPIView(APIView):
             'from': 'Mailgun User <mailgun@{}>'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org'),
             'to': album.user.email,
             # set reply to requesting user
-            # 'reply-to': request.user.email,
+            'h:Reply-To': request.user.email,
             'subject': f'Interested: {album.album}, {album.artist}',
             'text': f'Hello I am interested in your album {album.album} by {album.artist}. Let me know if you would be willing to trade albums with me. Thanks!',
             # look up reply to on mailgun
         }
-        
+
         print(self.request.user.email)
         response = requests.post(url, auth=auth, data=data)
         response.raise_for_status()
@@ -108,4 +108,4 @@ class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UsersSerializer
 
     def get_queryset(self):
-        return Users.objects.filter(user=self.request.user)
+        return User.objects.filter(id=self.request.user.id)

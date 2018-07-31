@@ -45,6 +45,21 @@ _postLoginAuth(event) {
   .then(function(responseJSON){
     console.log('response', responseJSON.auth_token)
     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
+
+    fetch(`${URL}auth/me/`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + responseJSON.auth_token
+      }
+    }).then(function(response) {
+      return response.json();
+    }).then(function(response) {
+      sessionStorage.setItem('auth_id', response.id);
+    })
+
+
+    sessionStorage.setItem('joel_is_cool', 'lol');
     let obj = {
       username: '',
       password: ''
