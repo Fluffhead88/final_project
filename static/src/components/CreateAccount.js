@@ -50,7 +50,9 @@ _postLoginAuth() {
   })
   .then(function(responseJSON){
     console.log('response', responseJSON.auth_token)
+
     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
+
     fetch(`${URL}auth/me/`,{
       method: 'GET',
       headers: {

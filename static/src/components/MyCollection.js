@@ -42,7 +42,7 @@ _getSearchResults(searchParams) {
   })
   .then(function(responseJSON){
     console.log('response', responseJSON)
-    self.setState({album: responseJSON.album});
+    self.setState({album: responseJSON.album || {}});
   })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);
@@ -198,7 +198,7 @@ _deleteAlbum(event, album){
       return(
         <div key={Item.id} className="row album_info">
           <div className="col s4 m4">
-{/* this is only good for the delete function - need to refactor */}
+        {/* this is only good for the delete function - need to refactor */}
             <div><button type="button" className="waves-effect waves-light red lighten-2 btn-small delete_btn" onClick={()=>self._deleteAlbum(Item)}>delete</button></div>
           </div>
         </div>
