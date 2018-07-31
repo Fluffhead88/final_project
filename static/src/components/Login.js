@@ -28,7 +28,7 @@ _postLoginAuth(event) {
   let data = this.state;
   let self = this;
 
-  fetch(`${URLPROD}auth/token/create/`,{
+  fetch(`${URL}auth/token/create/`,{
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -46,7 +46,7 @@ _postLoginAuth(event) {
     console.log('response', responseJSON.auth_token)
     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
 
-    fetch(`${URLPROD}auth/me/`,{
+    fetch(`${URL}auth/me/`,{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -55,6 +55,7 @@ _postLoginAuth(event) {
     }).then(function(response) {
       return response.json();
     }).then(function(response) {
+      console.log("YEAH", response)
       sessionStorage.setItem('auth_id', response.id);
     })
 

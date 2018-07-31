@@ -1,11 +1,17 @@
 .name {
   text-decoration: underline; }
 
-.image {
-  margin-top: 20px; }
-
 .delete_btn {
   margin-left: auto; }
 
 .collapsible-body .collapse {
   display: none !important; }
+
+.myCollection.container .collection-header {
+  display: inline-block; }
+
+.myCollection.container .profile-image {
+  display: inline-block;
+  width: 15%; }
+  .myCollection.container .profile-image img {
+    border-radius: 70px; }

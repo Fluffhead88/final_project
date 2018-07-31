@@ -24,7 +24,7 @@ class Collections extends Component {
   // loads all albums on page
   componentDidMount() {
     let self = this;
-    fetch(`${URLPROD}album/`,{
+    fetch(`${URL}album/`,{
       method:'GET',
       headers:{
         'Content-Type': 'application/json',

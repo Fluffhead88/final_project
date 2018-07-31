@@ -108,4 +108,5 @@ class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UsersSerializer
 
     def get_queryset(self):
-        return User.objects.filter(id=self.request.user.id)
+        # print('oh yeah', self.request.get)
+        return User.objects.all()

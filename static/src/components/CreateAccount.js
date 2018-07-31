@@ -34,7 +34,7 @@ _postLoginAuth() {
   };
   let self = this;
 
-  fetch(`${URLPROD}auth/token/create/`,{
+  fetch(`${URL}auth/token/create/`,{
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -85,7 +85,7 @@ _postCreateAccount(event) {
   event.preventDefault();
   let data = this.state;
 
-  fetch(`${URLPROD}auth/users/create/`,{
+  fetch(`${URL}auth/users/create/`,{
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

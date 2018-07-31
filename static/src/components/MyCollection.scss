@@ -7,7 +7,7 @@
 }
 
 .image{
-  margin-top: 20px;
+  // margin-top: 20px;
 
 }
 
@@ -17,4 +17,45 @@
 
 .collapsible-body .collapse{
   display: none !important;
+}
+// 
+// .image_parent {
+//   position: relative;
+//   margin-top: 20px;
+//
+//   div:first-child {
+//     position: relative;
+//     top: 0;
+//   }
+//
+//   div:last-child {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 15%;
+//     // border-radius: 20px;
+//     // overflow: hidden;
+//     transform: translate(-50%, -50%);
+//
+//     img {
+//       border-radius: 90px;
+//     }
+//   }
+//
+// }
+
+.myCollection.container {
+  .collection-header {
+    display:inline-block;
+  }
+
+  .profile-image {
+    display: inline-block;
+    width: 15%;
+
+    img{
+      border-radius: 70px;
+    }
+  }
+
 }

@@ -33,7 +33,7 @@ _getSearchResults(searchParams) {
   let self = this;
 
 
-  fetch(`${URLPROD}album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
+  fetch(`${URL}album/proxy/?artist=${searchParams.artistSearch}&album=${searchParams.albumSearch}`)
   .then(function(response){
     if(!response.ok){
       throw Error(response.statusText);
@@ -53,7 +53,7 @@ _getImage() {
   let self =this;
   // let image = {};
   let token = sessionStorage.getItem('auth_token');
-  fetch(`${URLPROD}users/${sessionStorage.getItem('auth_id')}/`,{
+  fetch(`${URL}users/${sessionStorage.getItem('auth_id')}/`,{
   // fetch(`http://127.0.0.1:8000/users/1/`,{
     method:'GET',
     Authorization: token
@@ -62,11 +62,11 @@ _getImage() {
     if(!response.ok){
       throw Error(response.statusText);
     }
-    return response
+    return response.json()
   })
-  .then(function(response){
-    console.log('response', response)
-    self.setState({image: response});
+  .then(function(responseJSON){
+    console.log('response', responseJSON.image)
+    self.setState({image: responseJSON.image});
   })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);
@@ -76,7 +76,8 @@ _getImage() {
 componentDidMount() {
   let self = this;
   let token = sessionStorage.getItem('auth_token');
-  fetch(`${URLPROD}myalbums/`,{
+
+  fetch(`${URL}myalbums/`,{
     method:'GET',
     headers:{
       'Content-Type': 'application/json',
@@ -90,12 +91,13 @@ componentDidMount() {
     return response.json()
   })
   .then(function(responseJSON){
-    console.log('api response', responseJSON);
     self.setState({mycollection: responseJSON})
   })
   .catch(function(error){
     console.log('Looks like there was a problem \n,', error)
   });
+
+  this._getImage();
 }
 
 // adds searched album to users collection upon clicking save
@@ -123,7 +125,7 @@ _postAddAlbum(){
   collection.push(data);
   this.setState({mycollection: collection});
 
-  fetch(`${URLPROD}album/`,{
+  fetch(`${URL}album/`,{
     method:'POST',
     body:JSON.stringify(data),
     headers:{
@@ -173,7 +175,7 @@ _deleteAlbum(event, album){
 
   this.setState({mycollection: collection});
 
-  fetch(`${URLPROD}myalbums/${id}/`,{
+  fetch(`${URL}myalbums/${id}/`,{
     method:'DELETE',
     headers:{
       'Content-Type': 'application/json',
@@ -252,16 +254,17 @@ _deleteAlbum(event, album){
     return (
       <div>
         <ProfileUpdateModal/>
-        {/* <img src={this.props.user.image} alt=""/> */}
-        <button type="button" className="waves-effect waves-light red lighten-2 btn-small" onClick={this._getImage}>Image</button>
+
+
         <div className='row center'>
-          <div className='col s12 center'>
+          <div className='col s12 center image_parent'>
             {/* image of albums at top of page */}
             <div className='image'><img src={image4} alt="Unsplashed background img 1"/></div>
           </div>
         </div>
         <div className="myCollection container">
-          <h1>My Collection</h1>
+          <div className="profile-image"><img className="profile_image" src={this.state.image} alt=""/></div>
+          <h1 className="collection-header">My Collection</h1>
           {/* <div>{mycollection}</div> */}
           <Accordion mycollection={this.state.mycollection} deleteAlbum={this._deleteAlbum}/>
           {/* button that fires function to show the collection - change display later */}

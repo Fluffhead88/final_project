@@ -51,7 +51,7 @@ class UserSearch extends Component {
 // search for all albums - show what users have each album - incomplete
   _getAlbumResults(searchParams) {
     let self = this;
-    fetch(`${URLPROD}album/?artist=${searchParams.artistSearch}`,{
+    fetch(`${URL}album/?artist=${searchParams.artistSearch}`,{
       method:'GET',
       headers:{
         'Content-Type': 'application/json',
