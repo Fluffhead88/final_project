@@ -136,6 +136,10 @@ _deleteAlbum(event, album){
   let token = sessionStorage.getItem('auth_token');
   // console.log('delete album', id)
 // need to get this updating state
+  let button = event.target;
+  $(button).parents().parents().children('.collapsible-body').addClass('collapse');
+  event.stopPropagation();
+  
   let element = this.target;
 
   let collection = this.state.mycollection;

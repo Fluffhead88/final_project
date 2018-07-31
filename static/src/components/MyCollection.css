@@ -6,3 +6,6 @@
 
 .delete_btn {
   margin-left: auto; }
+
+.collapsible-body .collapse {
+  display: none !important; }
