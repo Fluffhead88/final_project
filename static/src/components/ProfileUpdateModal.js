@@ -14,7 +14,7 @@ class ProfileUpdateModal extends Component {
       bio:''
     }
 
-  this._postAddUserImage = this._postAddUserImage.bind(this);
+  this._patchAddUserImage = this._patchAddUserImage.bind(this);
 
   }
   _handleInput(event) {
@@ -24,12 +24,11 @@ class ProfileUpdateModal extends Component {
     this.setState({image:file});
     }
   }
-// not currenlty working - works on postman
-  _postAddUserImage(event){
+
+  _patchAddUserImage(event){
     event.preventDefault();
     let data = new FormData();
-    // data["username"] = this.state.username;
-    // data["email"] = this.state.email;
+    // data.append('image', this.state.image);
     data.append('image', (this.state.image !== undefined ? this.state.image : ''));
     let token = sessionStorage.getItem('auth_token');
     fetch(`${URL}users/${sessionStorage.getItem('auth_id')}/`,{
@@ -42,6 +41,7 @@ class ProfileUpdateModal extends Component {
     })
     .then(function(response){
       console.log('image_stuff', response);
+      // this.setState({'image': response.image})
     })
     .catch(function(error){
       console.log('Looks like there was a problem \n,', error)
@@ -57,15 +57,17 @@ class ProfileUpdateModal extends Component {
   render() {
     return (
       <div>
+
       {/* // <!-- Modal Trigger --> */}
         <a href="#modal3" id="profile_update" className="waves-effect waves-light red lighten-2 btn modal-trigger">Update Profile</a>
          {/* // <!-- Modal Structure --> */}
          <div id="modal3" className="modal">
            <div className="row">
              <div className="modal-content">
-               <form onSubmit={this._postAddUserImage} encType='multipart/form-data'>
+               <form onSubmit={this._patchAddUserImage} encType='multipart/form-data'>
                 <input name="imageInput" type="file" id="imageInput" onChange={this._handleInput} />
                 <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Submit</button>
+                {/* <img src={this.state.image} alt=""/> */}
                </form>
              </div>
            </div>

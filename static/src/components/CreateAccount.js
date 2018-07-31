@@ -51,6 +51,25 @@ _postLoginAuth() {
   .then(function(responseJSON){
     console.log('response', responseJSON.auth_token)
     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
+    fetch(`${URL}auth/me/`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'token ' + responseJSON.auth_token
+      }
+    }).then(function(response) {
+      return response.json();
+    }).then(function(response) {
+      sessionStorage.setItem('auth_id', response.id);
+    })
+
+    sessionStorage.setItem('zach_is_cool', 'lol');
+    let obj = {
+      username: '',
+      password: ''
+    }
+    self.setState(obj);
+    console.log('history', self.props.history)
     self.props.history.push("/mycollection");
   })
   .catch(function(error){
@@ -80,16 +99,6 @@ _postCreateAccount(event) {
     self._postLoginAuth();
     // return response.json()
   })
-  // .then(function(responseJSON){
-  //   console.log('response', responseJSON.data)
-  //   // sessionStorage.setItem('auth_token', responseJSON.data)
-  //   let obj = {
-  //     username: '',
-  //     password: '',
-  //     email: '',
-  //   }
-  //   self.setState(obj)
-  // })
   .catch(function(error){
     console.log('Looks like there was a problem: \n', error);
   });
