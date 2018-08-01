@@ -9,8 +9,8 @@ import './MyCollection.css';
 import Accordion from './Accordion.js';
 import $ from 'jquery';
 
-const URL     = "http://127.0.0.1:8000/"
-// const URL = "https://morning-beyond-85234.herokuapp.com/"
+// const URL     = "http://127.0.0.1:8000/"
+const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class MyCollection extends Component {
   constructor(props) {

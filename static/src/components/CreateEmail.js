@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import './CreateEmail.css';
 import $ from 'jquery'
-const URL     = "http://127.0.0.1:8000/"
-// const URL = "https://morning-beyond-85234.herokuapp.com/"
+import Materialize from 'materialize-css/dist/js/materialize.min.js';
+// const URL     = "http://127.0.0.1:8000/"
+const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class CreateEmail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      album_id: props.album
+      album_id: props.album,
+      confirm: false
     }
   this._postCreateEmail = this._postCreateEmail.bind(this);
 }
+
 _postCreateEmail(event) {
 
   let button = event.target;
@@ -32,6 +35,10 @@ _postCreateEmail(event) {
     }
   })
   .then(function(response){
+    self.setState({confirm: true});
+    setTimeout(function(){
+      self.setState({confirm: false})
+    },2000)
     console.log(response);
   })
   .catch(function(error){
@@ -42,6 +49,7 @@ _postCreateEmail(event) {
 render() {
   return (
     <div className="contact_button">
+      {this.state.confirm ? <span className="sent">Message Sent</span> : null}
       <button type="button" onClick={this._postCreateEmail} className="waves-effect waves-light red lighten-2 btn-small contact_button">Contact</button>
     </div>
   );

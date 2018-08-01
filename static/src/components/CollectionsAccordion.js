@@ -4,8 +4,8 @@ import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 import './CollectionsAccordion.css';
 
-const URL     = "http://127.0.0.1:8000/"
-// const URL = "https://morning-beyond-85234.herokuapp.com/"
+// const URL     = "http://127.0.0.1:8000/"
+const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class CollectionsAccordion extends Component {
   constructor(props) {
@@ -63,7 +63,10 @@ class CollectionsAccordion extends Component {
         <li key={index}>
           <div className="collapsible-header">
             <i className="material-icons">album</i>{item.artist} - {item.album}
+            {/* <p className="email_confirmation">Email Sent</p> */}
+
             <CreateEmail album={item.id} className="contact_on_accordion"/>
+
           </div>
             {/* <button type="button" onClick={this._deleteAlbum} className="waves-effect waves-light red lighten-2 btn-small">Delete</button> */}
           <div className="collapsible-body">
@@ -97,6 +100,10 @@ class CollectionsAccordion extends Component {
 })
     return (
       <div>
+        {/* <div>
+          <p>Thank you! Your message has been sent</p>
+          <input type="button" value="OK"/>
+          </div> */}
         <ul className="collapsible popout" data-collapsible="accordion">
           {accordionItems}
         </ul>

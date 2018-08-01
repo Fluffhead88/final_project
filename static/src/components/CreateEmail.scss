@@ -1,3 +1,12 @@
 .contact_button{
   margin-left: auto;
+  display:flex;
+  align-items: center;
+}
+
+.sent{
+  display: inline-block;
+  margin-right: 13px;
+  font-style: italic;
+
 }

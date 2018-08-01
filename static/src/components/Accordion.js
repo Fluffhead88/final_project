@@ -27,7 +27,7 @@ class Accordion extends Component {
     // $('.collapsible .delete_btn').on('click', function(event){
     //   event.stopPropagation();
     // });
-  
+
 
 
   }

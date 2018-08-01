@@ -3,8 +3,8 @@ import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 // import './ProfileUpdateModal.css';
 
-const URL     = "http://127.0.0.1:8000/"
-// const URL = "https://morning-beyond-85234.herokuapp.com/"
+// const URL     = "http://127.0.0.1:8000/"
+const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class ProfileUpdateModal extends Component {
   constructor(props) {
@@ -70,7 +70,7 @@ class ProfileUpdateModal extends Component {
              <div className="modal-content">
                <form onSubmit={(event)=>{event.preventDefault();this.props.patchAddUserImage(this.state.image, this.state.preview)}} encType='multipart/form-data'>
                 <input name="image" type="file" id="image" onChange={this._handleInput} />
-                <button type="submit" className="waves-effect waves-light red lighten-2 btn-small">Submit</button>
+                <button type="submit" className="modal-close waves-effect waves-light red lighten-2 btn-small">Submit</button>
                 {/* <img src={this.props.user.image} alt=""/> */}
                </form>
              </div>
