@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
+import './ProfileUpdateModal.css'
 // import './ProfileUpdateModal.css';
 
 // const URL     = "http://127.0.0.1:8000/"
@@ -63,9 +64,9 @@ class ProfileUpdateModal extends Component {
       <div>
 
       {/* // <!-- Modal Trigger --> */}
-        <a href="#modal3" id="profile_update" className="waves-effect waves-light red lighten-2 btn modal-trigger">Add Pic</a>
+        <a href="#modal3" id="profile_update" className="add_pic waves-effect waves-light red lighten-2 btn-small modal-trigger">Add Pic</a>
          {/* // <!-- Modal Structure --> */}
-         <div id="modal3" className="modal">
+         <div id="modal3" className="modal image_modal">
            <div className="row">
              <div className="modal-content">
                <form onSubmit={(event)=>{event.preventDefault();this.props.patchAddUserImage(this.state.image, this.state.preview)}} encType='multipart/form-data'>
