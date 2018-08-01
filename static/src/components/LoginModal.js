@@ -4,8 +4,8 @@ import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 import './LoginModal.css';
 
-// const URL     = "http://127.0.0.1:8000/"
-const URL = "https://morning-beyond-85234.herokuapp.com/"
+const URL     = "http://127.0.0.1:8000/"
+// const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class LoginModal extends Component {
   constructor(props) {
@@ -22,7 +22,8 @@ class LoginModal extends Component {
     return (
       <div>
       {/* // <!-- Modal Trigger --> */}
-        <a href="#modal2" id="login-button" className="waves-effect waves-light red lighten-2 btn modal-trigger">Log In</a>
+      {!sessionStorage.getItem('auth_token') ? <a href="#modal2" id="login-button" className="waves-effect waves-light red lighten-2 btn modal-trigger">Log In</a> : null}
+        {/* <a href="#modal2" id="login-button" className="waves-effect waves-light red lighten-2 btn modal-trigger">Log In</a> */}
        {/* // <!-- Modal Structure --> */}
          <div id="modal2" className="modal">
            <div className="modal-content">

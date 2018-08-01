@@ -6,8 +6,8 @@ import image2 from './images/records.jpg';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 
 // end point for creating auth token with djoser
-// const URL     = "http://127.0.0.1:8000/"
-const URL = "https://morning-beyond-85234.herokuapp.com/"
+const URL     = "http://127.0.0.1:8000/"
+// const URL = "https://morning-beyond-85234.herokuapp.com/"
 // What is url when deployed in production?
 // something.herokuapp.com/auth/token/create/   ??????
 

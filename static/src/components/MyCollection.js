@@ -9,15 +9,16 @@ import './MyCollection.css';
 import Accordion from './Accordion.js';
 import $ from 'jquery';
 
-// const URL     = "http://127.0.0.1:8000/"
-const URL = "https://morning-beyond-85234.herokuapp.com/"
+const URL     = "http://127.0.0.1:8000/"
+// const URL = "https://morning-beyond-85234.herokuapp.com/"
 
 class MyCollection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       album: {},
-      mycollection:[]
+      mycollection:[],
+      preview: ''
     }
 
   this._getSearchResults = this._getSearchResults.bind(this);
@@ -162,7 +163,7 @@ _deleteAlbum(event, album){
   let id = album.id;
   let token = sessionStorage.getItem('auth_token');
   // console.log('delete album', id)
-// need to get this updating state
+  // need to get this updating state
 
   let collection = this.state.mycollection;
   // find index of object inside array
@@ -188,10 +189,11 @@ _deleteAlbum(event, album){
   });
 }
 
-_patchAddUserImage(image){
-  console.log(image)
+_patchAddUserImage(image, preview){
+  console.log('preview', preview)
   let data = new FormData();
-  data.append('image', image);
+  console.log('image here', image)
+  // data.append('image', image);
   data.append('image', (image !== undefined ? image : ''));
   let token = sessionStorage.getItem('auth_token');
   let self = this;
@@ -205,7 +207,8 @@ _patchAddUserImage(image){
   })
   .then(function(response){
     console.log('just added a new image', response);
-    self.setState({image: response.image});
+    self._getImage()
+    // self.setState({image: response.image});
     // console.log('IMAGE', this.user.image)
     // this.setState({'image': response.image})
   })
@@ -276,7 +279,7 @@ _patchAddUserImage(image){
     }
     return (
       <div>
-        <ProfileUpdateModal image={this.state.image} patchAddUserImage={this._patchAddUserImage}/>
+
 
 
         <div className='row center'>
@@ -287,6 +290,7 @@ _patchAddUserImage(image){
         </div>
         <div className="myCollection container">
           <div className="profile-image"><img className="profile_image" src={this.state.image} alt=""/></div>
+
           <h1 className="collection-header">My Collection</h1>
           {/* <div>{mycollection}</div> */}
           <AlbumSearch getSearchResults={this._getSearchResults}/>
@@ -327,6 +331,7 @@ _patchAddUserImage(image){
     // end of optional display if statement
               : ""}
               <Accordion mycollection={this.state.mycollection} deleteAlbum={this._deleteAlbum}/>
+              <ProfileUpdateModal image={this.state.image} patchAddUserImage={this._patchAddUserImage}/>
         </div>
       </div>
     );
