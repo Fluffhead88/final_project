@@ -37,7 +37,7 @@ class Home extends Component {
             <div className="container">
               <br></br>
               {/* banner page title */}
-              <h1 className="header center gray-text text-lighten-2">Record Collection</h1>
+              <h1 className="header center gray-text text-lighten-2">The Record Bin</h1>
               <div className="row center">
                 {/* tagline under title */}
                 <h5 className="header col s12 light">Orangize and Expand your vinyl record collection</h5>

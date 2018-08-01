@@ -24,6 +24,7 @@ class MyCollection extends Component {
   this._postAddAlbum = this._postAddAlbum.bind(this);
   this._deleteAlbum = this._deleteAlbum.bind(this);
   this._getImage = this._getImage.bind(this);
+  this._patchAddUserImage = this._patchAddUserImage.bind(this);
 
   // this._editAlbum = this._editAlbum.bind(this);
   }
@@ -50,7 +51,7 @@ _getSearchResults(searchParams) {
 }
 
 _getImage() {
-  let self =this;
+  let self = this;
   // let image = {};
   let token = sessionStorage.getItem('auth_token');
   fetch(`${URL}users/${sessionStorage.getItem('auth_id')}/`,{
@@ -187,6 +188,32 @@ _deleteAlbum(event, album){
   });
 }
 
+_patchAddUserImage(image){
+  console.log(image)
+  let data = new FormData();
+  data.append('image', image);
+  data.append('image', (image !== undefined ? image : ''));
+  let token = sessionStorage.getItem('auth_token');
+  let self = this;
+  fetch(`${URL}users/${sessionStorage.getItem('auth_id')}/`,{
+    method: 'PATCH',
+    body: data,
+    headers:{
+      // 'Content-Type': 'multipart/form-data',
+      'Authorization': token
+    }
+  })
+  .then(function(response){
+    console.log('just added a new image', response);
+    self.setState({image: response.image});
+    // console.log('IMAGE', this.user.image)
+    // this.setState({'image': response.image})
+  })
+  .catch(function(error){
+    console.log('Looks like there was a problem \n,', error)
+  });
+}
+
 
   render() {
     console.log('mystate', this.state.mycollection)
@@ -249,7 +276,7 @@ _deleteAlbum(event, album){
     }
     return (
       <div>
-        <ProfileUpdateModal/>
+        <ProfileUpdateModal image={this.state.image} patchAddUserImage={this._patchAddUserImage}/>
 
 
         <div className='row center'>

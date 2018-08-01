@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import UserSeach from './UserSearch.js'
 import CreateEmail from './CreateEmail.js'
 import image4 from './images/records_sun_small.png'
 import CollectionsAccordion from './CollectionsAccordion.js'
