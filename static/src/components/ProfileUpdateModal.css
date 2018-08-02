@@ -1,7 +1,6 @@
-/* lines up add image button with other components */
 .add_pic {
   position: relative;
   right: -7px; }
-/* limits height of add image modal  */
+
 .image_modal {
   height: 18%; }

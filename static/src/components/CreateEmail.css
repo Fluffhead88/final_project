@@ -1,9 +1,8 @@
-/* sends contact button to the right on accordion */
 .contact_button {
   margin-left: auto;
   display: flex;
   align-items: center; }
-/* positioning for email sent notification */
+
 .sent {
   display: inline-block;
   margin-right: 13px;
