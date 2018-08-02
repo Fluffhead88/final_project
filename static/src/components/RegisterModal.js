@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import CreateAccount from './CreateAccount.js'
-
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 

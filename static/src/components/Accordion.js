@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import AccordionTracks from './AccordionTracks'
 import $ from 'jquery';
 import Materialize from 'materialize-css/dist/js/materialize.min.js';
 import './Accordion.css';
@@ -13,30 +12,15 @@ class Accordion extends Component {
 
     }
   }
-
+// initializes accordion action
   componentDidMount(options) {
     var elems = document.querySelectorAll('.collapsible');
     var instances = Materialize.Collapsible.init(elems, options);
-
-    // var buttons = document.querySelectorAll('.delete_btn');
-    // buttons.forEach(function(button){
-    //   button.on('click', function(event) {
-    //     event.stopPropagation();
-    //   })
-    // })
-    // $('.collapsible .delete_btn').on('click', function(event){
-    //   event.stopPropagation();
-    // });
-
-
-
   }
 
-
   render() {
-    // console.log('this props', this.props)
 
-    // sorts albums alphabetically
+  // sorts albums alphabetically
     let sort_collection = this.props.mycollection.sort((a, b) => {
      if (a.artist < b.artist) {
        return -1
@@ -48,12 +32,11 @@ class Accordion extends Component {
     let self = this;
     // iterates over users albums to be added to accordion
     let accordionItems = sort_collection.map(function(item, index){
-      // console.log('here', item)
-
       let tracks = item.tracks.map(function(track, index){
         return (<div key={index}>{track.title}</div>)
       })
       return (
+        // accordion content 
         <li key={index}>
           <div className="collapsible-header mycollection_display">
             <i className="material-icons">album</i>{item.artist} - {item.album}

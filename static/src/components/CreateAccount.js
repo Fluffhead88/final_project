@@ -19,13 +19,12 @@ class CreateAccount extends Component {
 }
 
 _handleInput(event) {
-  // let data = event.target.value;
   let obj =  {}
   let key = event.target.name;
   obj[key] = event.target.value;
   this.setState(obj);
 }
-// need to chain these fetches together so that creating an account logs a user in
+// sends a post request to auth/token/create to get a djoser auth token for log in authentication
 _postLoginAuth() {
   // event.preventDefault();
   let data = {
@@ -52,7 +51,7 @@ _postLoginAuth() {
     console.log('response', responseJSON.auth_token)
 
     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
-
+// gets user info from /auth/me and sets user id to session storage 
     fetch(`${URL}auth/me/`,{
       method: 'GET',
       headers: {
@@ -64,8 +63,6 @@ _postLoginAuth() {
     }).then(function(response) {
       sessionStorage.setItem('auth_id', response.id);
     })
-
-    sessionStorage.setItem('zach_is_cool', 'lol');
     let obj = {
       username: '',
       password: ''

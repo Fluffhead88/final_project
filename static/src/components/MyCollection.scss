@@ -1,49 +1,18 @@
-// .myCollection{
-//   background-color: green;
-// }
+// underlines the track and album name fields 
 
 .name{
   text-decoration: underline;
 }
 
-.image{
-  // margin-top: 20px;
-
-}
-
+// pushes delete button to the right of the accordion
 .delete_btn{
   margin-left: auto;
 }
-
+// keeps accordion from opening when delete button is clicked
 .collapsible-body .collapse{
   display: none !important;
 }
-//
-// .image_parent {
-//   position: relative;
-//   margin-top: 20px;
-//
-//   div:first-child {
-//     position: relative;
-//     top: 0;
-//   }
-//
-//   div:last-child {
-//     position: absolute;
-//     top: 50%;
-//     left: 50%;
-//     width: 15%;
-//     // border-radius: 20px;
-//     // overflow: hidden;
-//     transform: translate(-50%, -50%);
-//
-//     img {
-//       border-radius: 90px;
-//     }
-//   }
-//
-// }
-
+// styling for image - creates small circle and places it in header area
 .myCollection.container {
   .collection-header {
     display:inline-block;

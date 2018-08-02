@@ -64,6 +64,7 @@ class ProfileUpdateModal extends Component {
       <div>
 
       {/* // <!-- Modal Trigger --> */}
+      {/* button that triggers modal for adding image */}
         <a href="#modal3" id="profile_update" className="add_pic waves-effect waves-light red lighten-2 btn-small modal-trigger">Add Pic</a>
          {/* // <!-- Modal Structure --> */}
          <div id="modal3" className="modal image_modal">
@@ -72,7 +73,6 @@ class ProfileUpdateModal extends Component {
                <form onSubmit={(event)=>{event.preventDefault();this.props.patchAddUserImage(this.state.image, this.state.preview)}} encType='multipart/form-data'>
                 <input name="image" type="file" id="image" onChange={this._handleInput} />
                 <button type="submit" className="modal-close waves-effect waves-light red lighten-2 btn-small">Submit</button>
-                {/* <img src={this.props.user.image} alt=""/> */}
                </form>
              </div>
            </div>

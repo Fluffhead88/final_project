@@ -14,9 +14,9 @@ class CreateEmail extends Component {
     }
   this._postCreateEmail = this._postCreateEmail.bind(this);
 }
-
+// sends post request to contact end point to activate mailgun emailing operation
 _postCreateEmail(event) {
-
+// keeps accordion from opening on button click
   let button = event.target;
   $(button).parents().parents().removeClass('active');
   $(button).parents().siblings('.collapsible-body').attr("style","display: none");
@@ -33,6 +33,7 @@ _postCreateEmail(event) {
       'Authorization': token
     }
   })
+  // sets email confirmation to true for 2 seconds to show confirmation text temporarily
   .then(function(response){
     self.setState({confirm: true});
     setTimeout(function(){
@@ -48,6 +49,7 @@ _postCreateEmail(event) {
 render() {
   return (
     <div className="contact_button">
+      {/* notification popup text after contact button is clicked */}
       {this.state.confirm ? <span className="sent">Message Sent</span> : null}
       <button type="button" onClick={this._postCreateEmail} className="waves-effect waves-light red lighten-2 btn-small contact_button">Contact</button>
     </div>

@@ -20,6 +20,7 @@ class AlbumSearch extends Component {
     this.setState(obj);
   }
 
+// handles search results and passes the values to state 
   _getSearchResults(event){
     event.preventDefault();
     this.props.getSearchResults(this.state);

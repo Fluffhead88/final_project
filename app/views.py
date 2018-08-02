@@ -28,7 +28,6 @@ class AlbumProxyView(APIView):
 class ContactAPIView(APIView):
     def post(self, request):
 
-        print('here', request.data)
         album = Album.objects.get(id=request.data.get('album_id'))
 
         url = 'https://api.mailgun.net/v3/{}/messages'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org')
@@ -36,11 +35,9 @@ class ContactAPIView(APIView):
         data = {
             'from': 'Mailgun User <mailgun@{}>'.format('sandboxf79e0e448555466a9dda56a66598d71f.mailgun.org'),
             'to': album.user.email,
-            # set reply to requesting user
             'h:Reply-To': request.user.email,
             'subject': f'Interested: {album.album}, {album.artist}',
             'text': f'Hello I am interested in your album {album.album} by {album.artist}. Let me know if you would be willing to trade albums with me. Thanks!',
-            # look up reply to on mailgun
         }
 
         print(self.request.user.email)
@@ -99,14 +96,10 @@ class UsersListCreateAPIView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-# class UsersListCreateAPIView(generics.ListCreateAPIView):
-#     queryset = User.objects.select_related('profile').all()
-#     serializer_class = UsersSerializer
-
+# allows user to save image 
 class UsersRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsOwnerOrReadOnly]
     serializer_class = UsersSerializer
 
     def get_queryset(self):
-        # print('oh yeah', self.request.get)
         return User.objects.all()

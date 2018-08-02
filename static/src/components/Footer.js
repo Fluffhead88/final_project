@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-
+// footer with link to my portfolio 
 function Footer(props) {
   return (
     <div>

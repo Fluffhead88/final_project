@@ -12,6 +12,7 @@ class App extends Component{
 render(){
   return(
     <div>
+      {/* access to history for redirect on log in */}
       <Home history={this.props.history}/>
     </div>
   )

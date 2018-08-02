@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import AlbumSearch from "./AlbumSearch.js"
-// import $ from 'jquery';
 import image4 from './images/records_small.png'
 import ProfileUpdateModal from './ProfileUpdateModal'
-// import Materialize from 'materialize-css/dist/js/materialize.min.js';
-// import image2 from './images/records.jpg'
 import './MyCollection.css';
 import Accordion from './Accordion.js';
 import $ from 'jquery';
@@ -30,7 +27,7 @@ class MyCollection extends Component {
   // this._editAlbum = this._editAlbum.bind(this);
   }
 
-// function to process search parameters and get back album info from last.fm api
+// function to process search parameters and get back album info from last.fm api via get on back end model
 _getSearchResults(searchParams) {
   let self = this;
 
@@ -50,7 +47,7 @@ _getSearchResults(searchParams) {
     console.log('Looks like there was a problem: \n', error);
   });
 }
-
+// get to users endpoint to get image that is stored for that user from database
 _getImage() {
   let self = this;
   // let image = {};
@@ -149,7 +146,7 @@ _postAddAlbum(){
 
 // function to delete album from user's collection - need to figure out ID issue
 _deleteAlbum(event, album){
-
+// keeps accordfion from opening when delete button is clicked
   let button = event.target;
   $(button).parents().parents().removeClass('active');
   $(button).parents().siblings('.collapsible-body').attr("style","display: none");
@@ -162,8 +159,6 @@ _deleteAlbum(event, album){
 
   let id = album.id;
   let token = sessionStorage.getItem('auth_token');
-  // console.log('delete album', id)
-  // need to get this updating state
 
   let collection = this.state.mycollection;
   // find index of object inside array
@@ -172,7 +167,7 @@ _deleteAlbum(event, album){
   collection.splice(index, 1);
 
   this.setState({mycollection: collection});
-
+// sends delete to database with album id
   fetch(`${URL}myalbums/${id}/`,{
     method:'DELETE',
     headers:{
@@ -182,13 +177,12 @@ _deleteAlbum(event, album){
   })
   .then(function(response){
     console.log(response);
-    // element.parent().parent().siblings().removeClass('active');
   })
   .catch(function(error){
     console.log('Looks like there was a problem \n,', error)
   });
 }
-
+// way for user to add image to profile, using patch because it is optional for user 
 _patchAddUserImage(image, preview){
   console.log('preview', preview)
   let data = new FormData();

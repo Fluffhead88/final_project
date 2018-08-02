@@ -15,7 +15,6 @@ class CollectionsAccordion extends Component {
       album_id: props.album
 
     }
-    // this._deleteAlbum = this._deleteAlbum.bind(this);
   }
 // initiates modal from Materialize
   componentDidMount(options) {
@@ -23,25 +22,6 @@ class CollectionsAccordion extends Component {
     console.log('el', elems);
     var instances = Materialize.Collapsible.init(elems, options);
   }
-
-  // _deleteAlbum(album){
-  //   let self = this;
-  //   let token = sessionStorage.getItem('auth_token');
-  //
-  //   fetch(`${URL}myalbums/${this.id}/`,{
-  //     method:'DELETE',
-  //     headers:{
-  //       'Content-Type': 'application/json',
-  //       'Authorization': token
-  //     }
-  //   })
-  //   .then(function(response){
-  //     console.log(response);
-  //   })
-  //   .catch(function(error){
-  //     console.log('Looks like there was a problem \n,', error)
-  //   });
-  // }
 
   render() {
     // takes sorting function and applies to all collections so they're alphabetical
@@ -53,6 +33,7 @@ class CollectionsAccordion extends Component {
      }
      return 0;
     });
+    // iterates over collections and returns selected information
     let accordionItems = sort_collection.map(function(item, index){
       // console.log('here', item)
       let tracks = item.tracks.map(function(track, index){
@@ -60,15 +41,12 @@ class CollectionsAccordion extends Component {
       })
 
       return (
+        // accordion for all users collections 
         <li key={index}>
           <div className="collapsible-header">
             <i className="material-icons">album</i>{item.artist} - {item.album}
-            {/* <p className="email_confirmation">Email Sent</p> */}
-
             <CreateEmail album={item.id} className="contact_on_accordion"/>
-
           </div>
-            {/* <button type="button" onClick={this._deleteAlbum} className="waves-effect waves-light red lighten-2 btn-small">Delete</button> */}
           <div className="collapsible-body">
             <div className="row">
               <div className="col s12 m6">
@@ -100,10 +78,6 @@ class CollectionsAccordion extends Component {
 })
     return (
       <div>
-        {/* <div>
-          <p>Thank you! Your message has been sent</p>
-          <input type="button" value="OK"/>
-          </div> */}
         <ul className="collapsible popout" data-collapsible="accordion">
           {accordionItems}
         </ul>

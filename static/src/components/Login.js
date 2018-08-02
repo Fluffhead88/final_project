@@ -17,12 +17,12 @@ class Login extends Component {
 }
 
 _handleInput(event) {
-  // let data = event.target.value;
   let obj =  {}
   let key = event.target.name;
   obj[key] = event.target.value;
   this.setState(obj);
 }
+// creates new token for the session for an already registered user
 _postLoginAuth(event) {
   event.preventDefault();
   let data = this.state;
@@ -46,6 +46,8 @@ _postLoginAuth(event) {
     console.log('response', responseJSON.auth_token)
     sessionStorage.setItem('auth_token', 'token '+responseJSON.auth_token)
 
+// stores id to be used for setting profile image
+
     fetch(`${URL}auth/me/`,{
       method: 'GET',
       headers: {
@@ -59,14 +61,13 @@ _postLoginAuth(event) {
       sessionStorage.setItem('auth_id', response.id);
     })
 
-
-    sessionStorage.setItem('zach_is_cool', 'lol');
     let obj = {
       username: '',
       password: ''
     }
+    // sends logged in user directly to mycollections page
     self.setState(obj);
-    console.log('history', self.props.history)
+    // console.log('history', self.props.history)
     self.props.history.push("/mycollection");
   })
   .catch(function(error){
@@ -76,7 +77,7 @@ _postLoginAuth(event) {
 
 render() {
   return (
-    // {/* section for log in */}
+   // form for log in
     <div className="row">
       <form className="login form col s12" onSubmit={this._postLoginAuth}>
         <div className="container">

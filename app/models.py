@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-# creates unique users
+# creates unique users, bio not in use, image linked to user account
 class User(AbstractUser):
     bio = models.CharField(max_length=250, blank=True, null=True)
     image = models.ImageField(upload_to='media/', blank=True)
@@ -15,7 +15,7 @@ class Album(models.Model):
     url = models.URLField(max_length=2000, blank=True)
     notes = models.CharField(max_length=2000, blank=True)
     image = models.URLField(max_length=255, blank=True)
-    # profile = models.ImageField(upload_to='media/', verbose_name='image', null=True, blank=True)
+
 
     def __str__(self):
         return self.album
@@ -26,7 +26,8 @@ class Track(models.Model):
     album = models.ForeignKey(Album, related_name="tracks", on_delete=models.CASCADE, blank=True)
     title = models.CharField(max_length=255)
 
-# user model to search users on front end to show their collections
+# user model to search users on front end to show their collections - currently not using in this way
+# image upload functionality moved to user
 class Users(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.CharField(max_length=250, blank=True, null=True)

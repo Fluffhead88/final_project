@@ -20,7 +20,7 @@ class Collections extends Component {
 
     this._handleFilter = this._handleFilter.bind(this);
   }
-  // loads all albums on page
+  // loads all albums on page for all users
   componentDidMount() {
     let self = this;
     fetch(`${URL}album/`,{
@@ -33,7 +33,6 @@ class Collections extends Component {
       if(!response.ok){
         throw Error(response.statusText);
       }
-      // console.log(response.json())
       return response.json()
     })
     .then(function(responseJSON){
@@ -50,7 +49,8 @@ _handleFilter(event){
   this.setState(obj)
 }
   render() {
-    // console.log('HEYstate', this.state.collections)
+    // filters collections on search, filter applies after you type more than 3 letters
+    // you can search albums or artists
     let self = this;
     let filteredCollections = this.state.collections.filter(function(item){
       item.filter = item.album + item.artist;
@@ -62,6 +62,7 @@ _handleFilter(event){
     let collections = filteredCollections.map(function(Item){
 
       return(
+        // this shows album art and contact button when search filter is applied
         <div className='album_cards'>
           <div key={Item.id} className="col s12 m5 l4 collections_cards">
             <div>
@@ -79,6 +80,7 @@ _handleFilter(event){
                 <h5>{Item.artist}</h5>
                 <p className="album_name"></p>
                 <h6>{Item.album}</h6>
+                {/* button to contact user through mailgun */}
                 <div className="contact_button"><CreateEmail album={Item.id}/></div>
               </div>
             </div>

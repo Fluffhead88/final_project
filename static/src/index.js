@@ -13,10 +13,11 @@ import BaseLayout from './BaseLayout';
 import Home from './components/Home';
 import Collections from './components/Collections'
 import MyCollection from './components/MyCollection'
-
+// creates history for redirects 
 const history = createBrowserHistory()
 
 ReactDOM.render(
+  // access to history for redirects
   <Router history={history}>
     <BaseLayout history={history}>
       <Switch>

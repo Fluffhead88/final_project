@@ -9,10 +9,10 @@ function Header(props) {
 
     <nav className="white head">
       <div className="nav-wrapper container">
-        <ul className="left hide-on-small-and-down">
+        <ul className="left">
           <LoginModal history={props.history}/>
         </ul>
-        <ul className="nav_list right hide-on-small-and-down">
+        <ul className="nav_list right">
           {/* nav buttons to take user to each page */}
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/'>Home</NavLink></button>
           <button className="waves-effect waves-light red lighten-2 btn nav_button"><NavLink to='/collections'>Collections</NavLink></button>
