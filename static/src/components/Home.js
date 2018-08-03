@@ -38,7 +38,7 @@ class Home extends Component {
               <h1 className="header center gray-text text-lighten-2">The Record Bin</h1>
               <div className="row center">
                 {/* tagline under title */}
-                <h5 className="header col s12 light">Orangize and Expand your vinyl record collection</h5>
+                <h5 className="header col s12 light">Organize and Expand your vinyl record collection</h5>
               </div>
               <div className="row center">
                 {/* history for redirect to mycollections after login or registration */}
