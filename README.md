@@ -1,4 +1,4 @@
-# The Record Bin
+# My Record Bin
 
 This is an application for storing your personal collection of vinyl records and contacting other
 users to propose trades or sales of albums between users.
