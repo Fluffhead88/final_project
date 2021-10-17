@@ -4,7 +4,7 @@ import LoginModal from './LoginModal.js'
 import './Header.css';
 
 function Header(props) {
-  console.log('header', props)
+//   console.log('header', props)
   return (
 
     <nav className="white head">
